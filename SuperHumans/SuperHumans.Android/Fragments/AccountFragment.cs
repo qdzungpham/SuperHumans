@@ -11,8 +11,8 @@ namespace SuperHumans.Droid.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-
-
+ 
+            HasOptionsMenu = true;
         }
 
         public static AccountFragment NewInstance()
@@ -26,6 +26,18 @@ namespace SuperHumans.Droid.Fragments
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             return inflater.Inflate(Resource.Layout.fragment_account, null);
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.account_top_menus, menu);
+            
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

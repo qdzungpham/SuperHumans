@@ -34,7 +34,7 @@ namespace SuperHumans.Droid
 
             logInGoCommand.Click += (sender, e) =>
             {
-                var intent = new Intent(this, typeof(LogInActivity)); ;
+                var intent = new Intent(this, typeof(LoginActivity)); ;
                 StartActivity(intent);
             };
             signUpButton.Click += SignUp_Click;

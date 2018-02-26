@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <Jars>
+    <Jar>obj\Debug\lp\9\jl\support-annotations.jar</Jar>
     <Jar>C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\lp\10\jl\bin\classes.jar</Jar>
     <Jar>C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\lp\11\jl\bin\classes.jar</Jar>
     <Jar>C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\lp\12\jl\bin\classes.jar</Jar>

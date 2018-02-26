@@ -24,7 +24,7 @@ namespace SuperHumans.Droid
         protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
+            
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
             bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);

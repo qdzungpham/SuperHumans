@@ -11,7 +11,6 @@ namespace SuperHumans.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => ServiceLocator.Instance.Get<IDataStore<Item>>() ?? new MockDataStore();
         public IParseAccess ParseAccess => ServiceLocator.Instance.Get<IParseAccess>() ?? new ParseAccess();
 
 

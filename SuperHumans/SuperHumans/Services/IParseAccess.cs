@@ -10,6 +10,7 @@ namespace SuperHumans.Services
     {
         bool CurrentUser();
         Task<int> SignUp(User user);
+        Task<int> Login(User user); 
         Task<int> CreateObject();
     }
 }

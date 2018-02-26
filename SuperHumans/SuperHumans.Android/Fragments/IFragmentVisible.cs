@@ -1,7 +1,7 @@
-﻿namespace SuperHumans.Droid
+﻿namespace SuperHumans.Droid.Fragments
 {
-	interface IFragmentVisible
-	{
-		void BecameVisible();
-	}
+    interface IFragmentVisible
+    {
+        void BecameVisible();
+    }
 }

@@ -49,5 +49,19 @@ namespace SuperHumans.Services
 
             return 1;
         }
+
+        public async Task<int> Login(User user)
+        {
+            try
+            {
+                await ParseUser.LogInAsync(user.Username, user.Password);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return 1;
+        }
     }
 }

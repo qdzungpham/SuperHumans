@@ -14,7 +14,6 @@ C:\Development\SuperHumans\SuperHumans\SuperHumans\bin\Debug\netstandard2.0\Supe
 C:\Development\SuperHumans\SuperHumans\SuperHumans\bin\Debug\netstandard2.0\SuperHumans.pdb
 C:\Development\SuperHumans\SuperHumans\SuperHumans\bin\Debug\netstandard2.0\Parse.Android.dll
 C:\Development\SuperHumans\SuperHumans\SuperHumans\bin\Debug\netstandard2.0\Parse.Android.xml
-C:\Development\SuperHumans\SuperHumans\SuperHumans\obj\Debug\netstandard2.0\SuperHumans.csprojResolveAssemblyReference.cache
 C:\Development\SuperHumans\SuperHumans\SuperHumans\obj\Debug\netstandard2.0\SuperHumans.csproj.CoreCompileInputs.cache
 C:\Development\SuperHumans\SuperHumans\SuperHumans\obj\Debug\netstandard2.0\SuperHumans.AssemblyInfoInputs.cache
 C:\Development\SuperHumans\SuperHumans\SuperHumans\obj\Debug\netstandard2.0\SuperHumans.AssemblyInfo.cs
