@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Default screen margins, per the Android Design guidelines. -->
+	<dimen name="standard_margin">16dp</dimen>
+	<dimen name="small_margin">8dp</dimen>
+	<dimen name="tiny_margin">4dp</dimen>
+	<dimen name="image_size">120dp</dimen>
+	<dimen name="card_margin">16dp</dimen>
+	<dimen name="fab_margin">16dp</dimen>
+
+  <dimen name="bottom_nav">50dp</dimen>
+  <dimen name="drawer_width">240dp</dimen>
+  <dimen name="single_pad">8dp</dimen>
+  <dimen name="double_half_pad">20dp</dimen>
+  <dimen name="double_pad">16dp</dimen>
+  <dimen name="triple_half_pad">28dp</dimen>
+  <dimen name="quad_pad">32dp</dimen>
+  <dimen name="authentication_code_text_size">16sp</dimen>
+  <dimen name="authentication_header_text_size">24sp</dimen>
+  <dimen name="authentication_action_text_size">14sp</dimen>
+</resources>
