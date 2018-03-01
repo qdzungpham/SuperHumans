@@ -67,7 +67,15 @@ namespace SuperHumans.Helpers
 
         public void Execute(object parameter)
         {
-            execute(parameter);
+            try
+            {
+                execute(parameter);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
 
         public void ChangeCanExecute()

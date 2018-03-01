@@ -1,11 +1,16 @@
-﻿using Android.OS;
+﻿using Android.Content;
+using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
+using Android.Widget;
+using SuperHumans.Droid.Activities;
 
 namespace SuperHumans.Droid.Fragments
 {
     public class AccountFragment : Fragment
     {
+        Button settingsBtn;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -25,7 +30,18 @@ namespace SuperHumans.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
-            return inflater.Inflate(Resource.Layout.fragment_account, null);
+            View view = inflater.Inflate(Resource.Layout.fragment_account, container, false);
+
+            settingsBtn = view.FindViewById<Button>(Resource.Id.settings);
+
+            settingsBtn.Click += (sender, e) =>
+            {
+                var intent = new Intent(Activity, typeof(SettingsActivity)); ;
+                StartActivity(intent);
+            };
+
+
+            return view;
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

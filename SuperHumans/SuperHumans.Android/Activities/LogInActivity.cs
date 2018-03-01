@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Views;
 using Android.Widget;
 using SuperHumans.Models;
 using SuperHumans.ViewModels;
@@ -46,6 +39,8 @@ namespace SuperHumans.Droid
                 var intent = new Intent(this, typeof(SignUpActivity)); ;
                 StartActivity(intent);
             };
+
+            loginButton.Click += Login_Click;
         }
 
         void Login_Click(object sender, EventArgs e)
@@ -55,7 +50,18 @@ namespace SuperHumans.Droid
                 Username = userName.Text,
                 Password = password.Text
             };
-            ViewModel.LoginCommand.Execute(user);
+
+            try
+            {
+                ViewModel.LoginCommand.Execute(user);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("ERRORR ****************************");
+                System.Diagnostics.Debug.WriteLine(ex);
+
+
+            }
 
             var intent = new Intent(this, typeof(MainActivity)); ;
             StartActivity(intent);

@@ -1,9 +1,6 @@
 ﻿using SuperHumans.Helpers;
 using SuperHumans.Models;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SuperHumans.ViewModels
@@ -27,8 +24,7 @@ namespace SuperHumans.ViewModels
             }
             catch (Exception e)
             {
-                Debug.WriteLine("ERRORR ****************************");
-                Debug.WriteLine(e.ToString());
+                throw e;
             }
         }
     }

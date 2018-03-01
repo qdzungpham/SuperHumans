@@ -46,6 +46,10 @@ SuperHumans.Droid.Fragments.UsersFragment, SuperHumans.Android;md54b5843cc3f9bcb
 SuperHumans.Droid.Fragments.UsersFragment, SuperHumans.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md54b5843cc3f9bcb7df357b43f855f638d.UsersFragment
 SuperHumans.Droid.Fragments.UsersFragment;md54b5843cc3f9bcb7df357b43f855f638d.UsersFragment
 superhumans.droid.fragments.UsersFragment;md54b5843cc3f9bcb7df357b43f855f638d.UsersFragment
+SuperHumans.Droid.Activities.SettingsActivity, SuperHumans.Android;md5733b875f263d6bfd09ee94fe1b37c743.SettingsActivity
+SuperHumans.Droid.Activities.SettingsActivity, SuperHumans.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5733b875f263d6bfd09ee94fe1b37c743.SettingsActivity
+SuperHumans.Droid.Activities.SettingsActivity;md5733b875f263d6bfd09ee94fe1b37c743.SettingsActivity
+superhumans.droid.activities.SettingsActivity;md5733b875f263d6bfd09ee94fe1b37c743.SettingsActivity
 Android.Support.V4.Widget.SearchViewCompat/IOnCloseListenerImplementor, Xamarin.Android.Support.Compat;mono.android.support.v4.widget.SearchViewCompat_OnCloseListenerImplementor
 Android.Support.V4.Widget.SearchViewCompat+IOnCloseListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.widget.SearchViewCompat_OnCloseListenerImplementor
 Android.Support.V4.Widget.SearchViewCompat.IOnCloseListenerImplementor;mono.android.support.v4.widget.SearchViewCompat_OnCloseListenerImplementor

@@ -63,5 +63,12 @@ namespace SuperHumans.Services
 
             return 1;
         }
+
+        public async Task<int> SignOut()
+        {
+            await ParseUser.LogOutAsync();
+
+            return 1;
+        }
     }
 }

@@ -14,6 +14,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:label="LogInActivity" android:name="md5733b875f263d6bfd09ee94fe1b37c743.SettingsActivity" />
     <service android:name="md59f70a99687498e7ba187118950981d26.KeepAliveService" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="com.companyname.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
