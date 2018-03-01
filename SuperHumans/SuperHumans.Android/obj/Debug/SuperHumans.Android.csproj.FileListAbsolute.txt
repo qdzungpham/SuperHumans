@@ -116,7 +116,6 @@ C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\android\ass
 C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\android\assets\Plugin.Settings.dll.mdb
 C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\android\assets\Plugin.Share.dll.mdb
 C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\obj\Debug\android\assets\SuperHumans.Android.dll.mdb
-C:\Development\SuperHumans\SuperHumans\SuperHumans.Android\bin\Debug\SuperHumans.Android.dll
 bin\Debug\Plugin.Settings.Abstractions.dll.mdb
 bin\Debug\Plugin.Settings.dll.mdb
 bin\Debug\Plugin.Share.dll.mdb
