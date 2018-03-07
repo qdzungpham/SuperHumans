@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
@@ -15,6 +16,8 @@ namespace SuperHumans.Droid
 		{
             base.OnCreate(savedInstanceState);
 
+            UserDialogs.Init(this);
+
             ViewModel = new BaseViewModel();
 
             Intent newIntent;
@@ -28,9 +31,7 @@ namespace SuperHumans.Droid
             }
 
 			newIntent.AddFlags(ActivityFlags.ClearTop);
-			newIntent.AddFlags(ActivityFlags.SingleTop);
-
-           
+			newIntent.AddFlags(ActivityFlags.SingleTop);       
 			StartActivity(newIntent);
 			Finish();
 		}

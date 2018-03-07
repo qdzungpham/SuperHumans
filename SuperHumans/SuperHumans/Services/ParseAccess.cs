@@ -70,5 +70,15 @@ namespace SuperHumans.Services
 
             return 1;
         }
+
+        public async Task<int> AddQuestion(Question _question)
+        {
+            ParseObject question = new ParseObject("Questions");
+            question["title"] = _question.Title;
+            question["body"] = _question.Body;
+            question["ownerId"] = ParseUser.CurrentUser.ObjectId;
+            await question.SaveAsync();
+            return 1;
+        }
     }
 }

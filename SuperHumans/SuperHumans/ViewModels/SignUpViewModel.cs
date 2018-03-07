@@ -1,4 +1,5 @@
-﻿using SuperHumans.Helpers;
+﻿using Acr.UserDialogs;
+using SuperHumans.Helpers;
 using SuperHumans.Models;
 using SuperHumans.Services;
 using System;
@@ -30,11 +31,12 @@ namespace SuperHumans.ViewModels
             };
             try
             {
+                IsBusy = true;
                 await ParseAccess.SignUp(user);
+                IsBusy = false;
             } catch (Exception e)
             {
-                Debug.WriteLine("ERRORR ****************************");
-                Debug.WriteLine(e.ToString());
+                UserDialogs.Instance.Alert(e.Message, "ERROR SIGNING UP", "OK");
             }
         }
     }

@@ -13,5 +13,6 @@ namespace SuperHumans.Services
         Task<int> Login(User user);
         Task<int> SignOut();
         Task<int> CreateObject();
+        Task<int> AddQuestion(Question question);
     }
 }

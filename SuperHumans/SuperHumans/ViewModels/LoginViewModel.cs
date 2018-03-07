@@ -1,6 +1,8 @@
-﻿using SuperHumans.Helpers;
+﻿using Acr.UserDialogs;
+using SuperHumans.Helpers;
 using SuperHumans.Models;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace SuperHumans.ViewModels
@@ -17,14 +19,15 @@ namespace SuperHumans.ViewModels
 
         private async Task Login(User user)
         {
-
             try
             {
+                IsBusy = true;
                 await ParseAccess.Login(user);
+                IsBusy = false;
             }
             catch (Exception e)
             {
-                throw e;
+                UserDialogs.Instance.Alert(e.Message, "ERROR SIGNING IN", "OK");
             }
         }
     }

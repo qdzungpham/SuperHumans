@@ -25,6 +25,7 @@ namespace SuperHumans.Droid
             base.OnCreate(savedInstanceState);
 
             ViewModel = new SignUpViewModel();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
             logInGoCommand = FindViewById<TextView>(Resource.Id.login_prompt);
             email = FindViewById<AutoCompleteTextView>(Resource.Id.txtEmail);
@@ -48,11 +49,17 @@ namespace SuperHumans.Droid
                 Username = userName.Text,
                 Password = password.Text
             };
+
             ViewModel.SignUpCommand.Execute(user);
+        }
 
-            var intent = new Intent(this, typeof(MainActivity)); ;
+        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (!ViewModel.CurrentUser)
+                return;
+
+            var intent = new Intent(this, typeof(MainActivity));
             StartActivity(intent);
-
             Finish();
         }
     }

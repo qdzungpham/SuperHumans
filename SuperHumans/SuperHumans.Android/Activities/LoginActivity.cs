@@ -27,6 +27,7 @@ namespace SuperHumans.Droid
             base.OnCreate(savedInstanceState);
 
             ViewModel = new LoginViewModel();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
             registerGoCommand = FindViewById<TextView>(Resource.Id.register_prompt);
             forgotPassGoCommand = FindViewById<TextView>(Resource.Id.forgot_password);
@@ -41,6 +42,8 @@ namespace SuperHumans.Droid
             };
 
             loginButton.Click += Login_Click;
+
+            
         }
 
         void Login_Click(object sender, EventArgs e)
@@ -51,21 +54,16 @@ namespace SuperHumans.Droid
                 Password = password.Text
             };
 
-            try
-            {
-                ViewModel.LoginCommand.Execute(user);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("ERRORR ****************************");
-                System.Diagnostics.Debug.WriteLine(ex);
+            ViewModel.LoginCommand.Execute(user);
+        }
 
+        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (!ViewModel.CurrentUser)
+                return;
 
-            }
-
-            var intent = new Intent(this, typeof(MainActivity)); ;
+            var intent = new Intent(this, typeof(MainActivity));
             StartActivity(intent);
-
             Finish();
         }
     }

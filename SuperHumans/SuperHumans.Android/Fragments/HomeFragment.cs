@@ -4,6 +4,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Views;
+using SuperHumans.Droid.Activities;
 
 namespace SuperHumans.Droid.Fragments
 {
@@ -12,6 +13,7 @@ namespace SuperHumans.Droid.Fragments
 
         ViewPager pager;
         TabsAdapter adapter;
+        FloatingActionButton fab;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,6 +36,7 @@ namespace SuperHumans.Droid.Fragments
             View view = inflater.Inflate(Resource.Layout.fragment_home, container, false);
 
             pager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
+            fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab);
             adapter = new TabsAdapter(Activity, ChildFragmentManager);
             var tabs = view.FindViewById<TabLayout>(Resource.Id.tabs);
             pager.Adapter = adapter;
@@ -47,6 +50,11 @@ namespace SuperHumans.Droid.Fragments
                 fragment?.BecameVisible();
             };
 
+            fab.Click += (sender, e) =>
+            {
+                var intent = new Intent(Activity, typeof(SettingsActivity)); ;
+                StartActivity(intent);
+            };
             return view;
         }
     }
