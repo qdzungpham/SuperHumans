@@ -8,10 +8,6 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
     <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            app:layout_scrollFlags="scroll|enterAlways" />
-    <include
         android:id="@+id/tabs"
         layout="@layout/tabs" />
   </android.support.design.widget.AppBarLayout>

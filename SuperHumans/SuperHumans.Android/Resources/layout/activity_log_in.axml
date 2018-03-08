@@ -9,7 +9,7 @@
         android:id="@+id/toolbar_layout">
         <include
             android:id="@+id/toolbar"
-            layout="@layout/basic_toolbar"
+            layout="@layout/toolbar"
             local:layout_scrollFlags="scroll|enterAlways" />
     </android.support.design.widget.AppBarLayout>
     <RelativeLayout

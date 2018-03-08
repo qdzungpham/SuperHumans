@@ -16,7 +16,7 @@ namespace SuperHumans.Droid
 				SetSupportActionBar(Toolbar);
 				SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 				SupportActionBar.SetHomeButtonEnabled(true);
-
+                
 			}
 		}
 

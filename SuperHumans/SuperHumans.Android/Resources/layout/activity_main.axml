@@ -11,13 +11,13 @@
         local:elevation="0dp">
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            local:layout_scrollFlags="scroll|enterAlways" />
+            layout="@layout/toolbar" />
     </android.support.design.widget.AppBarLayout>
     <RelativeLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"

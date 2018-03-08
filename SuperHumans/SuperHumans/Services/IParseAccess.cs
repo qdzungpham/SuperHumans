@@ -1,4 +1,5 @@
-﻿using SuperHumans.Models;
+﻿using Parse;
+using SuperHumans.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,6 @@ namespace SuperHumans.Services
         Task<int> SignOut();
         Task<int> CreateObject();
         Task<int> AddQuestion(Question question);
+        Task<IEnumerable<ParseObject>> LoadQuestions();
     }
 }

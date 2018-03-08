@@ -76,9 +76,17 @@ namespace SuperHumans.Services
             ParseObject question = new ParseObject("Questions");
             question["title"] = _question.Title;
             question["body"] = _question.Body;
-            question["ownerId"] = ParseUser.CurrentUser.ObjectId;
+            question["owner"] = ParseUser.CurrentUser.Username;
             await question.SaveAsync();
             return 1;
+        }
+
+        public async Task<IEnumerable<ParseObject>> LoadQuestions()
+        {
+            var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt");
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+            
         }
     }
 }

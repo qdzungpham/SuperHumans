@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
+using Android.Support.V7.App;
 using Android.Views;
 using SuperHumans.Droid.Activities;
 
@@ -19,7 +20,6 @@ namespace SuperHumans.Droid.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-
 
         }
 
@@ -52,7 +52,7 @@ namespace SuperHumans.Droid.Fragments
 
             fab.Click += (sender, e) =>
             {
-                var intent = new Intent(Activity, typeof(SettingsActivity)); ;
+                var intent = new Intent(Activity, typeof(AskActivity)); ;
                 StartActivity(intent);
             };
             return view;

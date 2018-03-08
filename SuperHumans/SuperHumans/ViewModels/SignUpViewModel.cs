@@ -33,10 +33,13 @@ namespace SuperHumans.ViewModels
             {
                 IsBusy = true;
                 await ParseAccess.SignUp(user);
-                IsBusy = false;
+                
             } catch (Exception e)
             {
                 UserDialogs.Instance.Alert(e.Message, "ERROR SIGNING UP", "OK");
+            } finally
+            {
+                IsBusy = false;
             }
         }
     }
