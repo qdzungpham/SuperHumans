@@ -7,6 +7,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.ViewModels;
+using static Android.Resource;
 
 namespace SuperHumans.Droid.Fragments
 {
@@ -36,7 +37,9 @@ namespace SuperHumans.Droid.Fragments
             View view = inflater.Inflate(Resource.Layout.fragment_myfeed, container, false);
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
-            recyclerView.HasFixedSize = true;
+            recyclerView.HasFixedSize = false;
+        
+            recyclerView.AddItemDecoration(new DividerItemDecoration(recyclerView.Context, DividerItemDecoration.Vertical));
             recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(Activity, ViewModel));
 
             refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
@@ -69,10 +72,11 @@ namespace SuperHumans.Droid.Fragments
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
             var item = ViewModel.Questions[e.Position];
-            var intent = new Intent(Activity, typeof(SettingsViewModel));
+            //var intent = new Intent(Activity, typeof(SettingsViewModel));
 
-            intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
-            Activity.StartActivity(intent);
+            //intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
+            //Activity.StartActivity(intent);
+            Toast.MakeText(Context, item.Title, ToastLength.Short).Show();
         }
 
         void Refresher_Refresh(object sender, EventArgs e)
@@ -80,6 +84,7 @@ namespace SuperHumans.Droid.Fragments
             ViewModel.LoadQuestionsCommand.Execute(null);
             recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(Activity, ViewModel));
             refresher.Refreshing = false;
+            adapter.ItemClick += Adapter_ItemClick;
         }
 
         public void BecameVisible()
@@ -110,7 +115,7 @@ namespace SuperHumans.Droid.Fragments
         {
             //Setup your layout here
             View questionView = null;
-            var id = Resource.Layout.question_browse;
+            var id = Resource.Layout.question_list_item;
             questionView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
 
             var vh = new MyViewHolder(questionView, OnClick, OnLongClick);
@@ -126,6 +131,7 @@ namespace SuperHumans.Droid.Fragments
             var myHolder = holder as MyViewHolder;
             myHolder.TextView.Text = question.Title;
             myHolder.DetailTextView.Text = question.Body;
+            myHolder.TimeView.Text = question.Time;
         }
 
         public override int ItemCount => viewModel.Questions.Count;
@@ -135,12 +141,14 @@ namespace SuperHumans.Droid.Fragments
     {
         public TextView TextView { get; set; }
         public TextView DetailTextView { get; set; }
+        public TextView TimeView { get; set; }
 
         public MyViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
-            TextView = itemView.FindViewById<TextView>(Android.Resource.Id.Text1);
-            DetailTextView = itemView.FindViewById<TextView>(Android.Resource.Id.Text2);
+            TextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_title);
+            DetailTextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_detail);
+            TimeView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_time);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }

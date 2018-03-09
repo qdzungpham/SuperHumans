@@ -10,7 +10,7 @@ using SuperHumans.ViewModels;
 
 namespace SuperHumans.Droid
 {
-    [Activity(Label = "LogInActivity")]
+    [Activity(Label = "Ask Question")]
     public class AskActivity : BaseActivity
     {
         protected override int LayoutResource => Resource.Layout.activity_ask;
@@ -48,6 +48,8 @@ namespace SuperHumans.Droid
             //Toast.MakeText(this, "Posted", ToastLength.Short).Show();
 
             Finish();
+
+
 
             return base.OnOptionsItemSelected(item);
         }

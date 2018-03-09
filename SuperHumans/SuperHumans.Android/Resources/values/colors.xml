@@ -11,4 +11,6 @@
   <color name="divider">#BDBDBD</color>
   <color name="window_background">#ffffff</color>
   <color name="mint">#0dd3bb</color>
+  <color name="question_title_text">#326eb6</color>
+  <color name="text_light">#aeaeae</color>
 </resources>

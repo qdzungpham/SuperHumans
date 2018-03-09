@@ -46,6 +46,13 @@
     <item name="android:clickable">true</item>
   </style>
 
+  <style name="QuestionTitleText">
+    <item name="android:textColor">@color/question_title_text</item>
+  </style>
+  <style name="SubtitleText">
+    <item name="android:textSize">12sp</item>
+    <item name="android:textColor">@color/text_light</item>
+  </style>
 
   <style name="button_primary" parent="@android:style/Widget.Button">
     <item name="colorButtonNormal">@color/primary</item>

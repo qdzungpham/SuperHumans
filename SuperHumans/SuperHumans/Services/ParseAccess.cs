@@ -77,6 +77,7 @@ namespace SuperHumans.Services
             question["title"] = _question.Title;
             question["body"] = _question.Body;
             question["owner"] = ParseUser.CurrentUser.Username;
+            question["createdDate"] = DateTime.Now;
             await question.SaveAsync();
             return 1;
         }

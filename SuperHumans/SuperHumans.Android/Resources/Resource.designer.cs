@@ -1222,44 +1222,44 @@ namespace SuperHumans.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0a0054
-			public const int abc_background_cache_hint_selector_material_dark = 2131361876;
-			
-			// aapt resource value: 0x7f0a0055
-			public const int abc_background_cache_hint_selector_material_light = 2131361877;
-			
 			// aapt resource value: 0x7f0a0056
-			public const int abc_btn_colored_borderless_text_material = 2131361878;
+			public const int abc_background_cache_hint_selector_material_dark = 2131361878;
 			
 			// aapt resource value: 0x7f0a0057
-			public const int abc_btn_colored_text_material = 2131361879;
+			public const int abc_background_cache_hint_selector_material_light = 2131361879;
 			
 			// aapt resource value: 0x7f0a0058
-			public const int abc_color_highlight_material = 2131361880;
+			public const int abc_btn_colored_borderless_text_material = 2131361880;
 			
 			// aapt resource value: 0x7f0a0059
-			public const int abc_hint_foreground_material_dark = 2131361881;
+			public const int abc_btn_colored_text_material = 2131361881;
 			
 			// aapt resource value: 0x7f0a005a
-			public const int abc_hint_foreground_material_light = 2131361882;
+			public const int abc_color_highlight_material = 2131361882;
+			
+			// aapt resource value: 0x7f0a005b
+			public const int abc_hint_foreground_material_dark = 2131361883;
+			
+			// aapt resource value: 0x7f0a005c
+			public const int abc_hint_foreground_material_light = 2131361884;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int abc_input_method_navigation_guard = 2131361797;
 			
-			// aapt resource value: 0x7f0a005b
-			public const int abc_primary_text_disable_only_material_dark = 2131361883;
-			
-			// aapt resource value: 0x7f0a005c
-			public const int abc_primary_text_disable_only_material_light = 2131361884;
-			
 			// aapt resource value: 0x7f0a005d
-			public const int abc_primary_text_material_dark = 2131361885;
+			public const int abc_primary_text_disable_only_material_dark = 2131361885;
 			
 			// aapt resource value: 0x7f0a005e
-			public const int abc_primary_text_material_light = 2131361886;
+			public const int abc_primary_text_disable_only_material_light = 2131361886;
 			
 			// aapt resource value: 0x7f0a005f
-			public const int abc_search_url_text = 2131361887;
+			public const int abc_primary_text_material_dark = 2131361887;
+			
+			// aapt resource value: 0x7f0a0060
+			public const int abc_primary_text_material_light = 2131361888;
+			
+			// aapt resource value: 0x7f0a0061
+			public const int abc_search_url_text = 2131361889;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int abc_search_url_text_normal = 2131361798;
@@ -1270,32 +1270,32 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0a0008
 			public const int abc_search_url_text_selected = 2131361800;
 			
-			// aapt resource value: 0x7f0a0060
-			public const int abc_secondary_text_material_dark = 2131361888;
-			
-			// aapt resource value: 0x7f0a0061
-			public const int abc_secondary_text_material_light = 2131361889;
-			
 			// aapt resource value: 0x7f0a0062
-			public const int abc_tint_btn_checkable = 2131361890;
+			public const int abc_secondary_text_material_dark = 2131361890;
 			
 			// aapt resource value: 0x7f0a0063
-			public const int abc_tint_default = 2131361891;
+			public const int abc_secondary_text_material_light = 2131361891;
 			
 			// aapt resource value: 0x7f0a0064
-			public const int abc_tint_edittext = 2131361892;
+			public const int abc_tint_btn_checkable = 2131361892;
 			
 			// aapt resource value: 0x7f0a0065
-			public const int abc_tint_seek_thumb = 2131361893;
+			public const int abc_tint_default = 2131361893;
 			
 			// aapt resource value: 0x7f0a0066
-			public const int abc_tint_spinner = 2131361894;
+			public const int abc_tint_edittext = 2131361894;
 			
 			// aapt resource value: 0x7f0a0067
-			public const int abc_tint_switch_thumb = 2131361895;
+			public const int abc_tint_seek_thumb = 2131361895;
 			
 			// aapt resource value: 0x7f0a0068
-			public const int abc_tint_switch_track = 2131361896;
+			public const int abc_tint_spinner = 2131361896;
+			
+			// aapt resource value: 0x7f0a0069
+			public const int abc_tint_switch_thumb = 2131361897;
+			
+			// aapt resource value: 0x7f0a006a
+			public const int abc_tint_switch_track = 2131361898;
 			
 			// aapt resource value: 0x7f0a004d
 			public const int accent = 2131361869;
@@ -1357,8 +1357,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0a003f
 			public const int design_bottom_navigation_shadow_color = 2131361855;
 			
-			// aapt resource value: 0x7f0a0069
-			public const int design_error = 2131361897;
+			// aapt resource value: 0x7f0a006b
+			public const int design_error = 2131361899;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int design_fab_shadow_end_color = 2131361856;
@@ -1390,8 +1390,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0a0049
 			public const int design_textinput_error_color_light = 2131361865;
 			
-			// aapt resource value: 0x7f0a006a
-			public const int design_tint_password_toggle = 2131361898;
+			// aapt resource value: 0x7f0a006c
+			public const int design_tint_password_toggle = 2131361900;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int dim_foreground_disabled_material_dark = 2131361815;
@@ -1507,6 +1507,9 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0a0034
 			public const int primary_text_disabled_material_light = 2131361844;
 			
+			// aapt resource value: 0x7f0a0054
+			public const int question_title_text = 2131361876;
+			
 			// aapt resource value: 0x7f0a0035
 			public const int ripple_material_dark = 2131361845;
 			
@@ -1534,17 +1537,20 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0a003c
 			public const int switch_thumb_disabled_material_light = 2131361852;
 			
-			// aapt resource value: 0x7f0a006b
-			public const int switch_thumb_material_dark = 2131361899;
+			// aapt resource value: 0x7f0a006d
+			public const int switch_thumb_material_dark = 2131361901;
 			
-			// aapt resource value: 0x7f0a006c
-			public const int switch_thumb_material_light = 2131361900;
+			// aapt resource value: 0x7f0a006e
+			public const int switch_thumb_material_light = 2131361902;
 			
 			// aapt resource value: 0x7f0a003d
 			public const int switch_thumb_normal_material_dark = 2131361853;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int switch_thumb_normal_material_light = 2131361854;
+			
+			// aapt resource value: 0x7f0a0055
+			public const int text_light = 2131361877;
 			
 			// aapt resource value: 0x7f0a0052
 			public const int window_background = 2131361874;
@@ -2301,26 +2307,26 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020077
-			public const int avd_hide_password_1 = 2130837623;
-			
-			// aapt resource value: 0x7f020078
-			public const int avd_hide_password_2 = 2130837624;
-			
 			// aapt resource value: 0x7f020079
-			public const int avd_hide_password_3 = 2130837625;
+			public const int avd_hide_password_1 = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int avd_hide_password_2 = 2130837626;
+			
+			// aapt resource value: 0x7f02007b
+			public const int avd_hide_password_3 = 2130837627;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02007a
-			public const int avd_show_password_1 = 2130837626;
-			
-			// aapt resource value: 0x7f02007b
-			public const int avd_show_password_2 = 2130837627;
-			
 			// aapt resource value: 0x7f02007c
-			public const int avd_show_password_3 = 2130837628;
+			public const int avd_show_password_1 = 2130837628;
+			
+			// aapt resource value: 0x7f02007d
+			public const int avd_show_password_2 = 2130837629;
+			
+			// aapt resource value: 0x7f02007e
+			public const int avd_show_password_3 = 2130837630;
 			
 			// aapt resource value: 0x7f020055
 			public const int background_splash = 2130837589;
@@ -2356,73 +2362,79 @@ namespace SuperHumans.Droid
 			public const int ic_add_white_24px = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_errorstatus = 2130837600;
+			public const int ic_crop_5_4_24px = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_home_black_24px = 2130837601;
+			public const int ic_errorstatus = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_people_black_24px = 2130837602;
+			public const int ic_home_black_24px = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_save = 2130837603;
+			public const int ic_people_black_24px = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_settings_black_24px = 2130837604;
+			public const int ic_save = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_successstatus = 2130837605;
+			public const int ic_settings_black_24px = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int nav_item_colors = 2130837606;
+			public const int ic_successstatus = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int navigation_empty_icon = 2130837607;
+			public const int line_divider = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int notification_action_background = 2130837608;
+			public const int nav_item_colors = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int notification_bg = 2130837609;
+			public const int navigation_empty_icon = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int notification_bg_low = 2130837610;
+			public const int notification_action_background = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int notification_bg_low_normal = 2130837611;
+			public const int notification_bg = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int notification_bg_low_pressed = 2130837612;
+			public const int notification_bg_low = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int notification_bg_normal = 2130837613;
+			public const int notification_bg_low_normal = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int notification_bg_normal_pressed = 2130837614;
+			public const int notification_bg_low_pressed = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int notification_icon_background = 2130837615;
-			
-			// aapt resource value: 0x7f020075
-			public const int notification_template_icon_bg = 2130837621;
-			
-			// aapt resource value: 0x7f020076
-			public const int notification_template_icon_low_bg = 2130837622;
+			public const int notification_bg_normal = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int notification_tile_bg = 2130837616;
+			public const int notification_bg_normal_pressed = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int notify_panel_notification_icon_bg = 2130837617;
+			public const int notification_icon_background = 2130837617;
+			
+			// aapt resource value: 0x7f020077
+			public const int notification_template_icon_bg = 2130837623;
+			
+			// aapt resource value: 0x7f020078
+			public const int notification_template_icon_low_bg = 2130837624;
 			
 			// aapt resource value: 0x7f020072
-			public const int roundedbg = 2130837618;
+			public const int notification_tile_bg = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int roundedbgdark = 2130837619;
+			public const int notify_panel_notification_icon_bg = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int xamarin_logo = 2130837620;
+			public const int roundedbg = 2130837620;
+			
+			// aapt resource value: 0x7f020075
+			public const int roundedbgdark = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int xamarin_logo = 2130837622;
 			
 			static Drawable()
 			{
@@ -2488,11 +2500,11 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080043
 			public const int action_mode_close_button = 2131230787;
 			
-			// aapt resource value: 0x7f0800bc
-			public const int action_post = 2131230908;
+			// aapt resource value: 0x7f0800c0
+			public const int action_post = 2131230912;
 			
-			// aapt resource value: 0x7f0800bb
-			public const int action_settings = 2131230907;
+			// aapt resource value: 0x7f0800bf
+			public const int action_settings = 2131230911;
 			
 			// aapt resource value: 0x7f0800a3
 			public const int action_text = 2131230883;
@@ -2716,20 +2728,20 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f08007d
 			public const int main_content = 2131230845;
 			
-			// aapt resource value: 0x7f0800ba
-			public const int masked = 2131230906;
+			// aapt resource value: 0x7f0800be
+			public const int masked = 2131230910;
 			
 			// aapt resource value: 0x7f0800a7
 			public const int media_actions = 2131230887;
 			
-			// aapt resource value: 0x7f0800bf
-			public const int menu_account = 2131230911;
+			// aapt resource value: 0x7f0800c3
+			public const int menu_account = 2131230915;
 			
-			// aapt resource value: 0x7f0800bd
-			public const int menu_home = 2131230909;
+			// aapt resource value: 0x7f0800c1
+			public const int menu_home = 2131230913;
 			
-			// aapt resource value: 0x7f0800be
-			public const int menu_users = 2131230910;
+			// aapt resource value: 0x7f0800c2
+			public const int menu_users = 2131230914;
 			
 			// aapt resource value: 0x7f080022
 			public const int middle = 2131230754;
@@ -2781,6 +2793,18 @@ namespace SuperHumans.Droid
 			
 			// aapt resource value: 0x7f080083
 			public const int qa = 2131230851;
+			
+			// aapt resource value: 0x7f0800ba
+			public const int question_list_item_detail = 2131230906;
+			
+			// aapt resource value: 0x7f0800b8
+			public const int question_list_item_score = 2131230904;
+			
+			// aapt resource value: 0x7f0800bb
+			public const int question_list_item_time = 2131230907;
+			
+			// aapt resource value: 0x7f0800b9
+			public const int question_list_item_title = 2131230905;
 			
 			// aapt resource value: 0x7f08005d
 			public const int radio = 2131230813;
@@ -2872,8 +2896,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080080
 			public const int signOut = 2131230848;
 			
-			// aapt resource value: 0x7f0800b8
-			public const int sliding_tabs = 2131230904;
+			// aapt resource value: 0x7f0800bc
+			public const int sliding_tabs = 2131230908;
 			
 			// aapt resource value: 0x7f080086
 			public const int smallLabel = 2131230854;
@@ -3004,8 +3028,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080097
 			public const int viewpager = 2131230871;
 			
-			// aapt resource value: 0x7f0800b9
-			public const int visible = 2131230905;
+			// aapt resource value: 0x7f0800bd
+			public const int visible = 2131230909;
 			
 			// aapt resource value: 0x7f080027
 			public const int withText = 2131230759;
@@ -3286,22 +3310,25 @@ namespace SuperHumans.Droid
 			public const int question_browse = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int select_dialog_item_material = 2130968649;
+			public const int question_list_item = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int select_dialog_multichoice_material = 2130968650;
+			public const int select_dialog_item_material = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int select_dialog_singlechoice_material = 2130968651;
+			public const int select_dialog_multichoice_material = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int support_simple_spinner_dropdown_item = 2130968652;
+			public const int select_dialog_singlechoice_material = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int tabs = 2130968653;
+			public const int support_simple_spinner_dropdown_item = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int toolbar = 2130968654;
+			public const int tabs = 2130968654;
+			
+			// aapt resource value: 0x7f04004f
+			public const int toolbar = 2130968655;
 			
 			static Layout()
 			{
@@ -4084,6 +4111,9 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f090026
 			public const int Platform_Widget_AppCompat_Spinner = 2131296294;
 			
+			// aapt resource value: 0x7f090183
+			public const int QuestionTitleText = 2131296643;
+			
 			// aapt resource value: 0x7f090035
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131296309;
 			
@@ -4131,6 +4161,9 @@ namespace SuperHumans.Droid
 			
 			// aapt resource value: 0x7f09017f
 			public const int SplashTheme_Base = 2131296639;
+			
+			// aapt resource value: 0x7f090184
+			public const int SubtitleText = 2131296644;
 			
 			// aapt resource value: 0x7f0900d0
 			public const int TextAppearance_AppCompat = 2131296464;
@@ -4672,8 +4705,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f090160
 			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131296608;
 			
-			// aapt resource value: 0x7f090184
-			public const int Widget_CardContent = 2131296644;
+			// aapt resource value: 0x7f090186
+			public const int Widget_CardContent = 2131296646;
 			
 			// aapt resource value: 0x7f090162
 			public const int Widget_Design_AppBarLayout = 2131296610;
@@ -4717,8 +4750,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f090182
 			public const int auth_toggle_text_style = 2131296642;
 			
-			// aapt resource value: 0x7f090183
-			public const int button_primary = 2131296643;
+			// aapt resource value: 0x7f090185
+			public const int button_primary = 2131296645;
 			
 			static Style()
 			{
