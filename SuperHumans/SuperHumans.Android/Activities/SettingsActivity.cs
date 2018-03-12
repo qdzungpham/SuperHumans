@@ -13,6 +13,7 @@ namespace SuperHumans.Droid.Activities
         protected override int LayoutResource => Resource.Layout.activity_settings;
 
         Button signOut;
+        Button basicModeSwitch;
 
         public SettingsViewModel ViewModel { get; set; }
 
@@ -23,12 +24,20 @@ namespace SuperHumans.Droid.Activities
             ViewModel = new SettingsViewModel();
 
             signOut = FindViewById<Button>(Resource.Id.signOut);
+            basicModeSwitch = FindViewById<Button>(Resource.Id.basicMode);
 
             signOut.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(LoginActivity)); ;
                 StartActivity(intent);
                 ViewModel.SignOutCommand.Execute(null);
+                Finish();
+            };
+
+            basicModeSwitch.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(BasicFirstActivity)); ;
+                StartActivity(intent);
                 Finish();
             };
         }

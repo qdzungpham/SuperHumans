@@ -12,11 +12,19 @@ namespace SuperHumans.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IParseAccess ParseAccess => ServiceLocator.Instance.Get<IParseAccess>() ?? new ParseAccess();
+        public IRestService RestService => ServiceLocator.Instance.Get<IRestService>() ?? new RestService();
 
 
         public bool CurrentUser
         {
             get { return ParseAccess.CurrentUser(); }
+        }
+
+        bool isAsyncFinished = false;
+        public bool IsAsyncFinished
+        {
+            get { return isAsyncFinished; }
+            set { SetProperty(ref isAsyncFinished, value); }
         }
 
         bool isBusy = false;

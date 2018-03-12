@@ -21,17 +21,12 @@ namespace SuperHumans.ViewModels
         {
             try
             {
-                IsBusy = true;
                 await ParseAccess.Login(user);
-                
+                IsAsyncFinished = true;
             }
             catch (Exception e)
             {
                 UserDialogs.Instance.Alert(e.Message, "ERROR SIGNING IN", "OK");
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
     }

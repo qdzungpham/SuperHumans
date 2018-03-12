@@ -37,20 +37,24 @@ namespace SuperHumans.Droid
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            var question = new Question
+            switch (item.ItemId)
             {
-                Title = title.Text,
-                Body = body.Text
-            };
+                case Resource.Id.action_post:
+                    var question = new Question
+                    {
+                        Title = title.Text,
+                        Body = body.Text
+                    };
 
-            ViewModel.PostCommand.Execute(question);
+                    ViewModel.PostCommand.Execute(question);
 
-            //Toast.MakeText(this, "Posted", ToastLength.Short).Show();
+                    //Toast.MakeText(this, "Posted", ToastLength.Short).Show();
 
-            Finish();
+                    Finish();
+                    break;
+                
 
-
-
+            }
             return base.OnOptionsItemSelected(item);
         }
 

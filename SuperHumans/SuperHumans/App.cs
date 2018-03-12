@@ -13,6 +13,7 @@ namespace SuperHumans
         public static void Initialize()
         {
             ServiceLocator.Instance.Register<IParseAccess, ParseAccess>();
+            ServiceLocator.Instance.Register<IRestService, RestService>();
             try
             {
                 ParseClient.Configuration config = new ParseClient.Configuration

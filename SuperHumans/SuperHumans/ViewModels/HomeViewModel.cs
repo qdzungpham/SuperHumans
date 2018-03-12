@@ -29,6 +29,7 @@ namespace SuperHumans.ViewModels
             try
             {
                 Questions.Clear();
+                DateTime now = RestService.GetServerTime();
                 var questions = await ParseAccess.LoadQuestions();
                 foreach (var question in questions)
                 {
@@ -37,8 +38,7 @@ namespace SuperHumans.ViewModels
                         Title = question.Get<string>("title"),
                         Body = question.Get<string>("body"),
                         Owner = question.Get<string>("owner"),
-                        Time = getTimeDiff(question.Get<DateTime>("createdDate"), DateTime.Now)
-                        //Time = getTimeDiff(question.CreatedAt.Value, DateTime.Now)
+                        Time = getTimeDiff(question.UpdatedAt.Value, now)
                     };
                     Questions.Add(q);
                 }
@@ -56,7 +56,6 @@ namespace SuperHumans.ViewModels
         {
             string result = "";
             TimeSpan diff = now - questionCreatedDate;
-            Console.WriteLine(diff);
 
             if (diff.Days != 0)
             {
