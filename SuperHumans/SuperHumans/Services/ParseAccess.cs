@@ -76,7 +76,7 @@ namespace SuperHumans.Services
             ParseObject question = new ParseObject("Questions");
             question["title"] = _question.Title;
             question["body"] = _question.Body;
-            question["owner"] = ParseUser.CurrentUser.Username;
+            question["createdBy"] = ParseUser.CurrentUser;
             await question.SaveAsync();
             return 1;
         }
@@ -89,22 +89,11 @@ namespace SuperHumans.Services
             
         }
 
-        public async Task<string> GetServerTime()
+        public async Task<ParseObject> GetQuestion(string objectId)
         {
-            //var result = DateTime.Now;
-            string hi = "hi";
-            IDictionary<string, object> dictionary = new Dictionary<string, object>
-            {
-                { "User", "rick"}
-            };
-            await ParseCloud.CallFunctionAsync<string>("hello", null).ContinueWith(t =>
-            {
-                hi = t.Result;
-                System.Diagnostics.Debug.WriteLine(hi);
-            });
-
-            return hi;
-            
+            ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions");
+            ParseObject question = await query.GetAsync(objectId);
+            return question;
         }
     }
 }

@@ -17,6 +17,9 @@ namespace SuperHumans.Droid
 		ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : BaseActivity
 	{
+
+        public static Activity activity;
+
 		protected override int LayoutResource => Resource.Layout.activity_main;
 
         BottomNavigationView bottomNavigation;
@@ -24,7 +27,8 @@ namespace SuperHumans.Droid
         protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-       
+
+            activity = this;
 
             bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
             bottomNavigation.NavigationItemSelected += BottomNavigation_NavigationItemSelected;

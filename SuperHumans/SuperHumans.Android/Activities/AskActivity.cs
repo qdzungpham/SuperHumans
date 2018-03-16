@@ -24,6 +24,7 @@ namespace SuperHumans.Droid
             base.OnCreate(savedInstanceState);
 
             ViewModel = new AskViewModel();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
             title = FindViewById<EditText>(Resource.Id.ask_edit_title);
             body = FindViewById<EditText>(Resource.Id.ask_edit_body);
@@ -50,12 +51,22 @@ namespace SuperHumans.Droid
 
                     //Toast.MakeText(this, "Posted", ToastLength.Short).Show();
 
-                    Finish();
+
                     break;
                 
 
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (!ViewModel.IsPosted && !ViewModel.IsBusy)
+                return;
+            Toast.MakeText(this, "Posted", ToastLength.Short).Show();
+            Finish();
+
+            
         }
 
     }

@@ -16,6 +16,6 @@ namespace SuperHumans.Services
         Task<int> CreateObject();
         Task<int> AddQuestion(Question question);
         Task<IEnumerable<ParseObject>> LoadQuestions();
-        Task<string> GetServerTime();
+        Task<ParseObject> GetQuestion(string objectId);
     }
 }

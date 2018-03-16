@@ -28,15 +28,19 @@ namespace SuperHumans.Droid.Activities
 
             signOut.Click += (sender, e) =>
             {
-                var intent = new Intent(this, typeof(LoginActivity)); ;
-                StartActivity(intent);
+                var intent = new Intent(this, typeof(LoginActivity));
+                intent.AddFlags(ActivityFlags.ClearTop);
                 ViewModel.SignOutCommand.Execute(null);
+                MainActivity.activity.Finish();
+                StartActivity(intent);
                 Finish();
             };
 
             basicModeSwitch.Click += (sender, e) =>
             {
-                var intent = new Intent(this, typeof(BasicFirstActivity)); ;
+                var intent = new Intent(this, typeof(BasicFirstActivity));
+                intent.AddFlags(ActivityFlags.ClearTop);
+                MainActivity.activity.Finish();
                 StartActivity(intent);
                 Finish();
             };

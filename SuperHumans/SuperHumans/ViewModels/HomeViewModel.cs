@@ -17,17 +17,18 @@ namespace SuperHumans.ViewModels
         public HomeViewModel()
         {
             Questions = new ObservableCollection<Question>();
-            LoadQuestionsCommand = new Command(async () => await ExecuteLoadQuestionsCommand());
+            LoadQuestionsCommand = new Command(async () => await ExecuteLoadQuestionsCommandAsync());
         }
 
-        private async Task ExecuteLoadQuestionsCommand()
+        public async Task ExecuteLoadQuestionsCommandAsync()
         {
             if (IsBusy) return;
 
-            IsBusy = true;
+            ProgressDialogManager.LoadProgressDialog("Loading...");
 
             try
             {
+                IsBusy = true;
                 Questions.Clear();
                 DateTime now = RestService.GetServerTime();
                 var questions = await ParseAccess.LoadQuestions();
@@ -35,20 +36,22 @@ namespace SuperHumans.ViewModels
                 {
                     var q = new Question
                     {
+                        ObjectId = question.ObjectId,
                         Title = question.Get<string>("title"),
                         Body = question.Get<string>("body"),
-                        Owner = question.Get<string>("owner"),
-                        Time = getTimeDiff(question.UpdatedAt.Value, now)
+                        TimeAgo = getTimeDiff(question.UpdatedAt.Value, now)
                     };
                     Questions.Add(q);
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
             }
             finally
             {
                 IsBusy = false;
+                ProgressDialogManager.DisposeProgressDialog();
             }
         }
 

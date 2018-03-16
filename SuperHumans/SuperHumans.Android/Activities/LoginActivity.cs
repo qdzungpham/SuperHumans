@@ -38,6 +38,7 @@ namespace SuperHumans.Droid
             registerGoCommand.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(SignUpActivity)); ;
+                intent.AddFlags(ActivityFlags.ClearTop);
                 StartActivity(intent);
             };
 
@@ -63,6 +64,8 @@ namespace SuperHumans.Droid
                 return;
 
             var intent = new Intent(this, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ClearTop);
+            intent.AddFlags(ActivityFlags.ClearTask);
             StartActivity(intent);
             Finish();
         }

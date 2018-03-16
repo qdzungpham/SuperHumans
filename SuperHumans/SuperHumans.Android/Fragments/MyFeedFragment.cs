@@ -6,6 +6,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using SuperHumans.Droid.Activities;
 using SuperHumans.ViewModels;
 using static Android.Resource;
 
@@ -32,9 +33,11 @@ namespace SuperHumans.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            base.OnCreateView(inflater, container, savedInstanceState);
+            View view = inflater.Inflate(Resource.Layout.fragment_myfeed, null);
+
             ViewModel = new HomeViewModel();
 
-            View view = inflater.Inflate(Resource.Layout.fragment_myfeed, container, false);
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
             recyclerView.HasFixedSize = false;
@@ -51,7 +54,7 @@ namespace SuperHumans.Droid.Fragments
             return view;
         }
 
-        public override void OnStart()
+        public override async void OnStart()
         {
             base.OnStart();
 
@@ -59,7 +62,7 @@ namespace SuperHumans.Droid.Fragments
             adapter.ItemClick += Adapter_ItemClick;
 
             if (ViewModel.Questions.Count == 0)
-                ViewModel.LoadQuestionsCommand.Execute(null);
+                await ViewModel.ExecuteLoadQuestionsCommandAsync();
         }
 
         public override void OnStop()
@@ -72,11 +75,10 @@ namespace SuperHumans.Droid.Fragments
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
             var item = ViewModel.Questions[e.Position];
-            //var intent = new Intent(Activity, typeof(SettingsViewModel));
-
-            //intent.PutExtra("data", Newtonsoft.Json.JsonConvert.SerializeObject(item));
-            //Activity.StartActivity(intent);
-            Toast.MakeText(Context, item.Title, ToastLength.Short).Show();
+            var intent = new Intent(Activity, typeof(BrowseQuestionDetailActivity));
+            intent.PutExtra("objectId", item.ObjectId);
+            Activity.StartActivity(intent);
+            //Toast.MakeText(Context, item.Title, ToastLength.Short).Show();
         }
 
         void Refresher_Refresh(object sender, EventArgs e)
@@ -131,7 +133,7 @@ namespace SuperHumans.Droid.Fragments
             var myHolder = holder as MyViewHolder;
             myHolder.TextView.Text = question.Title;
             myHolder.DetailTextView.Text = question.Body;
-            myHolder.TimeView.Text = question.Time;
+            myHolder.TimeView.Text = question.TimeAgo;
         }
 
         public override int ItemCount => viewModel.Questions.Count;

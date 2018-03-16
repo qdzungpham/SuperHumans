@@ -27,7 +27,7 @@ namespace SuperHumans.Droid
                 newIntent = new Intent(this, typeof(MainActivity));
             } else
             {
-                newIntent = new Intent(this, typeof(SignUpActivity));
+                newIntent = new Intent(this, typeof(LoginActivity));
             }
 
 			newIntent.AddFlags(ActivityFlags.ClearTop);

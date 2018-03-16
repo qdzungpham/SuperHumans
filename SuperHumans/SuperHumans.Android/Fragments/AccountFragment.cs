@@ -36,8 +36,9 @@ namespace SuperHumans.Droid.Fragments
 
             settingsBtn.Click += (sender, e) =>
             {
-                var intent = new Intent(Activity, typeof(SettingsActivity)); ;
-                StartActivity(intent);
+                var intent = new Intent(Activity, typeof(SettingsActivity));
+                intent.AddFlags(ActivityFlags.ClearTop);
+                Activity.StartActivity(intent);
             };
 
 

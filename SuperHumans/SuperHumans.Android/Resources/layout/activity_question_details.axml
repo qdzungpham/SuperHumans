@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <android.support.design.widget.AppBarLayout
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:id="@+id/toolbar_layout">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        local:layout_scrollFlags="scroll|enterAlways" />
+  </android.support.design.widget.AppBarLayout>
+  <RelativeLayout
+      android:id="@+id/content_frame"
+      android:layout_below="@id/toolbar_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/grey_background">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:background="@android:color/white">
+          <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+            <TextView
+              android:text="tags"
+              android:id="@+id/question_view_item_tags"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              style="@style/SubtitleText" />
+            <TextView
+              android:text="Title"
+              android:id="@+id/question_view_item_title"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/question_view_item_tags"
+              style="@style/QuestionTitleText" />
+          </RelativeLayout>
+          <View
+            android:background="@color/question_view_header_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+              android:text="body"
+              android:id="@+id/question_view_item_body"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+          </LinearLayout>
+        </LinearLayout>
+        <TextView
+          android:text="Answer"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+        <Button
+          android:id="@+id/btnAnswer"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="ANSWER"/>
+      </LinearLayout>
+      
+    </ScrollView>
+  </RelativeLayout>
+</RelativeLayout>
