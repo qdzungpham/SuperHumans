@@ -2,12 +2,13 @@
 using SuperHumans.Helpers;
 using SuperHumans.Models;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SuperHumans.ViewModels
 {
-    public class AskViewModel : BaseViewModel
+    public class AnswerViewModel : BaseViewModel
     {
         public Command PostCommand { get; private set; }
 
@@ -17,14 +18,13 @@ namespace SuperHumans.ViewModels
             get { return isPosted; }
             set { SetProperty(ref isPosted, value); }
         }
-
-        public AskViewModel()
+        
+        public AnswerViewModel()
         {
-            Title = "Ask Question";
-            PostCommand = new Command<Question>(async (Question question) => await ExecutePostQuestionAsync(question));
+            PostCommand = new Command<Answer>(async (Answer answer) => await ExecutePostAnswerAsync(answer));
         }
 
-        public async Task ExecutePostQuestionAsync(Question question)
+        public async Task ExecutePostAnswerAsync(Answer answer)
         {
             if (IsBusy) return;
 
@@ -33,8 +33,8 @@ namespace SuperHumans.ViewModels
             try
             {
                 IsBusy = true;
-                await ParseAccess.AddQuestion(question);
-                
+                await ParseAccess.AddAnswer(answer);
+
                 //UserDialogs.Instance.Toast("Posted.", TimeSpan.FromSeconds(3));
 
                 IsPosted = true;

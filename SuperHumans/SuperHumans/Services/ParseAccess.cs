@@ -95,5 +95,24 @@ namespace SuperHumans.Services
             ParseObject question = await query.GetAsync(objectId);
             return question;
         }
+
+        public async Task<int> AddAnswer(Answer _answer)
+        {
+            ParseQuery<ParseObject> questionQuery = ParseObject.GetQuery("Questions");
+
+            ParseObject answer = new ParseObject("Answers");
+            answer["body"] = _answer.Body;
+            answer["createdBy"] = ParseUser.CurrentUser;
+            answer["isAnswerOf"] = await questionQuery.GetAsync(_answer.QuestionId);
+            await answer.SaveAsync();
+            return 1;
+        }
+
+        public async Task<IEnumerable<ParseObject>> LoadAnswers(ParseObject question)
+        {
+            var query = ParseObject.GetQuery("Answers").WhereEqualTo("isAnswerOf", question);
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+        }
     }
 }

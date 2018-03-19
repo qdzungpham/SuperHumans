@@ -1,7 +1,9 @@
-﻿using SuperHumans.Helpers;
+﻿using Parse;
+using SuperHumans.Helpers;
 using SuperHumans.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +12,22 @@ namespace SuperHumans.ViewModels
 {
     public class QuestionDetailViewModel : BaseViewModel
     {
-        public Command GetQuestionCommand { get; private set; }
+        public ObservableCollection<Answer> Answers { get; set; }
 
-        public Question QuestionDetail { get; set; }
+        public Command LoadQuestionDetailCommand { get; private set; }
+
+        public Question Question { get; private set; }
 
         string questionId;
 
         public QuestionDetailViewModel(string questionId)
         {
             this.questionId = questionId;
-            GetQuestionCommand = new Command(async () => await ExecuteGetQuestionCommandAsync());
+            Answers = new ObservableCollection<Answer>();
+            LoadQuestionDetailCommand = new Command(async () => await ExecuteLoadQuestionDetailCommandAsync());
         }
 
-        public async Task ExecuteGetQuestionCommandAsync()
+        public async Task ExecuteLoadQuestionDetailCommandAsync()
         {
             if (IsBusy) return;
 
@@ -32,11 +37,23 @@ namespace SuperHumans.ViewModels
             {
                 IsBusy = true;
                 var question = await ParseAccess.GetQuestion(questionId);
-                QuestionDetail = new Question()
+                Question = new Question()
                 {
                     Title = question.Get<string>("title"),
-                    Body = question.Get<string>("body")
+                    Body = question.Get<string>("body"),
+                    ObjectId = question.ObjectId
                 };
+
+                Answers.Clear();
+                var answers = await ParseAccess.LoadAnswers(question);
+                foreach (var answer in answers)
+                {
+                    var a = new Answer
+                    {
+                        Body = answer.Get<string>("body")
+                    };
+                    Answers.Add(a);
+                }
             }
             catch (Exception e)
             {

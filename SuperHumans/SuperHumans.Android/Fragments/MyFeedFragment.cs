@@ -76,7 +76,7 @@ namespace SuperHumans.Droid.Fragments
         {
             var item = ViewModel.Questions[e.Position];
             var intent = new Intent(Activity, typeof(BrowseQuestionDetailActivity));
-            intent.PutExtra("objectId", item.ObjectId);
+            intent.PutExtra("questionId", item.ObjectId);
             Activity.StartActivity(intent);
             //Toast.MakeText(Context, item.Title, ToastLength.Short).Show();
         }
@@ -139,7 +139,7 @@ namespace SuperHumans.Droid.Fragments
         public override int ItemCount => viewModel.Questions.Count;
     }
 
-    public class MyViewHolder : RecyclerView.ViewHolder
+    class MyViewHolder : RecyclerView.ViewHolder
     {
         public TextView TextView { get; set; }
         public TextView DetailTextView { get; set; }

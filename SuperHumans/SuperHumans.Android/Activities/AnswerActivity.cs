@@ -17,11 +17,16 @@ namespace SuperHumans.Droid
 
         EditText body;
 
-        //public AskViewModel ViewModel { get; set; }
+        public AnswerViewModel ViewModel { get; set; }
 
+        string questionId;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            questionId = Intent.GetStringExtra("data");
+            ViewModel = new AnswerViewModel();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
             body = FindViewById<EditText>(Resource.Id.answer_edit_body);
         }
@@ -30,6 +35,37 @@ namespace SuperHumans.Droid
         {
             MenuInflater.Inflate(Resource.Menu.ask_menus, menu);
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.action_post:
+                    var answer = new Answer
+                    {
+                        Body = body.Text,
+                        QuestionId = questionId
+                    };
+
+                    ViewModel.PostCommand.Execute(answer);
+
+                    //Toast.MakeText(this, "Posted", ToastLength.Short).Show();
+                    break;
+
+
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
+        void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (ViewModel.IsPosted && !ViewModel.IsBusy)
+            {
+                Toast.MakeText(this, "Posted", ToastLength.Short).Show();
+                Finish();
+            }
+
         }
 
 

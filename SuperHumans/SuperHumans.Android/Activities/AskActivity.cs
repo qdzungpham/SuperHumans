@@ -61,12 +61,12 @@ namespace SuperHumans.Droid
 
         void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (!ViewModel.IsPosted && !ViewModel.IsBusy)
-                return;
-            Toast.MakeText(this, "Posted", ToastLength.Short).Show();
-            Finish();
-
-            
+            if (ViewModel.IsPosted && !ViewModel.IsBusy)
+            {
+                Toast.MakeText(this, "Posted", ToastLength.Short).Show();
+                Finish();
+            }
+                 
         }
 
     }
