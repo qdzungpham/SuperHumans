@@ -29,6 +29,7 @@
         android:text="Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/accent"
         android:id="@+id/settings" />
     </LinearLayout>
   </android.support.v4.widget.NestedScrollView>

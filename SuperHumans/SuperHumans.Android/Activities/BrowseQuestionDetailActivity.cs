@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -19,9 +20,10 @@ namespace SuperHumans.Droid.Activities
     {
         protected override int LayoutResource => Resource.Layout.activity_question_details;
         QuestionDetailViewModel ViewModel { get; set; }
-        TextView title, body;
+        TextView title;
         Button answerBtn;
         BrowseItemsAdapter adapter;
+        SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,7 +33,6 @@ namespace SuperHumans.Droid.Activities
             ViewModel = new QuestionDetailViewModel(Intent.GetStringExtra("questionId"));
 
             title = FindViewById<TextView>(Resource.Id.question_view_item_title);
-            body = FindViewById<TextView>(Resource.Id.question_view_item_body);
             answerBtn = FindViewById<Button>(Resource.Id.btnAnswer);
 
             recyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
@@ -40,6 +41,9 @@ namespace SuperHumans.Droid.Activities
 
             recyclerView.AddItemDecoration(new DividerItemDecoration(recyclerView.Context, DividerItemDecoration.Vertical));
             recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(this, ViewModel));
+
+            refresher = FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+            refresher.SetColorSchemeColors(Resource.Color.accent);
 
             answerBtn.Click += (sender, e) =>
             {
@@ -52,14 +56,28 @@ namespace SuperHumans.Droid.Activities
         protected override async void OnStart()
         {
             base.OnStart();
-            
+
+            refresher.Refresh += Refresher_Refresh;
+
             if (ViewModel.Question == null)
             {
                 await ViewModel.ExecuteLoadQuestionDetailCommandAsync();
             }
 
             title.Text = ViewModel.Question.Title;
-            body.Text = ViewModel.Question.Body;
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            refresher.Refresh -= Refresher_Refresh;
+        }
+
+        void Refresher_Refresh(object sender, EventArgs e)
+        {
+            ViewModel.LoadQuestionDetailCommand.Execute(null);
+            recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(this, ViewModel));
+            refresher.Refreshing = false;
         }
 
 
@@ -113,7 +131,7 @@ namespace SuperHumans.Droid.Activities
         public MyViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
-            BodyView = itemView.FindViewById<TextView>(Resource.Id.answer_list_item_body);
+            BodyView = itemView.FindViewById<TextView>(Resource.Id.text_body);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }

@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
     android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:foreground="?attr/selectableItemBackground">
-  <TextView
-      android:id="@+id/answer_list_item_body"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      style="@style/SubtitleText" />
-</RelativeLayout>
+    android:foreground="?attr/selectableItemBackground"
+              android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+    <RelativeLayout
+        android:id="@+id/layout_post_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp">
+        <ImageView
+            android:id="@+id/image_avatar_or_blavatar"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="12dp"
+            app:srcCompat="@drawable/ic_placeholder_user_avatar"
+            android:layout_marginEnd="12dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_toRightOf="@+id/image_avatar_or_blavatar"
+            android:layout_toEndOf="@+id/image_avatar_or_blavatar"
+            android:layout_marginEnd="12dp">
+            <TextView
+                android:textAlignment="viewStart"
+                android:gravity="start"
+                android:id="@+id/text_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#00aadc"
+                android:textSize="14sp"
+                android:text="rickpham" />
+            <TextView
+                android:id="@+id/text_timeago"
+                android:textColor="#668eaa"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_username"
+                android:gravity="center_vertical"
+                android:text="1h ago" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/text_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_post_header"
+        android:textSize="16sp"
+        android:textColor="#2e4453"
+        android:lineSpacingMultiplier="1.1"
+        android:fontFamily="serif"/>
+</LinearLayout>
