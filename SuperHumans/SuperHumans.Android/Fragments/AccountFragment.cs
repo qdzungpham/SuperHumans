@@ -9,7 +9,7 @@ namespace SuperHumans.Droid.Fragments
 {
     public class AccountFragment : Fragment
     {
-        Button settingsBtn;
+        
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,15 +31,6 @@ namespace SuperHumans.Droid.Fragments
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.fragment_account, container, false);
-
-            settingsBtn = view.FindViewById<Button>(Resource.Id.settings);
-
-            settingsBtn.Click += (sender, e) =>
-            {
-                var intent = new Intent(Activity, typeof(SettingsActivity));
-                intent.AddFlags(ActivityFlags.ClearTop);
-                Activity.StartActivity(intent);
-            };
 
 
             return view;

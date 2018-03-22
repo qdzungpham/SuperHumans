@@ -20,7 +20,7 @@ namespace SuperHumans.Droid.Activities
     {
         protected override int LayoutResource => Resource.Layout.activity_question_details;
         QuestionDetailViewModel ViewModel { get; set; }
-        TextView title;
+        TextView title, answerCount;
         Button answerBtn;
         BrowseItemsAdapter adapter;
         SwipeRefreshLayout refresher;
@@ -33,6 +33,7 @@ namespace SuperHumans.Droid.Activities
             ViewModel = new QuestionDetailViewModel(Intent.GetStringExtra("questionId"));
 
             title = FindViewById<TextView>(Resource.Id.question_view_item_title);
+            answerCount = FindViewById<TextView>(Resource.Id.textAnswerCount);
             answerBtn = FindViewById<Button>(Resource.Id.btnAnswer);
 
             recyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
@@ -62,6 +63,18 @@ namespace SuperHumans.Droid.Activities
             if (ViewModel.Question == null)
             {
                 await ViewModel.ExecuteLoadQuestionDetailCommandAsync();
+            }
+
+            var count = ViewModel.Answers.Count;
+            if (count == 0)
+            {
+                answerCount.Text = "NO ANSWER YET";
+            } else if (count == 1)
+            {
+                answerCount.Text = count + " ANSWER";
+            } else
+            {
+                answerCount.Text = count + " ANSWERS";
             }
 
             title.Text = ViewModel.Question.Title;
@@ -118,6 +131,8 @@ namespace SuperHumans.Droid.Activities
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
+            myHolder.UserNameView.Text = answer.CreatedBy;
+            myHolder.TimeAgoView.Text = answer.TimeAgo;
             myHolder.BodyView.Text = answer.Body;
         }
 
@@ -127,11 +142,16 @@ namespace SuperHumans.Droid.Activities
     class MyViewHolder : RecyclerView.ViewHolder
     {
         public TextView BodyView { get; set; }
+        public TextView UserNameView { get; set; }
+        public TextView TimeAgoView { get; set; }
 
         public MyViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
+
             BodyView = itemView.FindViewById<TextView>(Resource.Id.text_body);
+            UserNameView = itemView.FindViewById<TextView>(Resource.Id.text_username);
+            TimeAgoView = itemView.FindViewById<TextView>(Resource.Id.text_timeago);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }

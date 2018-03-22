@@ -48,9 +48,14 @@ namespace SuperHumans.ViewModels
                 var answers = await ParseAccess.LoadAnswers(question);
                 foreach (var answer in answers)
                 {
+
+                    ParseUser user = answer.Get<ParseUser>("createdBy");
+                    DateTime now = RestService.GetServerTime();
                     var a = new Answer
                     {
-                        Body = answer.Get<string>("body")
+                        Body = answer.Get<string>("body"),
+                        CreatedBy = user.Username,
+                        TimeAgo = HelperFunctions.TimeAgo(answer.UpdatedAt.Value, now)
                     };
                     Answers.Add(a);
                 }
@@ -65,5 +70,7 @@ namespace SuperHumans.ViewModels
                 ProgressDialogManager.DisposeProgressDialog();
             }
         }
+
+        
     }
 }

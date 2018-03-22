@@ -111,6 +111,14 @@ namespace SuperHumans.Services
         public async Task<IEnumerable<ParseObject>> LoadAnswers(ParseObject question)
         {
             var query = ParseObject.GetQuery("Answers").WhereEqualTo("isAnswerOf", question);
+            query = query.Include("createdBy");
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+        }
+
+        public async Task<IEnumerable<ParseObject>> LoadUsers()
+        {
+            var query = ParseUser.Query;
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
         }

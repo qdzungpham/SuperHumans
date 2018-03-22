@@ -17,7 +17,7 @@ namespace SuperHumans.Droid.Fragments
         public static MyFeedFragment NewInstance() =>
             new MyFeedFragment { Arguments = new Bundle() };
 
-        BrowseItemsAdapter adapter;
+        BrowseQuestionsAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
 
@@ -40,10 +40,10 @@ namespace SuperHumans.Droid.Fragments
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
-            recyclerView.HasFixedSize = false;
+            recyclerView.HasFixedSize = true;
         
             recyclerView.AddItemDecoration(new DividerItemDecoration(recyclerView.Context, DividerItemDecoration.Vertical));
-            recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(Activity, ViewModel));
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, ViewModel));
 
             refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
             refresher.SetColorSchemeColors(Resource.Color.accent);
@@ -84,7 +84,7 @@ namespace SuperHumans.Droid.Fragments
         void Refresher_Refresh(object sender, EventArgs e)
         {
             ViewModel.LoadQuestionsCommand.Execute(null);
-            recyclerView.SetAdapter(adapter = new BrowseItemsAdapter(Activity, ViewModel));
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, ViewModel));
             refresher.Refreshing = false;
             adapter.ItemClick += Adapter_ItemClick;
         }
@@ -96,12 +96,12 @@ namespace SuperHumans.Droid.Fragments
 
     }
 
-    class BrowseItemsAdapter : BaseRecycleViewAdapter
+    class BrowseQuestionsAdapter : BaseRecycleViewAdapter
     {
         HomeViewModel viewModel;
         Activity activity;
 
-        public BrowseItemsAdapter(Activity activity, HomeViewModel viewModel)
+        public BrowseQuestionsAdapter(Activity activity, HomeViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.activity = activity;
@@ -120,7 +120,7 @@ namespace SuperHumans.Droid.Fragments
             var id = Resource.Layout.question_list_item;
             questionView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
 
-            var vh = new MyViewHolder(questionView, OnClick, OnLongClick);
+            var vh = new QuestionViewHolder(questionView, OnClick, OnLongClick);
             return vh;
         }
 
@@ -130,7 +130,7 @@ namespace SuperHumans.Droid.Fragments
             var question = viewModel.Questions[position];
 
             // Replace the contents of the view with that element
-            var myHolder = holder as MyViewHolder;
+            var myHolder = holder as QuestionViewHolder;
             myHolder.TextView.Text = question.Title;
             myHolder.DetailTextView.Text = question.Body;
             myHolder.TimeView.Text = question.TimeAgo;
@@ -139,13 +139,13 @@ namespace SuperHumans.Droid.Fragments
         public override int ItemCount => viewModel.Questions.Count;
     }
 
-    class MyViewHolder : RecyclerView.ViewHolder
+    class QuestionViewHolder : RecyclerView.ViewHolder
     {
         public TextView TextView { get; set; }
         public TextView DetailTextView { get; set; }
         public TextView TimeView { get; set; }
 
-        public MyViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
+        public QuestionViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             TextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_title);

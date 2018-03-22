@@ -11,22 +11,22 @@ using SuperHumans.Droid.Fragments;
 
 namespace SuperHumans.Droid
 {
-	[Activity(Label = "@string/app_name", Icon = "@mipmap/icon",
-		LaunchMode = LaunchMode.SingleInstance,
-		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-		ScreenOrientation = ScreenOrientation.Portrait)]
-	public class MainActivity : BaseActivity
-	{
+    [Activity(Label = "@string/app_name", Icon = "@mipmap/icon",
+        LaunchMode = LaunchMode.SingleInstance,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
+    public class MainActivity : BaseActivity
+    {
 
         public static Activity activity;
 
-		protected override int LayoutResource => Resource.Layout.activity_main;
+        protected override int LayoutResource => Resource.Layout.activity_main;
 
         BottomNavigationView bottomNavigation;
 
         protected override void OnCreate(Bundle savedInstanceState)
-		{
-			base.OnCreate(savedInstanceState);
+        {
+            base.OnCreate(savedInstanceState);
 
             activity = this;
 
@@ -67,5 +67,5 @@ namespace SuperHumans.Droid
         }
     }
 
-	
+
 }

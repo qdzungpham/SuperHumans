@@ -146,6 +146,9 @@
     <AndroidResource Include="Resources\layout\answer_list_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\user_browse.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml">
@@ -224,7 +227,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\fragment_users.xml" />
+    <AndroidResource Include="Resources\layout\fragment_users.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_home_black_24px.xml">
@@ -266,16 +271,16 @@
     <AndroidResource Include="Resources\drawable\ic_crop_5_4_24px.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_favorite_black_24px.xml" />
+    <AndroidResource Include="Resources\drawable\ic_favorite_24px.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_create_black_24px.xml" />
+    <AndroidResource Include="Resources\drawable\ic_create_24px.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_share_black_24px.xml" />
+    <AndroidResource Include="Resources\drawable\ic_share_24px.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_grade_black_24px.xml" />
+    <AndroidResource Include="Resources\drawable\ic_grade_24px.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\interaction_button_style.xml" />

@@ -37,7 +37,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp">
+                            android:padding="16dp">
                             <TextView
                                 android:text="tags"
                                 android:id="@+id/question_view_item_tags"
@@ -82,14 +82,15 @@
                                     <ImageView
                                         android:layout_width="24dp"
                                         android:layout_height="24dp"
-                                        android:src="@drawable/ic_grade_black_24px" />
+                                        android:src="@drawable/ic_grade_24px"
+                                        android:tint="@color/secondaryText" />
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="8dp"
                                         android:textSize="16dp"
                                         android:text="FAVORATE"
-                                        android:textColor="#000000" />
+                                        android:textColor="@color/secondaryText" />
                                 </LinearLayout>
                             </RelativeLayout>
                             <RelativeLayout
@@ -108,14 +109,15 @@
                                     <ImageView
                                         android:layout_width="24dp"
                                         android:layout_height="24dp"
-                                        android:src="@drawable/ic_create_black_24px" />
+                                        android:src="@drawable/ic_create_24px"
+                                        android:tint="@color/secondaryText" />
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="8dp"
                                         android:textSize="16sp"
                                         android:text="EDIT"
-                                        android:textColor="#000000" />
+                                        android:textColor="@color/secondaryText" />
                                 </LinearLayout>
                             </RelativeLayout>
                             <RelativeLayout
@@ -134,22 +136,27 @@
                                     <ImageView
                                         android:layout_width="24dp"
                                         android:layout_height="24dp"
-                                        android:src="@drawable/ic_share_black_24px" />
+                                        android:src="@drawable/ic_share_24px"
+                                        android:tint="@color/secondaryText" />
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="8dp"
                                         android:textSize="16dp"
                                         android:text="SHARE"
-                                        android:textColor="#000000" />
+                                        android:textColor="@color/secondaryText" />
                                 </LinearLayout>
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/textAnswerCount"
                         android:text="Answer"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp" />
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerView"
                         android:scrollbars="vertical"
@@ -161,7 +168,9 @@
                         android:id="@+id/btnAnswer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ANSWER" />
+                        android:text="ANSWER"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primary" />
                 </LinearLayout>
             </ScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>

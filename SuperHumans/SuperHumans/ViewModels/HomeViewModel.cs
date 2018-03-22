@@ -39,7 +39,7 @@ namespace SuperHumans.ViewModels
                         ObjectId = question.ObjectId,
                         Title = question.Get<string>("title"),
                         Body = question.Get<string>("body"),
-                        TimeAgo = getTimeDiff(question.UpdatedAt.Value, now)
+                        TimeAgo = HelperFunctions.TimeAgo(question.UpdatedAt.Value, now)
                     };
                     Questions.Add(q);
                 }
@@ -53,40 +53,6 @@ namespace SuperHumans.ViewModels
                 IsBusy = false;
                 ProgressDialogManager.DisposeProgressDialog();
             }
-        }
-
-        private string getTimeDiff(DateTime questionCreatedDate, DateTime now)
-        {
-            string result = "";
-            TimeSpan diff = now - questionCreatedDate;
-
-            if (diff.Days != 0)
-            {
-                if (diff.Days == 1)
-                {
-                    result = "Yesterday";
-                } else
-                {
-                    result = diff.Days.ToString() + " days ago";
-                }
-            } else if (diff.Hours != 0)
-            {
-                result = diff.Hours.ToString() + " hours ago";
-            } else if (diff.Minutes != 0)
-            {
-                if (diff.Minutes == 1)
-                {
-                    result = "1 minute ago";
-                } else
-                {
-                    result = diff.Minutes.ToString() + " minutes ago";
-                }
-            } else
-            {
-                result = diff.Seconds.ToString() + " seconds ago";
-            }
-
-            return result;
-        }
+        }     
     }
 }

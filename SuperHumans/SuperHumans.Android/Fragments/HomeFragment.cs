@@ -32,8 +32,8 @@ namespace SuperHumans.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var ignored = base.OnCreateView(inflater, container, savedInstanceState);
-            View view = inflater.Inflate(Resource.Layout.fragment_home, container, false);
+            base.OnCreateView(inflater, container, savedInstanceState);
+            View view = inflater.Inflate(Resource.Layout.fragment_home, null);
 
             pager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab);

@@ -14,5 +14,5 @@
   <color name="question_title_text">#326eb6</color>
   <color name="text_light">#aeaeae</color>
   <color name="question_view_header_separator">#f6f6f6</color>
-  <color name="grey_background">#e0e0e0</color>
+  <color name="grey_background">#eeeeee</color>
 </resources>

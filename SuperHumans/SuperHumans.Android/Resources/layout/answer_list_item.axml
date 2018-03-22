@@ -7,10 +7,10 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:foreground="?attr/selectableItemBackground"
-              android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
     <RelativeLayout
         android:id="@+id/layout_post_header"
         android:layout_width="match_parent"
@@ -40,12 +40,12 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="#00aadc"
+                android:textColor="@color/primaryText"
                 android:textSize="14sp"
                 android:text="rickpham" />
             <TextView
                 android:id="@+id/text_timeago"
-                android:textColor="#668eaa"
+                android:textColor="@color/text_light"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_post_header"
         android:textSize="16sp"
-        android:textColor="#2e4453"
+        android:textColor="@color/primaryText"
         android:lineSpacingMultiplier="1.1"
-        android:fontFamily="serif"/>
+        android:fontFamily="serif" />
 </LinearLayout>
