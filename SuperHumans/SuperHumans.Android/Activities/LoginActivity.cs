@@ -7,7 +7,7 @@ using Android.Widget;
 using SuperHumans.Models;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid
+namespace SuperHumans.Droid.Activities
 {
     [Activity(Label = "LogInActivity")]
     public class LoginActivity : BaseActivity

@@ -1,19 +1,15 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Widget;
+using SuperHumans.Droid.Fragments;
 using SuperHumans.ViewModels;
-using System;
 
 namespace SuperHumans.Droid.Activities
 {
-    [Activity(Label = "LogInActivity")]
+    [Activity(Label = "Settings")]
     public class SettingsActivity : BaseActivity
     {
-        protected override int LayoutResource => Resource.Layout.activity_settings;
 
-        Button signOut;
-        Button basicModeSwitch;
+        protected override int LayoutResource => Resource.Layout.activity_settings;
 
         public SettingsViewModel ViewModel { get; set; }
 
@@ -23,27 +19,10 @@ namespace SuperHumans.Droid.Activities
 
             ViewModel = new SettingsViewModel();
 
-            signOut = FindViewById<Button>(Resource.Id.signOut);
-            basicModeSwitch = FindViewById<Button>(Resource.Id.basicMode);
-
-            signOut.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(LoginActivity));
-                intent.AddFlags(ActivityFlags.ClearTop);
-                ViewModel.SignOutCommand.Execute(null);
-                MainActivity.activity.Finish();
-                StartActivity(intent);
-                Finish();
-            };
-
-            basicModeSwitch.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(BasicFirstActivity));
-                intent.AddFlags(ActivityFlags.ClearTop);
-                MainActivity.activity.Finish();
-                StartActivity(intent);
-                Finish();
-            };
+            FragmentManager.BeginTransaction()
+               .Replace(Resource.Id.content_frame, new SettingsFragment())
+               .Commit();
         }
     }
+
 }

@@ -5,7 +5,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid
+namespace SuperHumans.Droid.Activities
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/SplashTheme", MainLauncher = true)]
 	public class SplashActivity : AppCompatActivity

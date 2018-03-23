@@ -7,7 +7,7 @@ using SuperHumans.Models;
 using SuperHumans.ViewModels;
 using System;
 
-namespace SuperHumans.Droid
+namespace SuperHumans.Droid.Activities
 {
     [Activity(Label = "SignUpActivity")]
     public class SignUpActivity : BaseActivity

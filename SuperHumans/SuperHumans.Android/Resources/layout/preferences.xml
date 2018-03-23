@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+		xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory
+      android:title="ACCOUNT">
+      <Preference
+          android:key="log_out"
+          android:title="Log out"/>
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:title="APPEARANCE">
+     <Preference
+        android:title="Switch to basic UI mode"
+        android:key="switch_UI"/>
+  </PreferenceCategory>
+</PreferenceScreen>

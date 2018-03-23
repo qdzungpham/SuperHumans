@@ -8,7 +8,7 @@ using Android.Widget;
 using SuperHumans.Models;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid
+namespace SuperHumans.Droid.Activities
 {
     [Activity(Label = "Ask Question")]
     public class AskActivity : BaseActivity
