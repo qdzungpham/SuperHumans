@@ -22,7 +22,7 @@ namespace SuperHumans.Droid
 
             Intent newIntent;
 
-            if (ViewModel.CurrentUser)
+            if (ViewModel.CurrentUser != null)
             {
                 newIntent = new Intent(this, typeof(MainActivity));
             } else

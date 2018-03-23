@@ -15,9 +15,18 @@ namespace SuperHumans.ViewModels
         public IRestService RestService => ServiceLocator.Instance.Get<IRestService>() ?? new RestService();
 
 
-        public bool CurrentUser
+        public User CurrentUser
         {
-            get { return ParseAccess.CurrentUser(); }
+            get
+            {
+                var u = ParseAccess.CurrentUser();
+                if (u == null) return null;
+                return new User
+                {
+                    Username = u.Username,
+                    Email = u.Email
+                };
+            }
         }
 
         bool isAsyncFinished = false;

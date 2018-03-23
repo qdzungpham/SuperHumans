@@ -142,7 +142,7 @@ namespace SuperHumans.Droid.Fragments
 
             // Replace the contents of the view with that element
             var myHolder = holder as UserViewHolder;
-            myHolder.FullNameView.Text = item.FullName;
+            myHolder.FullNameView.Text = item.FirstName + " " + item.LastName;
             myHolder.UsernameTextView.Text = "@" + item.Username;
         }
 

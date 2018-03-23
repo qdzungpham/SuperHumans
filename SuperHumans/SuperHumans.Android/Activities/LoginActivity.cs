@@ -40,6 +40,7 @@ namespace SuperHumans.Droid
                 var intent = new Intent(this, typeof(SignUpActivity)); ;
                 intent.AddFlags(ActivityFlags.ClearTop);
                 StartActivity(intent);
+                Finish();
             };
 
             loginButton.Click += Login_Click;
@@ -60,7 +61,7 @@ namespace SuperHumans.Droid
 
         void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (!ViewModel.CurrentUser)
+            if (ViewModel.CurrentUser == null)
                 return;
 
             var intent = new Intent(this, typeof(MainActivity));

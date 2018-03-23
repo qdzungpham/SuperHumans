@@ -9,7 +9,7 @@ namespace SuperHumans.Services
 {
     public interface IParseAccess
     {
-        bool CurrentUser();
+        ParseUser CurrentUser();
         Task<int> SignUp(User user);
         Task<int> Login(User user);
         Task<int> SignOut();
@@ -20,5 +20,6 @@ namespace SuperHumans.Services
         Task<int> AddAnswer(Answer answer);
         Task<IEnumerable<ParseObject>> LoadAnswers(ParseObject question);
         Task<IEnumerable<ParseObject>> LoadUsers();
+        Task<ParseObject> GetUser(string userId);
     }
 }

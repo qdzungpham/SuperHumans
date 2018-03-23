@@ -35,8 +35,9 @@ namespace SuperHumans.ViewModels
                 {
                     var u = new User
                     {
-                        FullName = user.Get<string>("username"),
-                        Username = user.Get<string>("username")
+                        Username = user.Get<string>("username"),
+                        FirstName = user.Get<string>("firstName"),
+                        LastName = user.Get<string>("lastName")
                     };
                     Users.Add(u);
                 }

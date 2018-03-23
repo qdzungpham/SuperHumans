@@ -18,15 +18,9 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public bool CurrentUser()
+        public ParseUser CurrentUser()
         {
-            if (ParseUser.CurrentUser != null)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            return ParseUser.CurrentUser;
         }
 
         public async Task<int> SignUp(User _user)
@@ -37,6 +31,8 @@ namespace SuperHumans.Services
                 Password = _user.Password,
                 Email = _user.Email
             };
+            user["firstName"] = "";
+            user["lastName"] = "";
 
             try
             {
@@ -121,6 +117,12 @@ namespace SuperHumans.Services
             var query = ParseUser.Query;
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
+        }
+
+        public async Task<ParseObject> GetUser(string userId)
+        {
+            var query = ParseUser.Query;
+            return await query.GetAsync(userId);
         }
     }
 }

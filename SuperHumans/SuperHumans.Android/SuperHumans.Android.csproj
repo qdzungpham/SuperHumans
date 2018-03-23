@@ -254,7 +254,7 @@
     <AndroidResource Include="Resources\menu\bottom_navigation_main.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_settings_black_24px.xml" />
+    <AndroidResource Include="Resources\drawable\ic_settings_white_24px.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_add_white_24px.xml" />
