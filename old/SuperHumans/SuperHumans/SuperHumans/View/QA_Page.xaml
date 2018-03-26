@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuperHumans.View.QA_Page"
+             Title="QA">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Home"  Priority="1" Order="Primary"/>
+        <ToolbarItem Text="Speak" Priority="1" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout>
+        <Button Text="ASK A QUESTION"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Clicked="GoAskQuestionButton"/>
+            
+        <Button Text="BROWSE QEUSTION"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Clicked="GoBrowseQButton"/>
+        
+        <Button Text="PREVIOUS PAGE" BackgroundColor="Silver" FontAttributes="Bold" TextColor="Blue" Clicked="PreviousPageButton"/>
+        <!--Command="{Binding QuestionListCommand}}"-->
+
+    </StackLayout>
+
+</ContentPage>
