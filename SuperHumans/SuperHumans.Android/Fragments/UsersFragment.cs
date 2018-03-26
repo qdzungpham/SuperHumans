@@ -25,7 +25,7 @@ namespace SuperHumans.Droid.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-            HasOptionsMenu = true;
+
             
         }
 
@@ -89,17 +89,7 @@ namespace SuperHumans.Droid.Fragments
             adapter.ItemClick += Adapter_ItemClick;
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            base.OnCreateOptionsMenu(menu, inflater);
-            inflater.Inflate(Resource.Menu.account_top_menus, menu);
-
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            return base.OnOptionsItemSelected(item);
-        }
+       
 
         public void BecameVisible()
         {

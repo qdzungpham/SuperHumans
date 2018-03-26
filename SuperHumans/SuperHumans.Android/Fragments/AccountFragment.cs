@@ -11,9 +11,9 @@ namespace SuperHumans.Droid.Fragments
     public class AccountFragment : Fragment
     {
         
-        public AccountViewModel ViewModel { get; set; }
+        public static AccountViewModel ViewModel { get; set; }
 
-        TextView fullName, username;
+        TextView fullName, username, displayName;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,6 +39,13 @@ namespace SuperHumans.Droid.Fragments
             ViewModel = new AccountViewModel();
             fullName = view.FindViewById<TextView>(Resource.Id.display_name);
             username = view.FindViewById<TextView>(Resource.Id.username);
+            displayName = view.FindViewById<TextView>(Resource.Id.display_name);
+
+            displayName.Click += (sender, e) =>
+            {
+                var intent = new Intent(Activity, typeof(MyProfileActivity)); ;
+                StartActivity(intent);
+            };
 
             return view;
         }

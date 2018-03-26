@@ -65,4 +65,32 @@
 		<item name="android:paddingBottom">24dp</item>
 		<item name="android:orientation">vertical</item>
 	</style>
+
+  <style name="MyProfileRow">
+    <item name="android:background">?attr/selectableItemBackground</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">vertical</item>
+    <item name="android:padding">16dp</item>
+  </style>
+
+  <style name="MyProfileLabel">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textColor">@color/primaryText</item>
+    <item name="android:textSize">16sp</item>
+  </style>
+
+  <style name="MyProfileText">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textColor">@color/secondaryText</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+
+  <style name="MyProfileDividerView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">1dp</item>
+    <item name="android:background">#D8E3EA</item>
+  </style>
 </resources>

@@ -124,5 +124,17 @@ namespace SuperHumans.Services
             var query = ParseUser.Query;
             return await query.GetAsync(userId);
         }
+
+        public async Task<int> UpdateProfile(User user)
+        {
+            var u = ParseUser.CurrentUser;
+
+            u["lastName"] = user.LastName;
+            u["firstName"] = user.FirstName;
+
+            await u.SaveAsync();
+
+            return 1;
+        }
     }
 }

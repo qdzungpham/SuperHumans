@@ -21,5 +21,6 @@ namespace SuperHumans.Services
         Task<IEnumerable<ParseObject>> LoadAnswers(ParseObject question);
         Task<IEnumerable<ParseObject>> LoadUsers();
         Task<ParseObject> GetUser(string userId);
+        Task<int> UpdateProfile(User user);
     }
 }
