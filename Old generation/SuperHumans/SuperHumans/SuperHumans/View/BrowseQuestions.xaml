@@ -9,18 +9,24 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical" VerticalOptions="Center">
-                            <Label Text="{Binding Title}"/>
+                        <StackLayout Orientation="Vertical">
+                            <Grid BackgroundColor="LightSeaGreen"
+                                  HeightRequest="10"/>
+                            <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="20" BackgroundColor="White">
+                            
+                            <Label Text="{Binding Title}"
+                                   Font="Large" FontAttributes="Bold"/>
                             <Label Text="{Binding Body}"/>
                             <Label Text="{Binding Owner}"/>
                             <Label Text="{Binding TimeAgo}"/>
+                        </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Add Question" BackgroundColor="Silver" FontAttributes="Bold" TextColor="Blue"
+        <Button Text="Add Question" BackgroundColor="Orange" FontAttributes="Bold" TextColor="White" HeightRequest="70" FontSize="Medium"  
                 Command="{Binding QuestionListCommand}}"/>
 
     </StackLayout>
