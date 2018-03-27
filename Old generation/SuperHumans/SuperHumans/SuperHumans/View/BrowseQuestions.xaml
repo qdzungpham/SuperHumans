@@ -5,12 +5,31 @@
              Title="BROWSE QUESTIONS">
     
     <StackLayout>
+        <StackLayout BackgroundColor="White">
+            <Entry x:Name="MainEntry"
+                   BackgroundColor="White"
+                   HeightRequest="50"
+                   FontSize="Large"
+                   
+                   />
+            <Button Text="SEARCH"
+                    BackgroundColor="Orange"
+                    FontSize="Large"
+                    Image="se"
+                    TextColor="White"/>
+
+        </StackLayout>
         <ListView x:Name="QList" ItemsSource="{Binding QuestionList}" HasUnevenRows="True">
             <ListView.ItemTemplate>
+
                 <DataTemplate>
+
                     <ViewCell>
+                        
                         <StackLayout Orientation="Vertical">
-                            <Grid BackgroundColor="LightSeaGreen"
+
+                            
+                            <Grid BackgroundColor="DarkSeaGreen"
                                   HeightRequest="10"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="20" BackgroundColor="White">
                             
