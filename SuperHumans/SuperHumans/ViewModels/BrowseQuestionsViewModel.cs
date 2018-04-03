@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace SuperHumans.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public class BrowseQuestionsViewModel : BaseViewModel
     {
         public ObservableCollection<Question> Questions { get; set; }
         public Command LoadQuestionsCommand { get; set; }
 
-        public HomeViewModel()
+        public BrowseQuestionsViewModel()
         {
             Questions = new ObservableCollection<Question>();
             LoadQuestionsCommand = new Command(async () => await ExecuteLoadQuestionsCommandAsync());

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <android.support.design.widget.AppBarLayout
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:id="@+id/toolbar_layout">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/basic_toolbar" />
+  </android.support.design.widget.AppBarLayout>
+  <RelativeLayout
+      android:id="@+id/activity_main"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="?attr/actionBarSize">
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+  </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

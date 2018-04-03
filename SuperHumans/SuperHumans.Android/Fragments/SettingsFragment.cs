@@ -40,7 +40,7 @@ namespace SuperHumans.Droid.Fragments
 
             FindPreference("switch_UI").PreferenceClick += (sender, args) =>
             {
-                var intent = new Intent(Activity, typeof(BasicFirstActivity));
+                var intent = new Intent(Activity, typeof(BasicMainActivity));
                 intent.AddFlags(ActivityFlags.ClearTop);
                 MainActivity.activity.Finish();
                 StartActivity(intent);

@@ -1,22 +1,16 @@
-﻿using System;
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using SuperHumans.Droid.Activities;
 using SuperHumans.ViewModels;
-using static Android.Resource;
+using System;
 
-namespace SuperHumans.Droid.Fragments
+namespace SuperHumans.Droid.Fragments.Basic
 {
-    public class MyFeedFragment : Android.Support.V4.App.Fragment, IFragmentVisible
+    public class BasicBrowseQuestionsFragment : Android.Support.V4.App.Fragment
     {
-        public static MyFeedFragment NewInstance() =>
-            new MyFeedFragment { Arguments = new Bundle() };
-
         BrowseQuestionsAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
@@ -29,21 +23,28 @@ namespace SuperHumans.Droid.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
+
         }
+
+        public static BasicBrowseQuestionsFragment NewInstance()
+        {
+            var fragment = new BasicBrowseQuestionsFragment { Arguments = new Bundle() };
+            return fragment;
+        }
+
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            View view = inflater.Inflate(Resource.Layout.fragment_myfeed, null);
+            View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_questions, null);
 
             ViewModel = new BrowseQuestionsViewModel();
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
-            recyclerView.HasFixedSize = true;
-        
-            recyclerView.AddItemDecoration(new DividerItemDecoration(recyclerView.Context, DividerItemDecoration.Vertical));
-            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, ViewModel));
+            recyclerView.HasFixedSize = false;
+
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
 
             refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
             refresher.SetColorSchemeColors(Resource.Color.accent);
@@ -74,37 +75,29 @@ namespace SuperHumans.Droid.Fragments
 
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
-            var item = ViewModel.Questions[e.Position];
-            var intent = new Intent(Activity, typeof(BrowseQuestionDetailActivity));
-            intent.PutExtra("questionId", item.ObjectId);
-            Activity.StartActivity(intent);
-            //Toast.MakeText(Context, item.Title, ToastLength.Short).Show();
+
         }
 
         void Refresher_Refresh(object sender, EventArgs e)
         {
             ViewModel.LoadQuestionsCommand.Execute(null);
-            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, ViewModel));
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
             refresher.Refreshing = false;
             adapter.ItemClick += Adapter_ItemClick;
         }
-
-        public void BecameVisible()
-        {
-
-        }
-
     }
 
     class BrowseQuestionsAdapter : BaseRecycleViewAdapter
     {
         BrowseQuestionsViewModel viewModel;
         Activity activity;
+        Android.Support.V4.App.Fragment fragment;
 
-        public BrowseQuestionsAdapter(Activity activity, BrowseQuestionsViewModel viewModel)
+        public BrowseQuestionsAdapter(Activity activity, Android.Support.V4.App.Fragment fragment, BrowseQuestionsViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.activity = activity;
+            this.fragment = fragment;
 
             this.viewModel.Questions.CollectionChanged += (sender, args) =>
             {
@@ -117,7 +110,7 @@ namespace SuperHumans.Droid.Fragments
         {
             //Setup your layout here
             View questionView = null;
-            var id = Resource.Layout.question_list_item;
+            var id = Resource.Layout.basic_question_list_item;
             questionView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
 
             var vh = new QuestionViewHolder(questionView, OnClick, OnLongClick);
@@ -131,9 +124,16 @@ namespace SuperHumans.Droid.Fragments
 
             // Replace the contents of the view with that element
             var myHolder = holder as QuestionViewHolder;
-            myHolder.TextView.Text = question.Title;
-            myHolder.DetailTextView.Text = question.Body;
-            myHolder.TimeView.Text = question.TimeAgo;
+            myHolder.BodyView.Text = question.Title;
+            myHolder.AnswersButton.Click += (sender, e) =>
+            {
+                var newFragment = BasicBrowseAnswersFragment.NewInstance();
+                var bundle = new Bundle();
+                bundle.PutString("questionId", question.ObjectId);
+                newFragment.Arguments = bundle;
+                fragment.FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, newFragment)
+                .AddToBackStack(null).Commit();
+            };
         }
 
         public override int ItemCount => viewModel.Questions.Count;
@@ -141,18 +141,17 @@ namespace SuperHumans.Droid.Fragments
 
     class QuestionViewHolder : RecyclerView.ViewHolder
     {
-        public TextView TextView { get; set; }
-        public TextView DetailTextView { get; set; }
-        public TextView TimeView { get; set; }
+        public TextView BodyView { get; set; }
+        public RelativeLayout AnswersButton { get; set;}
 
         public QuestionViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
-            TextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_title);
-            DetailTextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_detail);
-            TimeView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_time);
+            BodyView = itemView.FindViewById<TextView>(Resource.Id.text_question_body);
+            AnswersButton = itemView.FindViewById<RelativeLayout>(Resource.Id.answerBtn);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }
     }
+
 }

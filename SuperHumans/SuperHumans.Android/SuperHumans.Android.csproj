@@ -67,9 +67,8 @@
     <Compile Include="Activities\AnswerActivity.cs" />
     <Compile Include="Activities\AskActivity.cs" />
     <Compile Include="Activities\BaseActivity.cs" />
-    <Compile Include="Activities\BasicBaseActivity.cs" />
-    <Compile Include="Activities\BasicFirstActivity.cs" />
-    <Compile Include="Activities\BasicQAActivity.cs" />
+    <Compile Include="Activities\Basic\BasicBaseActivity.cs" />
+    <Compile Include="Activities\Basic\BasicMainActivity.cs" />
     <Compile Include="Activities\BrowseQuestionDetailActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -78,6 +77,10 @@
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Fragments\AccountFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicBrowseAnswersFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicQAFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\IFragmentVisible.cs" />
     <Compile Include="Fragments\MyFeedFragment.cs" />
@@ -118,10 +121,10 @@
     <AndroidResource Include="Resources\layout\activity_settings.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\basic_activity_first_view.axml">
+    <AndroidResource Include="Resources\layout\basic_fragment_first_view.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\basic_activity_QA.axml">
+    <AndroidResource Include="Resources\layout\basic_fragment_QA.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\basic_toolbar.axml">
@@ -152,6 +155,21 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\profile_activity.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_activity_main.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_browse_questions.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_question_list_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_browse_answers.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_answer_list_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -316,6 +334,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\my_profile_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_chat_bubble_24px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_thumbs_up_down_24px.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
