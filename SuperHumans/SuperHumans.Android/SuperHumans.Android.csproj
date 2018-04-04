@@ -77,8 +77,10 @@
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Fragments\AccountFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicAskQuestionFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseAnswersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicBrowseUsersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
     <Compile Include="Fragments\Basic\BasicQAFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
@@ -170,6 +172,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\basic_answer_list_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_browse_users.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_user_list_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_ask.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -340,6 +351,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_thumbs_up_down_24px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\basic_first_view_menu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_volume_up_white_24px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\basic_UI_menu.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

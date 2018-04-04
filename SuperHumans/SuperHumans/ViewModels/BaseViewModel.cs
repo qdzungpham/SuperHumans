@@ -29,6 +29,14 @@ namespace SuperHumans.ViewModels
             }
         }
 
+        public string CurrentUIMode
+        {
+            get
+            {
+                return Settings.UIMode;
+            }
+        }
+
         bool isAsyncFinished = false;
         public bool IsAsyncFinished
         {

@@ -38,6 +38,8 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_answers, null);
 
+            Activity.Title = "Browse Answers";
+
             ViewModel = new QuestionDetailViewModel(Arguments.GetString("questionId"));
 
             questionTitle = view.FindViewById<TextView>(Resource.Id.text_question_title);

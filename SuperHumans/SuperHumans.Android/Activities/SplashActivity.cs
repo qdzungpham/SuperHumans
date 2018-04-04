@@ -24,7 +24,14 @@ namespace SuperHumans.Droid.Activities
 
             if (ViewModel.CurrentUser != null)
             {
-                newIntent = new Intent(this, typeof(BasicMainActivity));
+
+                if (ViewModel.CurrentUIMode == "basic")
+                {
+                    newIntent = new Intent(this, typeof(BasicMainActivity));
+                } else 
+                {
+                    newIntent = new Intent(this, typeof(MainActivity));
+                }
             } else
             {
                 newIntent = new Intent(this, typeof(LoginActivity));

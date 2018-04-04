@@ -9,7 +9,7 @@ namespace SuperHumans.Droid.Activities
     {
        
         protected override int LayoutResource => Resource.Layout.basic_activity_main;
-
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -21,5 +21,6 @@ namespace SuperHumans.Droid.Activities
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
         }
+
     }
 }

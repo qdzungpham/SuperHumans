@@ -10,7 +10,8 @@ namespace SuperHumans.ViewModels
     public class SettingsViewModel : BaseViewModel
     {
 
-        public Command SignOutCommand { get; set; }
+        public Command SignOutCommand { get; private set; }
+
 
         public SettingsViewModel()
         {
@@ -22,6 +23,16 @@ namespace SuperHumans.ViewModels
         {
 
             await ParseAccess.SignOut();
+        }
+
+        public void SwitchToBasicUI()
+        {
+            Settings.UIMode = "basic";
+        }
+
+        public void SwitchToAdvancedUI()
+        {
+            Settings.UIMode = "advanced";
         }
     }
 }
