@@ -29,7 +29,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_QA, null);
 
-            Activity.Title = "Q&A";
+            Activity.Title = "Opportunities";
 
             browse = view.FindViewById<Button>(Resource.Id.browse);
             ask = view.FindViewById<Button>(Resource.Id.ask);

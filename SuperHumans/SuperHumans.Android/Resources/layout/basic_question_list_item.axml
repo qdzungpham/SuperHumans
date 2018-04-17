@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:textSize="@dimen/basic_text_size_small"
-                    android:text="ANSWERS"
+                    android:text="RESPONSE"
                     android:textColor="@color/secondaryText" />
             </LinearLayout>
         </RelativeLayout>
@@ -77,14 +77,14 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_thumbs_up_down_24px"
+                    android:src="@drawable/ic_rss_feed_24px"
                     android:tint="@color/secondaryText" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:textSize="@dimen/basic_text_size_small"
-                    android:text="VOTES"
+                    android:text="FOLLOW"
                     android:textColor="@color/secondaryText" />
             </LinearLayout>
         </RelativeLayout>

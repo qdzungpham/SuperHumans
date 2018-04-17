@@ -38,7 +38,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_questions, null);
+            View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_users, null);
 
             Activity.Title = "SuperHumans";
 

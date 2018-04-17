@@ -34,7 +34,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_ask, null);
 
-            Activity.Title = "Ask A Question";
+            Activity.Title = "Post New Opportunity";
 
             btnUseKeyboard = view.FindViewById<Button>(Resource.Id.btn_use_keyboard);
             questionTitle = view.FindViewById<EditText>(Resource.Id.ask_edit_title);

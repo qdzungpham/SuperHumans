@@ -47,11 +47,21 @@ namespace SuperHumans.Droid.Fragments.Basic
                 FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicQAFragment.NewInstance())
                 .AddToBackStack(null).Commit();
             };
-            
+
+            QA.LongClick += (sender, e) =>
+            {
+                ((BasicMainActivity)Activity).Speak("Opportunities");
+            };
+
             superHumans.Click += (sender, e) =>
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicBrowseUsersFragment.NewInstance())
                 .AddToBackStack(null).Commit();
+            };
+
+            superHumans.LongClick += (sender, e) =>
+            {
+                ((BasicMainActivity)Activity).Speak("Superhumans");
             };
 
 
@@ -78,7 +88,8 @@ namespace SuperHumans.Droid.Fragments.Basic
                     break;
                 case Resource.Id.action_speak:
 
-                    ((BasicMainActivity)Activity).Speak("Hello, how are you today?");
+                    ((BasicMainActivity)Activity).Speak("You are in first screen. Press opportunities to view available opportunities, " +
+                        "or press superhumans to view all superhumans around you");
 
                     break;
 

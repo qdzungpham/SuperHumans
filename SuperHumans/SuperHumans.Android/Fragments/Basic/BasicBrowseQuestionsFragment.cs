@@ -15,7 +15,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         BrowseQuestionsAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
-
+        Spinner filterSpinner;
         ProgressBar progress;
         public static BrowseQuestionsViewModel ViewModel { get; set; }
 
@@ -39,7 +39,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_questions, null);
 
-            Activity.Title = "Browse Questions";
+            Activity.Title = "Browse Opportunities";
 
             ViewModel = new BrowseQuestionsViewModel();
 
@@ -54,6 +54,13 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             progress = view.FindViewById<ProgressBar>(Resource.Id.progressbar_loading);
             progress.Visibility = ViewStates.Gone;
+
+            filterSpinner = view.FindViewById<Spinner>(Resource.Id.filter_spinner);
+            var spinnerAdapter = ArrayAdapter.CreateFromResource(
+            Activity, Resource.Array.opportunity_spinner_array, Resource.Layout.spinnerLayout);
+            spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+
+            filterSpinner.Adapter = spinnerAdapter;
 
             return view;
         }
