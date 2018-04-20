@@ -60,7 +60,7 @@
             </LinearLayout>
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/voteBtn"
+            android:id="@+id/followBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -74,12 +74,14 @@
                 android:orientation="horizontal"
                 android:layout_centerInParent="true"
                 android:gravity="center_vertical">
-                <ImageView
+              <ImageView
+                android:id="@+id/followIcon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_rss_feed_24px"
                     android:tint="@color/secondaryText" />
-                <TextView
+              <TextView
+                android:id="@+id/followText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"

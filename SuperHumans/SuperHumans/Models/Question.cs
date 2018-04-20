@@ -9,5 +9,6 @@ namespace SuperHumans.Models
         public string Body { get; set; }
         public string Owner { get; set; }
         public string TimeAgo { get; set; }
+        public bool IsFollowed { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -56,6 +57,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             progress.Visibility = ViewStates.Gone;
 
             filterSpinner = view.FindViewById<Spinner>(Resource.Id.filter_spinner);
+            filterSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
             var spinnerAdapter = ArrayAdapter.CreateFromResource(
             Activity, Resource.Array.opportunity_spinner_array, Resource.Layout.spinnerLayout);
             spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
@@ -65,15 +67,14 @@ namespace SuperHumans.Droid.Fragments.Basic
             return view;
         }
 
-        public override async void OnStart()
+        public override void OnStart()
         {
             base.OnStart();
 
             refresher.Refresh += Refresher_Refresh;
             adapter.ItemClick += Adapter_ItemClick;
 
-            if (ViewModel.Questions.Count == 0)
-                await ViewModel.ExecuteLoadQuestionsCommandAsync();
+            
         }
 
         public override void OnStop()
@@ -92,7 +93,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
         void Refresher_Refresh(object sender, EventArgs e)
         {
-            ViewModel.LoadQuestionsCommand.Execute(null);
+            ViewModel.LoadQuestionsCommand.Execute(filterSpinner.SelectedItem.ToString());
             recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
             refresher.Refreshing = false;
             adapter.ItemClick += Adapter_ItemClick;
@@ -118,6 +119,14 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        private async void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+                
+            Spinner spinner = (Spinner)sender;
+
+            await ViewModel.ExecuteLoadQuestionsCommandAsync(spinner.GetItemAtPosition(e.Position).ToString());
         }
     }
 
@@ -159,6 +168,14 @@ namespace SuperHumans.Droid.Fragments.Basic
             // Replace the contents of the view with that element
             var myHolder = holder as QuestionViewHolder;
             myHolder.BodyView.Text = question.Title;
+
+            if (question.IsFollowed)
+            {
+                myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+                myHolder.FollowText.Text = "FOLLOWING";
+                myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+            }
+
             myHolder.AnswersButton.Click += (sender, e) =>
             {
                 var newFragment = BasicBrowseAnswersFragment.NewInstance();
@@ -167,6 +184,32 @@ namespace SuperHumans.Droid.Fragments.Basic
                 newFragment.Arguments = bundle;
                 fragment.FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, newFragment)
                 .AddToBackStack(null).Commit();
+            };
+
+            myHolder.FollowButton.Click += async (sender, e) =>
+            {
+                
+                if (!question.IsFollowed)
+                {
+                    myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+                    myHolder.FollowText.Text = "FOLLOWING";
+                    myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+
+                    await viewModel.ExecuteFollowOppors(question.ObjectId);
+
+                    viewModel.Questions[position].IsFollowed = true;
+                }
+                else
+                {
+                    myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.secondaryText)));
+                    myHolder.FollowText.Text = "FOLLOW";
+                    myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.secondaryText)));
+
+                    await viewModel.ExecuteUnfollowOppors(question.ObjectId);
+
+                    viewModel.Questions[position].IsFollowed = false;
+                }
+                
             };
         }
 
@@ -177,12 +220,18 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView BodyView { get; set; }
         public RelativeLayout AnswersButton { get; set;}
+        public RelativeLayout FollowButton { get; set; }
+        public ImageView FollowIcon { get; set; }
+        public TextView FollowText { get; set; }
 
         public QuestionViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             BodyView = itemView.FindViewById<TextView>(Resource.Id.text_question_body);
             AnswersButton = itemView.FindViewById<RelativeLayout>(Resource.Id.answerBtn);
+            FollowButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
+            FollowIcon = itemView.FindViewById<ImageView>(Resource.Id.followIcon);
+            FollowText = itemView.FindViewById<TextView>(Resource.Id.followText);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }

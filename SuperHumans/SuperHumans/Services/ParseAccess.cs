@@ -9,6 +9,12 @@ namespace SuperHumans.Services
 {
     public class ParseAccess : IParseAccess
     {
+
+
+        public ParseAccess()
+        {
+
+        }
         public async Task<int> CreateObject()
         {
             ParseObject gameScore = new ParseObject("GameScore");
@@ -33,6 +39,7 @@ namespace SuperHumans.Services
             };
             user["firstName"] = "";
             user["lastName"] = "";
+
 
             try
             {
@@ -85,6 +92,7 @@ namespace SuperHumans.Services
             
         }
 
+
         public async Task<ParseObject> GetQuestion(string objectId)
         {
             ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions");
@@ -127,14 +135,51 @@ namespace SuperHumans.Services
 
         public async Task<int> UpdateProfile(User user)
         {
-            var u = ParseUser.CurrentUser;
 
-            u["lastName"] = user.LastName;
-            u["firstName"] = user.FirstName;
+            ParseUser.CurrentUser["lastName"] = user.LastName;
+            ParseUser.CurrentUser["firstName"] = user.FirstName;
 
-            await u.SaveAsync();
+            await ParseUser.CurrentUser.SaveAsync();
 
             return 1;
+        }
+
+        public async Task<int> UpdateFollowedOppors(IList<string> opporIds)
+        {
+            ParseUser.CurrentUser["followedOppors"] = opporIds;
+
+            await ParseUser.CurrentUser.SaveAsync();
+
+            return 1;
+        }
+
+        public async Task<int> UpdateFollowedUsers(List<string> userIds)
+        {
+            ParseUser.CurrentUser["followedUsers"] = userIds;
+
+            await ParseUser.CurrentUser.SaveAsync();
+
+            return 1;
+        }
+
+        public async Task<IEnumerable<ParseObject>> LoadFollowedOppors(IList<string> ids)
+        {
+            var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt").WhereContainedIn("objectId", ids);
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+
+
+        }
+
+        public async Task<IEnumerable<ParseObject>> LoadFollowedUsers(IList<string> ids)
+        {
+            var query = ParseUser.Query.WhereContainedIn("objectId", ids);
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+
+            //var query = ParseObject.GetQuery("Users").OrderByDescending("updatedAt").WhereContainedIn("objectId", ids);
+            //IEnumerable<ParseObject> results = await query.FindAsync();
+            //return results;
         }
     }
 }

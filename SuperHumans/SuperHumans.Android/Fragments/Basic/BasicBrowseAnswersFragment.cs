@@ -38,7 +38,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_answers, null);
 
-            Activity.Title = "Browse Answers";
+            Activity.Title = "Browse Responses";
 
             ViewModel = new QuestionDetailViewModel(Arguments.GetString("questionId"));
 
@@ -73,15 +73,15 @@ namespace SuperHumans.Droid.Fragments.Basic
             var count = ViewModel.Answers.Count;
             if (count == 0)
             {
-                answerCount.Text = "NO ANSWER YET";
+                answerCount.Text = "NO RESPONSE YET";
             }
             else if (count == 1)
             {
-                answerCount.Text = count + " ANSWER";
+                answerCount.Text = count + " RESPONSE";
             }
             else
             {
-                answerCount.Text = count + " ANSWERS";
+                answerCount.Text = count + " RESPONSES";
             }
         }
 
@@ -100,15 +100,15 @@ namespace SuperHumans.Droid.Fragments.Basic
             var count = ViewModel.Answers.Count;
             if (count == 0)
             {
-                answerCount.Text = "NO ANSWER YET";
+                answerCount.Text = "NO RESPONSE YET";
             }
             else if (count == 1)
             {
-                answerCount.Text = count + " ANSWER";
+                answerCount.Text = count + " RESPONSE";
             }
             else
             {
-                answerCount.Text = count + " ANSWERS";
+                answerCount.Text = count + " RESPONSES";
             }
         }
     }

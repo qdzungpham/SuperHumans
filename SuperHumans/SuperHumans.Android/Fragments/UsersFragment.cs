@@ -66,7 +66,7 @@ namespace SuperHumans.Droid.Fragments
             adapter.ItemClick += Adapter_ItemClick;
 
             if (ViewModel.Users.Count == 0)
-                await ViewModel.ExecuteLoadUsersCommandAsync();
+                await ViewModel.ExecuteLoadUsersCommandAsync("Discover");
         }
 
         public override void OnStop()

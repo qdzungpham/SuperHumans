@@ -372,5 +372,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_search_24px.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_person_add_24px.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

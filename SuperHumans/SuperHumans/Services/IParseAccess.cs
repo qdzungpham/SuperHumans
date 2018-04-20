@@ -22,5 +22,9 @@ namespace SuperHumans.Services
         Task<IEnumerable<ParseObject>> LoadUsers();
         Task<ParseObject> GetUser(string userId);
         Task<int> UpdateProfile(User user);
+        Task<int> UpdateFollowedOppors(IList<string> ids);
+        Task<int> UpdateFollowedUsers(List<string> userIds);
+        Task<IEnumerable<ParseObject>> LoadFollowedOppors(IList<string> ids);
+        Task<IEnumerable<ParseObject>> LoadFollowedUsers(IList<string> ids);
     }
 }

@@ -13,14 +13,19 @@ namespace SuperHumans.ViewModels
     {
         public ObservableCollection<Question> Questions { get; set; }
         public Command LoadQuestionsCommand { get; set; }
+        private List<string> followedOppors;
 
         public BrowseQuestionsViewModel()
         {
             Questions = new ObservableCollection<Question>();
-            LoadQuestionsCommand = new Command(async () => await ExecuteLoadQuestionsCommandAsync());
+
+            followedOppors = new List<string>();
+
+            LoadQuestionsCommand = new Command<string>(async (string filter) => await ExecuteLoadQuestionsCommandAsync(filter));
         }
 
-        public async Task ExecuteLoadQuestionsCommandAsync()
+
+        public async Task ExecuteLoadQuestionsCommandAsync(string filter)
         {
             if (IsBusy) return;
 
@@ -31,15 +36,44 @@ namespace SuperHumans.ViewModels
                 IsBusy = true;
                 Questions.Clear();
                 DateTime now = RestService.GetServerTime();
-                var questions = await ParseAccess.LoadQuestions();
+
+                followedOppors.Clear();
+
+                try
+                {
+                    followedOppors.AddRange((await ParseAccess.GetUser(ParseAccess.CurrentUser().ObjectId)).Get<IList<string>>("followedOppors"));
+                }
+                catch (Exception e)
+                {
+
+                    Debug.WriteLine(e);
+                }
+
+                IEnumerable<Parse.ParseObject> questions;
+                if (filter == "Followed Opportunities")
+                {
+                    questions = await ParseAccess.LoadFollowedOppors(followedOppors);
+                }
+                else
+                {
+                    questions = await ParseAccess.LoadQuestions();
+                }
+
                 foreach (var question in questions)
                 {
+                    var isFollowed = false;
+
+                    if (followedOppors.Contains(question.ObjectId))
+                    {
+                        isFollowed = true;
+                    }
                     var q = new Question
                     {
                         ObjectId = question.ObjectId,
                         Title = question.Get<string>("title"),
                         Body = question.Get<string>("body"),
-                        TimeAgo = HelperFunctions.TimeAgo(question.UpdatedAt.Value, now)
+                        TimeAgo = HelperFunctions.TimeAgo(question.UpdatedAt.Value, now),
+                        IsFollowed = isFollowed
                     };
                     Questions.Add(q);
                 }
@@ -53,6 +87,20 @@ namespace SuperHumans.ViewModels
                 IsBusy = false;
                 ProgressDialogManager.DisposeProgressDialog();
             }
-        }     
+        }  
+        
+        public async Task ExecuteFollowOppors(string id)
+        {
+            followedOppors.Add(id);
+
+            await ParseAccess.UpdateFollowedOppors(followedOppors);
+        }
+
+        public async Task ExecuteUnfollowOppors(string id)
+        {
+            followedOppors.Remove(id);
+
+            await ParseAccess.UpdateFollowedOppors(followedOppors);
+        }
     }
 }

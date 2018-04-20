@@ -62,7 +62,7 @@ namespace SuperHumans.Droid.Fragments
             adapter.ItemClick += Adapter_ItemClick;
 
             if (ViewModel.Questions.Count == 0)
-                await ViewModel.ExecuteLoadQuestionsCommandAsync();
+                await ViewModel.ExecuteLoadQuestionsCommandAsync("All Topics");
         }
 
         public override void OnStop()

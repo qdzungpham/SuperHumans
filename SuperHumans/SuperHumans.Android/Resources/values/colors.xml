@@ -15,4 +15,10 @@
   <color name="text_light">#aeaeae</color>
   <color name="question_view_header_separator">#f6f6f6</color>
   <color name="grey_background">#eeeeee</color>
+
+  <!-- Alerts -->
+  <color name="alert_yellow">#f0b849</color>
+  <color name="alert_red">#d94f4f</color>
+  <color name="alert_green">#4ab866</color>
+  
 </resources>

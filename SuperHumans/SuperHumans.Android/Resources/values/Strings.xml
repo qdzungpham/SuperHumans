@@ -21,8 +21,13 @@
 	<string name="app_description">This app is written in C# and native APIs using the Xamarin Platform. It shares code with its iOS, Android, &amp; Windows versions.</string>
 	<string name="sign_in_text">Sign in with your account to save and sync items</string>
   <string-array name="opportunity_spinner_array">
-    <item>Discover</item>
+    <item>All Topics</item>
     <item>Followed Topics</item>
     <item>Followed Opportunities</item>
+  </string-array>
+
+  <string-array name="users_spinner_array">
+    <item>Discover</item>
+    <item>Followed Users</item>
   </string-array>
 </resources>

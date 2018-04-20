@@ -13,31 +13,65 @@ namespace SuperHumans.ViewModels
     {
         public ObservableCollection<User> Users { get; set; }
         public Command LoadUsersCommand { get; set; }
+        private List<string> followedUsers;
 
         public UsersViewModel()
         {
             Users = new ObservableCollection<User>();
-            LoadUsersCommand = new Command(async () => await ExecuteLoadUsersCommandAsync());
+
+            followedUsers = new List<string>();
+
+            LoadUsersCommand = new Command<string>(async (string filter) => await ExecuteLoadUsersCommandAsync(filter));
         }
 
-        public async Task ExecuteLoadUsersCommandAsync()
+        public async Task ExecuteLoadUsersCommandAsync(string filter)
         {
             if (IsBusy) return;
 
             ProgressDialogManager.LoadProgressDialog("Loading...");
-
             try
             {
                 IsBusy = true;
                 Users.Clear();
-                var users = await ParseAccess.LoadUsers();
+
+
+                followedUsers.Clear();
+
+                try
+                {
+                    followedUsers.AddRange((await ParseAccess.GetUser(ParseAccess.CurrentUser().ObjectId)).Get<IList<string>>("followedUsers"));
+                }
+                catch (Exception e)
+                {
+
+                    Debug.WriteLine(e);
+                }
+
+                IEnumerable<Parse.ParseObject> users;
+                if (filter == "Followed Users")
+                {
+                    users = await ParseAccess.LoadFollowedUsers(followedUsers);
+                }
+                else
+                {
+                    users = await ParseAccess.LoadUsers();
+                }
+
                 foreach (var user in users)
                 {
+                    var isFollowed = false;
+
+                    if (followedUsers.Contains(user.ObjectId))
+                    {
+                        isFollowed = true;
+                    }
                     var u = new User
                     {
                         Username = user.Get<string>("username"),
                         FirstName = user.Get<string>("firstName"),
-                        LastName = user.Get<string>("lastName")
+                        LastName = user.Get<string>("lastName"),
+                        ObjectId = user.ObjectId,
+                        IsFollowed = isFollowed
                     };
                     Users.Add(u);
                 }
@@ -51,6 +85,20 @@ namespace SuperHumans.ViewModels
                 IsBusy = false;
                 ProgressDialogManager.DisposeProgressDialog();
             }
+        }
+
+        public async Task ExecuteFollowUsers(string id)
+        {
+            followedUsers.Add(id);
+
+            await ParseAccess.UpdateFollowedUsers(followedUsers);
+        }
+
+        public async Task ExecuteUnfollowUsers(string id)
+        {
+            followedUsers.Remove(id);
+
+            await ParseAccess.UpdateFollowedUsers(followedUsers);
         }
     }
 }

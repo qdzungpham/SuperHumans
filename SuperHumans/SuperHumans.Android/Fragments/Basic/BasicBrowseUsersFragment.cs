@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -15,7 +16,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         BrowseUsersAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
-
+        Spinner filterSpinner;
         ProgressBar progress;
 
         public static UsersViewModel ViewModel { get; set; }
@@ -56,19 +57,24 @@ namespace SuperHumans.Droid.Fragments.Basic
             progress = view.FindViewById<ProgressBar>(Resource.Id.progressbar_loading);
             progress.Visibility = ViewStates.Gone;
 
+            filterSpinner = view.FindViewById<Spinner>(Resource.Id.filter_spinner);
+            filterSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
+            var spinnerAdapter = ArrayAdapter.CreateFromResource(
+            Activity, Resource.Array.users_spinner_array, Resource.Layout.spinnerLayout);
+            spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+
+            filterSpinner.Adapter = spinnerAdapter;
 
             return view;
         }
 
-        public override async void OnStart()
+        public override void OnStart()
         {
             base.OnStart();
 
             refresher.Refresh += Refresher_Refresh;
             adapter.ItemClick += Adapter_ItemClick;
 
-            if (ViewModel.Users.Count == 0)
-                await ViewModel.ExecuteLoadUsersCommandAsync();
         }
 
         public override void OnStop()
@@ -85,7 +91,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
         void Refresher_Refresh(object sender, EventArgs e)
         {
-            ViewModel.LoadUsersCommand.Execute(null);
+            ViewModel.LoadUsersCommand.Execute(filterSpinner.SelectedItem.ToString());
             recyclerView.SetAdapter(adapter = new BrowseUsersAdapter(Activity, ViewModel));
             refresher.Refreshing = false;
             adapter.ItemClick += Adapter_ItemClick;
@@ -116,6 +122,14 @@ namespace SuperHumans.Droid.Fragments.Basic
         public void BecameVisible()
         {
 
+        }
+
+        private async void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+
+            Spinner spinner = (Spinner)sender;
+
+            await ViewModel.ExecuteLoadUsersCommandAsync(spinner.GetItemAtPosition(e.Position).ToString());
         }
 
 
@@ -152,12 +166,46 @@ namespace SuperHumans.Droid.Fragments.Basic
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = viewModel.Users[position];
+            var user = viewModel.Users[position];
 
             // Replace the contents of the view with that element
             var myHolder = holder as UserViewHolder;
-            myHolder.FullNameView.Text = item.FirstName + " " + item.LastName;
-            myHolder.UsernameTextView.Text = "@" + item.Username;
+            myHolder.FullNameView.Text = user.FirstName + " " + user.LastName;
+            myHolder.UsernameTextView.Text = "@" + user.Username;
+
+            if (user.IsFollowed)
+            {
+                myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+                myHolder.FollowText.Text = "Following";
+                myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+            }
+
+            myHolder.FollowButton.Click += async (sender, e) =>
+            {
+
+                if (!user.IsFollowed)
+                {
+                    myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+                    myHolder.FollowText.Text = "Following";
+                    myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+
+                    await viewModel.ExecuteFollowUsers(user.ObjectId);
+
+                    viewModel.Users[position].IsFollowed = true;
+                }
+                else
+                {
+                    myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.secondaryText)));
+                    myHolder.FollowText.Text = "Follow";
+                    myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.secondaryText)));
+
+                    await viewModel.ExecuteUnfollowUsers(user.ObjectId);
+
+                    viewModel.Users[position].IsFollowed = false;
+                }
+
+            };
+
         }
 
         public override int ItemCount => viewModel.Users.Count;
@@ -167,12 +215,18 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView FullNameView { get; set; }
         public TextView UsernameTextView { get; set; }
+        public RelativeLayout FollowButton { get; set; }
+        public ImageView FollowIcon { get; set; }
+        public TextView FollowText { get; set; }
 
         public UserViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             FullNameView = itemView.FindViewById<TextView>(Resource.Id.text_full_name);
             UsernameTextView = itemView.FindViewById<TextView>(Resource.Id.text_username);
+            FollowButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
+            FollowIcon = itemView.FindViewById<ImageView>(Resource.Id.followIcon);
+            FollowText = itemView.FindViewById<TextView>(Resource.Id.followText);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }
