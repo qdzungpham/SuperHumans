@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuperHumans.View.QuestionDetailPage">
+    
+    <StackLayout>
+
+        <Label Text="Title" TextColor="BlueViolet" Font="20" FontAttributes="Bold" />
+        <Label Text="{Binding SelectedQuestion.Title,Mode=TwoWay}"/>
+
+        <Label Text="Body" TextColor="BlueViolet" Font="20" FontAttributes="Bold" />
+        <Label Text="{Binding SelectedQuestion.Body,Mode=TwoWay}"/>
+
+        <Label Text="Owner" TextColor="BlueViolet" Font="20" FontAttributes="Bold" />
+        <Label Text="{Binding SelectedQuestion.Owner,Mode=TwoWay}"/>
+
+        <Label Text="TimeAgo" TextColor="BlueViolet" Font="20" FontAttributes="Bold" />
+        <Label Text="{Binding SelectedQuestion.TimeAgo,Mode=TwoWay}"/>
+
+        <!--<
+        Button Text="Edit" BackgroundColor="Silver" FontAttributes="Bold" TextColor="Blue"
+                Command="{Binding EditCommand}"/>
+
+        <Button Text="Delete" BackgroundColor="Silver" FontAttributes="Bold" TextColor="Blue"
+                Command="{Binding DeleteCommand}"/>
+        -->
+
+        <!--
+        <Label Text="{Binding Message}"/>
+        -->
+        
+        <ListView x:Name="AList" ItemsSource="{Binding AnswerList}" HasUnevenRows="True" > <!--ItemTapped="OnTapped"-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                            <!--<Label Text="{Binding AnswerID}" BackgroundColor="Yellow"/>-->
+                            <Label Text="{Binding Body}" BackgroundColor="Yellow"/>
+                            <Label Text="{Binding CreatedBy}" BackgroundColor="Yellow"/>
+                            <Label Text="{Binding TimeAgo}" BackgroundColor="Yellow"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
