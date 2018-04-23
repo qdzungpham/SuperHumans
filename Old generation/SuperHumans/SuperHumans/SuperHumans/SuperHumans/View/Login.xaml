@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuperHumans.View.Login"
+             Title="Login">
+
+    <StackLayout Orientation="Vertical">
+        <!--<Entry Text="{Binding User.Email, Mode=TwoWay}" Placeholder="Email"/>-->
+        <Entry x:Name="UserNameEntry" Text="{Binding User.UserName, Mode=TwoWay}" Placeholder="UserName"/>
+        <Entry x:Name="PasswordEntry" Text="{Binding User.Password, Mode=TwoWay}" Placeholder="Password" IsPassword="true"/>
+        <!--<Entry Text="{Binding User.ConfirmPassword, Mode=TwoWay}" Placeholder="ConfirmPassword" IsPassword="True"/>-->
+
+        <Button FontAttributes="Bold" Text="Login" Command="{Binding SubmitCommand}" Clicked="SubmitButton"/> <!--Clicked="SubmitBUtton"-->
+        <!--Command="{Binding LoginCommand}"-->
+        <Button FontAttributes="Bold" Text="Register" Clicked="RegisterButton"/>
+        <Label Text="{Binding Message}"/>
+
+
+
+        <Frame AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,AutoSize,AutoSize"
+                           Opacity="0.9"
+                           IsVisible="{Binding IsBusy}">
+            <StackLayout x:Name="delete">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" Color="Blue" IsVisible="{Binding IsBusy}"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>

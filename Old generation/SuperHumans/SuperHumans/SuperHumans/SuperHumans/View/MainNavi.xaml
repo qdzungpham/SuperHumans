@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuperHumans.View.MainNavi"
+             Title="" Icon="logoo" BackgroundColor="White">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="SWITCH"  Priority="1" Order="Primary" Icon="logoo"/>
+        <ToolbarItem Text="" Priority="1" Order="Primary"  Icon="lippp"/>
+        
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+    <StackLayout Padding="20,40,20,20" >
+
+        <Button Text="OPPORTUNITIES"         
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          FontAttributes="Bold"
+          FontSize="35"
+          BorderColor="#0DA3D1" 
+          BackgroundColor="White"
+          BorderWidth="6"
+          TextColor="#0DA3D1"
+          WidthRequest="300"
+          HeightRequest="180"
+          Image="OPP"
+          ContentLayout="Top,10"
+          
+          Clicked="QAButton"
+                
+                />
+        </StackLayout>
+        <StackLayout Padding="20,40,20,20">
+            <Button Text="SUPERHUMAN"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          FontAttributes="Bold"
+          FontSize="35"
+          BorderColor="#0DA3D1" 
+          BackgroundColor="White"
+          BorderWidth="6"
+          TextColor="#0DA3D1"
+          WidthRequest="300"
+          Image="su"
+          ContentLayout="Top,-50"
+          
+          HeightRequest="180"
+            Clicked="SuperhumanButton"/>
+        </StackLayout>
+        <Button Text="PREVIOUS PAGE" BackgroundColor="#104D72" TextColor="White"  HeightRequest="70" FontSize="Medium" FontAttributes="Bold" Clicked="PreviousPageButton"/>
+            
+        <!--Command="{Binding QuestionListCommand}}"-->
+
+    </StackLayout>
+
+    <!--<ListView x:Name="MainNaviListView" HasUnevenRows="True" ItemTapped="OnTapped">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Name}"/>
+                        <Label Text="{Binding Description}"/>
+                        <Label Text="{Binding OrderName}"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+</ContentPage>
