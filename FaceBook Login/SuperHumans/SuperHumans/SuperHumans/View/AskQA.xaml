@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuperHumans.View.AskQA">
+
+    <StackLayout>
+        <Label Text="Typing What you are asking"/>
+        <Entry Text="{Binding Question.Body, Mode=TwoWay}"/>
+        <Button Text="Submit" BackgroundColor="Silver" FontAttributes="Bold" TextColor="Blue"
+                Command="{Binding AskCommand}"/>
+
+        <Label Text="{Binding Message}"/>
+    </StackLayout>
+
+</ContentPage>
