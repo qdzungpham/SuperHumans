@@ -1,9 +1,10 @@
 ﻿using Android.App;
 using Android.OS;
 using SuperHumans.Droid.Fragments;
+using SuperHumans.Droid.Fragments.Advance;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Advance
 {
     [Activity(Label = "Settings")]
     public class SettingsActivity : BaseActivity

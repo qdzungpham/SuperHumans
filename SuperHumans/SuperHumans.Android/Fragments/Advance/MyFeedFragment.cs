@@ -1,53 +1,50 @@
 ﻿using System;
+using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.Widget;
-using Android.App;
-using Android.Content;
+using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Advance;
 using SuperHumans.ViewModels;
+using static Android.Resource;
 
-namespace SuperHumans.Droid.Fragments
+namespace SuperHumans.Droid.Fragments.Advance
 {
-    public class UsersFragment : Android.Support.V4.App.Fragment, IFragmentVisible
+    public class MyFeedFragment : Android.Support.V4.App.Fragment, IFragmentVisible
     {
-        BrowseUsersAdapter adapter;
+        public static MyFeedFragment NewInstance() =>
+            new MyFeedFragment { Arguments = new Bundle() };
+
+        BrowseQuestionsAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
 
         ProgressBar progress;
-
-        public static UsersViewModel ViewModel { get; set; }
+        public static BrowseQuestionsViewModel ViewModel { get; set; }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-
-            
         }
-
-        public static UsersFragment NewInstance()
-        {
-            var usersFragment = new UsersFragment { Arguments = new Bundle() };
-            return usersFragment;
-        }
-
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.fragment_myfeed, null);
 
-            ViewModel = new UsersViewModel();
+            ViewModel = new BrowseQuestionsViewModel();
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
             recyclerView.HasFixedSize = true;
-
-            recyclerView.SetAdapter(adapter = new BrowseUsersAdapter(Activity, ViewModel));
+        
+            recyclerView.AddItemDecoration(new DividerItemDecoration(recyclerView.Context, DividerItemDecoration.Vertical));
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, ViewModel));
 
             refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
             refresher.SetColorSchemeColors(Resource.Color.accent);
@@ -65,8 +62,8 @@ namespace SuperHumans.Droid.Fragments
             refresher.Refresh += Refresher_Refresh;
             adapter.ItemClick += Adapter_ItemClick;
 
-            if (ViewModel.Users.Count == 0)
-                await ViewModel.ExecuteLoadUsersCommandAsync("Discover");
+            if (ViewModel.Questions.Count == 0)
+                await ViewModel.ExecuteLoadQuestionsCommandAsync("All Topics");
         }
 
         public override void OnStop()
@@ -78,36 +75,39 @@ namespace SuperHumans.Droid.Fragments
 
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
-            Toast.MakeText(Context, "Clicked.", ToastLength.Short).Show();
+            var item = ViewModel.Questions[e.Position];
+            var intent = new Intent(Activity, typeof(BrowseQuestionDetailActivity));
+            intent.PutExtra("questionId", item.ObjectId);
+            Activity.StartActivity(intent);
+            //Toast.MakeText(Context, item.Title, ToastLength.Short).Show();
         }
 
         void Refresher_Refresh(object sender, EventArgs e)
         {
-            ViewModel.LoadUsersCommand.Execute(null);
-            recyclerView.SetAdapter(adapter = new BrowseUsersAdapter(Activity, ViewModel));
+            ViewModel.LoadQuestionsCommand.Execute(null);
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, ViewModel));
             refresher.Refreshing = false;
             adapter.ItemClick += Adapter_ItemClick;
         }
 
-       
-
         public void BecameVisible()
         {
-            
+
         }
+
     }
 
-    class BrowseUsersAdapter : BaseRecycleViewAdapter
+    class BrowseQuestionsAdapter : BaseRecycleViewAdapter
     {
-        UsersViewModel viewModel;
+        BrowseQuestionsViewModel viewModel;
         Activity activity;
 
-        public BrowseUsersAdapter(Activity activity, UsersViewModel viewModel)
+        public BrowseQuestionsAdapter(Activity activity, BrowseQuestionsViewModel viewModel)
         {
             this.viewModel = viewModel;
             this.activity = activity;
 
-            this.viewModel.Users.CollectionChanged += (sender, args) =>
+            this.viewModel.Questions.CollectionChanged += (sender, args) =>
             {
                 this.activity.RunOnUiThread(NotifyDataSetChanged);
             };
@@ -117,41 +117,43 @@ namespace SuperHumans.Droid.Fragments
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             //Setup your layout here
-            View itemView = null;
-            var id = Resource.Layout.user_browse;
-            itemView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
+            View questionView = null;
+            var id = Resource.Layout.question_list_item;
+            questionView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
 
-            var vh = new UserViewHolder(itemView, OnClick, OnLongClick);
+            var vh = new QuestionViewHolder(questionView, OnClick, OnLongClick);
             return vh;
         }
 
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = viewModel.Users[position];
+            var question = viewModel.Questions[position];
 
             // Replace the contents of the view with that element
-            var myHolder = holder as UserViewHolder;
-            myHolder.FullNameView.Text = item.FirstName + " " + item.LastName;
-            myHolder.UsernameTextView.Text = "@" + item.Username;
+            var myHolder = holder as QuestionViewHolder;
+            myHolder.TextView.Text = question.Title;
+            myHolder.DetailTextView.Text = question.Body;
+            myHolder.TimeView.Text = question.TimeAgo;
         }
 
-        public override int ItemCount => viewModel.Users.Count;
+        public override int ItemCount => viewModel.Questions.Count;
     }
 
-    public class UserViewHolder : RecyclerView.ViewHolder
+    class QuestionViewHolder : RecyclerView.ViewHolder
     {
-        public TextView FullNameView { get; set; }
-        public TextView UsernameTextView { get; set; }
+        public TextView TextView { get; set; }
+        public TextView DetailTextView { get; set; }
+        public TextView TimeView { get; set; }
 
-        public UserViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
+        public QuestionViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
-            FullNameView = itemView.FindViewById<TextView>(Resource.Id.text_full_name);
-            UsernameTextView = itemView.FindViewById<TextView>(Resource.Id.text_username);
+            TextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_title);
+            DetailTextView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_detail);
+            TimeView = itemView.FindViewById<TextView>(Resource.Id.question_list_item_time);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }
     }
-
 }

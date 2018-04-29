@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using SuperHumans.Helpers;
 using SuperHumans.Models;
+using SuperHumans.Services;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace SuperHumans.ViewModels
             LoginCommand = new Command<User>(async (User user) => await Login(user));
         }
 
-        private async Task Login(User user)
+        public async Task Login(User user)
         {
             try
             {

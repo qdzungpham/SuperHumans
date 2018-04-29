@@ -64,30 +64,34 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="25.4.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\AnswerActivity.cs" />
-    <Compile Include="Activities\AskActivity.cs" />
-    <Compile Include="Activities\BaseActivity.cs" />
+    <Compile Include="Activities\Advance\GetStartedActivity.cs" />
+    <Compile Include="Activities\Advance\AnswerActivity.cs" />
+    <Compile Include="Activities\Advance\AskActivity.cs" />
+    <Compile Include="Activities\Advance\BaseActivity.cs" />
     <Compile Include="Activities\Basic\BasicBaseActivity.cs" />
     <Compile Include="Activities\Basic\BasicMainActivity.cs" />
-    <Compile Include="Activities\BrowseQuestionDetailActivity.cs" />
-    <Compile Include="Activities\LoginActivity.cs" />
-    <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Activities\MyProfileActivity.cs" />
-    <Compile Include="Activities\SettingsActivity.cs" />
-    <Compile Include="Activities\SignUpActivity.cs" />
+    <Compile Include="Activities\Advance\BrowseQuestionDetailActivity.cs" />
+    <Compile Include="Activities\Advance\MainActivity.cs" />
+    <Compile Include="Activities\Advance\MyProfileActivity.cs" />
+    <Compile Include="Activities\Advance\SettingsActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
-    <Compile Include="Fragments\AccountFragment.cs" />
+    <Compile Include="CustomUIs\CheckableLinearLayout.cs" />
+    <Compile Include="Fragments\Advance\AccountFragment.cs" />
+    <Compile Include="Fragments\Advance\ChooseTopicsFragment.cs" />
+    <Compile Include="Fragments\Advance\LoginFragment.cs" />
+    <Compile Include="Fragments\Advance\SignUpFragment.cs" />
+    <Compile Include="Fragments\Advance\UserInfoFragment.cs" />
     <Compile Include="Fragments\Basic\BasicAskQuestionFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseAnswersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseUsersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
     <Compile Include="Fragments\Basic\BasicQAFragment.cs" />
-    <Compile Include="Fragments\HomeFragment.cs" />
+    <Compile Include="Fragments\Advance\HomeFragment.cs" />
     <Compile Include="Fragments\IFragmentVisible.cs" />
-    <Compile Include="Fragments\MyFeedFragment.cs" />
-    <Compile Include="Fragments\SettingsFragment.cs" />
-    <Compile Include="Fragments\UsersFragment.cs" />
+    <Compile Include="Fragments\Advance\MyFeedFragment.cs" />
+    <Compile Include="Fragments\Advance\SettingsFragment.cs" />
+    <Compile Include="Fragments\Advance\UsersFragment.cs" />
     <Compile Include="Helpers\BaseRecycleViewAdapter.cs" />
     <Compile Include="Helpers\RecyclerClickEvent.cs" />
     <Compile Include="MainApplication.cs" />
@@ -181,6 +185,21 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\basic_fragment_ask.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_get_started.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_login.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_signup.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_personal_info.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_topics.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -374,6 +393,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_person_add_24px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\topic_item.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\custom_topic_selector.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\choose_topics_top_menu.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

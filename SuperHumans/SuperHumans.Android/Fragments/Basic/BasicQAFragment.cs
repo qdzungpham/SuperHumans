@@ -3,6 +3,7 @@ using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Basic;
 
 namespace SuperHumans.Droid.Fragments.Basic
 {

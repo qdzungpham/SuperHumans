@@ -3,6 +3,8 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
+using SuperHumans.Droid.Activities.Advance;
+using SuperHumans.Droid.Activities.Basic;
 using SuperHumans.ViewModels;
 
 namespace SuperHumans.Droid.Activities
@@ -34,7 +36,7 @@ namespace SuperHumans.Droid.Activities
                 }
             } else
             {
-                newIntent = new Intent(this, typeof(LoginActivity));
+                newIntent = new Intent(this, typeof(GetStartedActivity));
             }
 
 			newIntent.AddFlags(ActivityFlags.ClearTop);

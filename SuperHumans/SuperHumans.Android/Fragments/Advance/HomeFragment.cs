@@ -6,8 +6,9 @@ using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
 using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Advance;
 
-namespace SuperHumans.Droid.Fragments
+namespace SuperHumans.Droid.Fragments.Advance
 {
     public class HomeFragment : Fragment
     {

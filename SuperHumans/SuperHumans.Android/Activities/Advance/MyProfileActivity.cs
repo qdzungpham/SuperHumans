@@ -10,9 +10,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.Droid.Fragments;
+using SuperHumans.Droid.Fragments.Advance;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Advance
 {
     [Activity(Label = "My Profile")]
     public class MyProfileActivity : BaseActivity

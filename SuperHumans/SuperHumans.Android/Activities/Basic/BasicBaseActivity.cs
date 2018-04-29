@@ -5,7 +5,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using static Android.Speech.Tts.TextToSpeech;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Basic
 {
     public class BasicBaseActivity : AppCompatActivity, IOnInitListener
     {

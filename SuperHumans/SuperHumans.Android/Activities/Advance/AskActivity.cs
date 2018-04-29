@@ -8,27 +8,26 @@ using Android.Widget;
 using SuperHumans.Models;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Advance
 {
     [Activity(Label = "Ask Question")]
-    public class AnswerActivity : BaseActivity
+    public class AskActivity : BaseActivity
     {
-        protected override int LayoutResource => Resource.Layout.activity_answer;
+        protected override int LayoutResource => Resource.Layout.activity_ask;
 
-        EditText body;
+        EditText title, body;
 
-        public AnswerViewModel ViewModel { get; set; }
+        public AskViewModel ViewModel { get; set; }
 
-        string questionId;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            questionId = Intent.GetStringExtra("data");
-            ViewModel = new AnswerViewModel();
+            ViewModel = new AskViewModel();
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            body = FindViewById<EditText>(Resource.Id.answer_edit_body);
+            title = FindViewById<EditText>(Resource.Id.ask_edit_title);
+            body = FindViewById<EditText>(Resource.Id.ask_edit_body);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -42,17 +41,19 @@ namespace SuperHumans.Droid.Activities
             switch (item.ItemId)
             {
                 case Resource.Id.action_post:
-                    var answer = new Answer
+                    var question = new Question
                     {
-                        Body = body.Text,
-                        QuestionId = questionId
+                        Title = title.Text,
+                        Body = body.Text
                     };
 
-                    ViewModel.PostCommand.Execute(answer);
+                    ViewModel.PostCommand.Execute(question);
 
                     //Toast.MakeText(this, "Posted", ToastLength.Short).Show();
-                    break;
 
+
+                    break;
+                
 
             }
             return base.OnOptionsItemSelected(item);
@@ -65,9 +66,8 @@ namespace SuperHumans.Droid.Activities
                 Toast.MakeText(this, "Posted", ToastLength.Short).Show();
                 Finish();
             }
-
+                 
         }
-
 
     }
 }

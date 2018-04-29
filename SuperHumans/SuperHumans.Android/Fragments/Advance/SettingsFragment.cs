@@ -7,13 +7,11 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Advance;
+using SuperHumans.Droid.Activities.Basic;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid.Fragments
+namespace SuperHumans.Droid.Fragments.Advance
 {
     public class SettingsFragment : PreferenceFragment
     {
@@ -30,7 +28,7 @@ namespace SuperHumans.Droid.Fragments
 
             FindPreference("log_out").PreferenceClick += (sender, args) =>
             {
-                var intent = new Intent(Activity, typeof(LoginActivity));
+                var intent = new Intent(Activity, typeof(GetStartedActivity));
                 intent.AddFlags(ActivityFlags.ClearTop);
                 ViewModel.SignOutCommand.Execute(null);
                 MainActivity.activity.Finish();

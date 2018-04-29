@@ -8,8 +8,9 @@ using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Support.Design.Widget;
 using SuperHumans.Droid.Fragments;
+using SuperHumans.Droid.Fragments.Advance;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Advance
 {
     [Activity(Label = "@string/app_name", Icon = "@mipmap/icon",
         LaunchMode = LaunchMode.SingleInstance,

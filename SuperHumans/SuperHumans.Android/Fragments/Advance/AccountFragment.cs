@@ -4,9 +4,10 @@ using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Advance;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid.Fragments
+namespace SuperHumans.Droid.Fragments.Advance
 {
     public class AccountFragment : Fragment
     {

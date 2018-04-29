@@ -13,7 +13,7 @@ using Android.Views;
 using Android.Widget;
 using SuperHumans.ViewModels;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Advance
 {
     [Activity(Label = "Question")]
     public class BrowseQuestionDetailActivity : BaseActivity

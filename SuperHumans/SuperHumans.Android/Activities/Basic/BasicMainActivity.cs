@@ -2,7 +2,7 @@
 using Android.OS;
 using SuperHumans.Droid.Fragments.Basic;
 
-namespace SuperHumans.Droid.Activities
+namespace SuperHumans.Droid.Activities.Basic
 {
     [Activity(Label = "BasicMode")]
     public class BasicMainActivity : BasicBaseActivity

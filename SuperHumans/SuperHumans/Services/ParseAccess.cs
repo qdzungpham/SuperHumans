@@ -7,15 +7,12 @@ using SuperHumans.Models;
 
 namespace SuperHumans.Services
 {
-    public class ParseAccess : IParseAccess
+    public static class ParseAccess 
     {
 
 
-        public ParseAccess()
-        {
 
-        }
-        public async Task<int> CreateObject()
+        public static async Task<int> CreateObject()
         {
             ParseObject gameScore = new ParseObject("GameScore");
             gameScore["score"] = 1337;
@@ -24,12 +21,12 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public ParseUser CurrentUser()
+        public static ParseUser CurrentUser()
         {
             return ParseUser.CurrentUser;
         }
 
-        public async Task<int> SignUp(User _user)
+        public static async Task<int> SignUp(User _user)
         {
             var user = new ParseUser()
             {
@@ -53,7 +50,7 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public async Task<int> Login(User user)
+        public static async Task<int> Login(User user)
         {
             try
             {
@@ -67,14 +64,14 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public async Task<int> SignOut()
+        public static async Task<int> SignOut()
         {
             await ParseUser.LogOutAsync();
 
             return 1;
         }
 
-        public async Task<int> AddQuestion(Question _question)
+        public static async Task<int> AddQuestion(Question _question)
         {
             ParseObject question = new ParseObject("Questions");
             question["title"] = _question.Title;
@@ -84,7 +81,7 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public async Task<IEnumerable<ParseObject>> LoadQuestions()
+        public static async Task<IEnumerable<ParseObject>> LoadQuestions()
         {
             var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt");
             IEnumerable<ParseObject> results = await query.FindAsync();
@@ -93,14 +90,14 @@ namespace SuperHumans.Services
         }
 
 
-        public async Task<ParseObject> GetQuestion(string objectId)
+        public static async Task<ParseObject> GetQuestion(string objectId)
         {
             ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions");
             ParseObject question = await query.GetAsync(objectId);
             return question;
         }
 
-        public async Task<int> AddAnswer(Answer _answer)
+        public static async Task<int> AddAnswer(Answer _answer)
         {
             ParseQuery<ParseObject> questionQuery = ParseObject.GetQuery("Questions");
 
@@ -112,7 +109,7 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public async Task<IEnumerable<ParseObject>> LoadAnswers(ParseObject question)
+        public static async Task<IEnumerable<ParseObject>> LoadAnswers(ParseObject question)
         {
             var query = ParseObject.GetQuery("Answers").WhereEqualTo("isAnswerOf", question);
             query = query.Include("createdBy");
@@ -120,31 +117,32 @@ namespace SuperHumans.Services
             return results;
         }
 
-        public async Task<IEnumerable<ParseObject>> LoadUsers()
+        public static async Task<IEnumerable<ParseObject>> LoadUsers()
         {
             var query = ParseUser.Query;
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
         }
 
-        public async Task<ParseObject> GetUser(string userId)
+        public static async Task<ParseObject> GetUser(string userId)
         {
             var query = ParseUser.Query;
             return await query.GetAsync(userId);
         }
 
-        public async Task<int> UpdateProfile(User user)
+        public static async Task<int> UpdateProfile(User user)
         {
 
             ParseUser.CurrentUser["lastName"] = user.LastName;
             ParseUser.CurrentUser["firstName"] = user.FirstName;
+            ParseUser.CurrentUser["postcode"] = user.Postcode;
 
             await ParseUser.CurrentUser.SaveAsync();
 
             return 1;
         }
 
-        public async Task<int> UpdateFollowedOppors(IList<string> opporIds)
+        public static async Task<int> UpdateFollowedOppors(IList<string> opporIds)
         {
             ParseUser.CurrentUser["followedOppors"] = opporIds;
 
@@ -153,7 +151,7 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public async Task<int> UpdateFollowedUsers(List<string> userIds)
+        public static async Task<int> UpdateFollowedUsers(List<string> userIds)
         {
             ParseUser.CurrentUser["followedUsers"] = userIds;
 
@@ -162,7 +160,7 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public async Task<IEnumerable<ParseObject>> LoadFollowedOppors(IList<string> ids)
+        public static async Task<IEnumerable<ParseObject>> LoadFollowedOppors(IList<string> ids)
         {
             var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt").WhereContainedIn("objectId", ids);
             IEnumerable<ParseObject> results = await query.FindAsync();
@@ -171,7 +169,7 @@ namespace SuperHumans.Services
 
         }
 
-        public async Task<IEnumerable<ParseObject>> LoadFollowedUsers(IList<string> ids)
+        public static async Task<IEnumerable<ParseObject>> LoadFollowedUsers(IList<string> ids)
         {
             var query = ParseUser.Query.WhereContainedIn("objectId", ids);
             IEnumerable<ParseObject> results = await query.FindAsync();
@@ -180,6 +178,13 @@ namespace SuperHumans.Services
             //var query = ParseObject.GetQuery("Users").OrderByDescending("updatedAt").WhereContainedIn("objectId", ids);
             //IEnumerable<ParseObject> results = await query.FindAsync();
             //return results;
+        }
+
+        public static async Task<IEnumerable<ParseObject>> LoadTopics()
+        {
+            var query = ParseObject.GetQuery("Topic");
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
         }
     }
 }

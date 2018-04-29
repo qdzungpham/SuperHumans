@@ -6,6 +6,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Basic;
 using SuperHumans.ViewModels;
 using System;
 

@@ -4,6 +4,8 @@ using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.Droid.Activities;
+using SuperHumans.Droid.Activities.Advance;
+using SuperHumans.Droid.Activities.Basic;
 using SuperHumans.ViewModels;
 
 namespace SuperHumans.Droid.Fragments.Basic
