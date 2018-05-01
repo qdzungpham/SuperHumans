@@ -1,4 +1,5 @@
 ﻿using Parse;
+using SuperHumans.Helpers;
 using SuperHumans.Services;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,13 @@ namespace SuperHumans.ViewModels
         public List<ParseObject> Topics { get; private set; }
         public string[] TopicStrings { get; private set; }
 
+        public Command SaveFollowedTopicsCommand { get; private set; }
+
         public ChooseTopicsViewModel()
         {
+            Topics = new List<ParseObject>();
 
+            SaveFollowedTopicsCommand = new Command<List<int>>(async (List<int> topicIndices) => await ExecuteSaveFollowedTopicsCommandAsync(topicIndices));
         }
 
         public async Task LoadTopics()
@@ -23,8 +28,6 @@ namespace SuperHumans.ViewModels
             try
             {
                 var topics = await ParseAccess.LoadTopics();
-
-                Topics = new List<ParseObject>();
 
                 foreach (var topic in topics)
                 {
@@ -42,6 +45,36 @@ namespace SuperHumans.ViewModels
             catch (Exception e)
             {
                 Debug.WriteLine(e);
+            }
+        }
+
+        public async Task ExecuteSaveFollowedTopicsCommandAsync(List<int> topicIndices)
+        {
+            if (IsBusy) return;
+
+            ProgressDialogManager.LoadProgressDialog("Loading...");
+
+            try
+            {
+                IsBusy = true;
+
+                var selectedTopics = new List<ParseObject>();
+                foreach (var i in topicIndices)
+                {
+                    selectedTopics.Add(Topics[i]);
+                }
+
+                await ParseAccess.UpdateFollowedTopics(selectedTopics);
+                
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+                ProgressDialogManager.DisposeProgressDialog();
             }
         }
     }

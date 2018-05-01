@@ -186,5 +186,23 @@ namespace SuperHumans.Services
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
         }
+
+        public static async Task<int> UpdateFollowedTopics(List<ParseObject> topicIds)
+        {
+            ParseUser.CurrentUser["followedTopics"] = topicIds;
+
+            await ParseUser.CurrentUser.SaveAsync();
+
+            return 1;
+        }
+
+        public static async Task<IEnumerable<ParseObject>> LoadOpporsBasedOnTopics()
+        {
+            var followedTopics = ParseUser.CurrentUser.Get<IList<ParseObject>>("followedTopics");
+            var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt").WhereContainedIn("topics", followedTopics);
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+
+        }
     }
 }

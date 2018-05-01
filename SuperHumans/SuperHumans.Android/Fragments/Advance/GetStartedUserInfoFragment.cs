@@ -14,10 +14,9 @@ using SuperHumans.ViewModels;
 
 namespace SuperHumans.Droid.Fragments.Advance
 {
-    public class UserInfoFragment: Fragment
+    public class GetStartedUserInfoFragment: Fragment
     {
         AutoCompleteTextView firstName, lastName, postCode;
-        Button nextBtn;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,9 +26,9 @@ namespace SuperHumans.Droid.Fragments.Advance
             HasOptionsMenu = true;
         }
 
-        public static UserInfoFragment NewInstance()
+        public static GetStartedUserInfoFragment NewInstance()
         {
-            var fragment = new UserInfoFragment { Arguments = new Bundle() };
+            var fragment = new GetStartedUserInfoFragment { Arguments = new Bundle() };
             return fragment;
         }
 
@@ -42,24 +41,41 @@ namespace SuperHumans.Droid.Fragments.Advance
             firstName = view.FindViewById<AutoCompleteTextView>(Resource.Id.txtFirstName);
             lastName = view.FindViewById<AutoCompleteTextView>(Resource.Id.txtLastName);
             postCode = view.FindViewById<AutoCompleteTextView>(Resource.Id.txtPostcode);
-            nextBtn = view.FindViewById<Button>(Resource.Id.btnNext);
 
-            nextBtn.Click += async (sender, e) =>
-            {
-                var user = new User
-                {
-                    FirstName = firstName.Text,
-                    LastName = lastName.Text,
-                    Postcode = postCode.Text
-                };
-
-                await SignUpFragment.ViewModel.UpdateInfo(user);
-
-                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, ChooseTopicsFragment.NewInstance())
-                .AddToBackStack(null).Commit();
-            };
 
             return view;
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.get_started_user_info_menu, menu);
+
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.action_next:
+                    var user = new User
+                    {
+                        FirstName = firstName.Text,
+                        LastName = lastName.Text,
+                        Postcode = postCode.Text
+                    };
+
+                    SignUpFragment.ViewModel.UpdateInfoCommand.Execute(user);
+
+                    FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, GetStaredChooseTopicsFragment.NewInstance())
+                    .AddToBackStack(null).Commit();
+
+                    break;
+
+
+
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

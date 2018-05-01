@@ -76,7 +76,7 @@ namespace SuperHumans.Droid.Fragments.Advance
                 if (ViewModel.CurrentUser == null)
                     return;
 
-                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, UserInfoFragment.NewInstance())
+                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, GetStartedUserInfoFragment.NewInstance())
                     .AddToBackStack(null).Commit();
             };
 

@@ -41,7 +41,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_questions, null);
 
-            Activity.Title = "Browse Opportunities";
+            Activity.Title = "Find Opportunities";
 
             ViewModel = new BrowseQuestionsViewModel();
 

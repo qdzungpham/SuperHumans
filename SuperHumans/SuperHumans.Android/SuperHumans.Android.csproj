@@ -77,10 +77,10 @@
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="CustomUIs\CheckableLinearLayout.cs" />
     <Compile Include="Fragments\Advance\AccountFragment.cs" />
-    <Compile Include="Fragments\Advance\ChooseTopicsFragment.cs" />
+    <Compile Include="Fragments\Advance\GetStaredChooseTopicsFragment.cs" />
     <Compile Include="Fragments\Advance\LoginFragment.cs" />
     <Compile Include="Fragments\Advance\SignUpFragment.cs" />
-    <Compile Include="Fragments\Advance\UserInfoFragment.cs" />
+    <Compile Include="Fragments\Advance\GetStartedUserInfoFragment.cs" />
     <Compile Include="Fragments\Basic\BasicAskQuestionFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseAnswersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
@@ -199,7 +199,7 @@
     <AndroidResource Include="Resources\layout\fragment_personal_info.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment_topics.axml">
+    <AndroidResource Include="Resources\layout\fragment_get_stared_topics.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -404,6 +404,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\choose_topics_top_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\get_started_user_info_menu.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

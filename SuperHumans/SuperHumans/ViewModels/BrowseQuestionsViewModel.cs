@@ -55,7 +55,11 @@ namespace SuperHumans.ViewModels
                 {
                     questions = await ParseAccess.LoadFollowedOppors(followedOppors);
                 }
-                else
+                else if (filter == "Followed Topics")
+                {
+                    questions = await ParseAccess.LoadOpporsBasedOnTopics();
+                }
+                else 
                 {
                     questions = await ParseAccess.LoadQuestions();
                 }

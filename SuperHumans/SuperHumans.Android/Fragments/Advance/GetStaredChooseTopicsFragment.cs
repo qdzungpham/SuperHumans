@@ -8,11 +8,12 @@ using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using SuperHumans.Droid.Activities.Advance;
 using SuperHumans.ViewModels;
 
 namespace SuperHumans.Droid.Fragments.Advance
 {
-    public class ChooseTopicsFragment : ListFragment
+    public class GetStaredChooseTopicsFragment : ListFragment
     {
         private List<int> selectedTopicIndices;
         public ChooseTopicsViewModel ViewModel { get; private set; }
@@ -28,9 +29,9 @@ namespace SuperHumans.Droid.Fragments.Advance
 
         }
 
-        public static ChooseTopicsFragment NewInstance()
+        public static GetStaredChooseTopicsFragment NewInstance()
         {
-            var fragment = new ChooseTopicsFragment { Arguments = new Bundle() };
+            var fragment = new GetStaredChooseTopicsFragment { Arguments = new Bundle() };
             return fragment;
         }
 
@@ -38,7 +39,7 @@ namespace SuperHumans.Droid.Fragments.Advance
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            View view = inflater.Inflate(Resource.Layout.fragment_topics, null);
+            View view = inflater.Inflate(Resource.Layout.fragment_get_stared_topics, null);
 
             ViewModel = new ChooseTopicsViewModel();
 
@@ -88,8 +89,22 @@ namespace SuperHumans.Droid.Fragments.Advance
         {
             switch (item.ItemId)
             {
-                case Resource.Id.action_ok:
-                    Toast.MakeText(Context, selectedTopicIndices.ToString(), ToastLength.Short).Show();
+                case Resource.Id.action_done:
+                    if (selectedTopicIndices.Count < 3)
+                    {
+                        Toast.MakeText(Context, "Please choose at least 3 topics.", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        ViewModel.SaveFollowedTopicsCommand.Execute(selectedTopicIndices);
+
+                        var intent = new Intent(Activity, typeof(MainActivity));
+                        intent.AddFlags(ActivityFlags.ClearTop);
+                        intent.AddFlags(ActivityFlags.ClearTask);
+                        StartActivity(intent);
+                        Activity.Finish();
+                    }
+                    
                     break;
 
 
