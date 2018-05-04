@@ -64,7 +64,12 @@ namespace SuperHumans.Droid.Fragments.Basic
             recyclerView.SetAdapter(adapter = new MessageListAdapter(Activity, viewModel));
             recyclerView.SetLayoutManager(new LinearLayoutManager(Activity));
 
-            recyclerView.ScrollToPosition(viewModel.Messages.Count - 1);
+            var onScrollListener = new RecyclerViewOnScrollListener();
+            onScrollListener.ScrolledDownEvent += (sender, e) =>
+            {
+                HideKeyboard();
+            };
+            recyclerView.AddOnScrollListener(onScrollListener);
 
             viewModel.Messages.CollectionChanged += (sender, args) =>
             {
@@ -75,16 +80,22 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             sendBtn.Click += async (sender, e) =>
             {
+                if (chatbox.Text == "") return;
                 await viewModel.SendMessageAsync(chatbox.Text);
-
-                InputMethodManager inputManager = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
-                var currentFocus = Activity.CurrentFocus;
-                if (currentFocus != null)
-                {
-                    inputManager.HideSoftInputFromWindow(currentFocus.WindowToken, HideSoftInputFlags.NotAlways);
-                }
+                chatbox.Text = "";
+                HideKeyboard();
             };
             return view;
+        }
+
+        private void HideKeyboard()
+        {
+            InputMethodManager inputManager = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
+            var currentFocus = Activity.CurrentFocus;
+            if (currentFocus != null)
+            {
+                inputManager.HideSoftInputFromWindow(currentFocus.WindowToken, HideSoftInputFlags.NotAlways);
+            }
         }
 
         public override async void OnStart()
@@ -190,6 +201,11 @@ namespace SuperHumans.Droid.Fragments.Basic
         {
             var message = viewModel.Messages[position];
 
+            DateTime previousDate = new DateTime(1990, 01, 01);
+            if (position >= 1)
+            {
+                previousDate = viewModel.Messages[position - 1].CreatedAt;
+            }
             // Replace the contents of the view with that element
 
 
@@ -200,20 +216,43 @@ namespace SuperHumans.Droid.Fragments.Basic
                     var sentHolder = holder as SentMessageViewHolder;
 
                     sentHolder.MessageText.Text = message.Body;
-                    sentHolder.TimeText.Text = message.CreatedAt.ToShortTimeString();
+                    sentHolder.TimeText.Text = message.CreatedAt.ToString("h:mm");
 
+                    SetDateTextVisibility(message.CreatedAt, previousDate, sentHolder.DateText);
+                    
                     break;
                 case VIEW_TYPE_MESSAGE_RECEIVED:
 
                     var receivedHolder = holder as ReceivedMessageViewHolder;
 
                     receivedHolder.MessageText.Text = message.Body;
-                    receivedHolder.TimeText.Text = message.CreatedAt.ToString();
+                    receivedHolder.TimeText.Text = message.CreatedAt.ToString("h:mm");
+
+                    SetDateTextVisibility(message.CreatedAt, previousDate, receivedHolder.DateText);
 
                     break;
             }
         }
 
+        private void SetDateTextVisibility(DateTime currentTime, DateTime previousTime, TextView dateText)
+        {
+            if (previousTime == new DateTime(1990, 01, 01))
+            {
+                dateText.Visibility = ViewStates.Visible;
+                dateText.Text = currentTime.ToString("dddd, d MMMM, yyyy");
+
+            }
+            else
+            {
+                var sameDate = currentTime.Day == previousTime.Day && currentTime.Month == previousTime.Month && currentTime.Year == previousTime.Year;
+
+                if (!sameDate)
+                {
+                    dateText.Visibility = ViewStates.Visible;
+                    dateText.Text = currentTime.ToString("dddd, d MMMM, yyyy");
+                }
+            }
+        }
         public override int ItemCount => viewModel.Messages.Count;
     }
 
@@ -221,12 +260,14 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView MessageText{ get; set; }
         public TextView TimeText { get; set; }
+        public TextView DateText { get; set; }
 
         public SentMessageViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             MessageText = itemView.FindViewById<TextView>(Resource.Id.text_message_body);
             TimeText = itemView.FindViewById<TextView>(Resource.Id.text_message_time);
+            DateText = itemView.FindViewById<TextView>(Resource.Id.text_message_date);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }
@@ -236,6 +277,7 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView MessageText { get; set; }
         public TextView TimeText { get; set; }
+        public TextView DateText { get; set; }
         public ImageView ProfileImage { get; set; }
 
         public ReceivedMessageViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
@@ -243,9 +285,30 @@ namespace SuperHumans.Droid.Fragments.Basic
         {
             MessageText = itemView.FindViewById<TextView>(Resource.Id.text_message_body);
             TimeText = itemView.FindViewById<TextView>(Resource.Id.text_message_time);
+            DateText = itemView.FindViewById<TextView>(Resource.Id.text_message_date);
             ProfileImage = itemView.FindViewById<ImageView>(Resource.Id.image_message_profile);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
+        }
+    }
+
+    class RecyclerViewOnScrollListener : RecyclerView.OnScrollListener
+    {
+        public delegate void OnScrolledEventHandler(object sender, EventArgs e);
+        public event OnScrolledEventHandler ScrolledDownEvent;
+
+        public override void OnScrolled(RecyclerView recyclerView, int dx, int dy)
+        {
+            base.OnScrolled(recyclerView, dx, dy);
+
+            if (dy < 0)
+            {
+                // Scrolling down
+                ScrolledDownEvent(this, null);
+            }
+
+
+
         }
     }
 }

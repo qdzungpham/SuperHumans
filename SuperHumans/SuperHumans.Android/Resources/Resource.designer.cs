@@ -2755,8 +2755,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0800e8
 			public const int action_divider = 2131230952;
 			
-			// aapt resource value: 0x7f080112
-			public const int action_done = 2131230994;
+			// aapt resource value: 0x7f080113
+			public const int action_done = 2131230995;
 			
 			// aapt resource value: 0x7f0800e2
 			public const int action_image = 2131230946;
@@ -2776,23 +2776,23 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080050
 			public const int action_mode_close_button = 2131230800;
 			
-			// aapt resource value: 0x7f080113
-			public const int action_next = 2131230995;
-			
-			// aapt resource value: 0x7f08010b
-			public const int action_post = 2131230987;
-			
 			// aapt resource value: 0x7f080114
-			public const int action_save = 2131230996;
-			
-			// aapt resource value: 0x7f08010a
-			public const int action_settings = 2131230986;
-			
-			// aapt resource value: 0x7f08010d
-			public const int action_speak = 2131230989;
+			public const int action_next = 2131230996;
 			
 			// aapt resource value: 0x7f08010c
-			public const int action_switch = 2131230988;
+			public const int action_post = 2131230988;
+			
+			// aapt resource value: 0x7f080115
+			public const int action_save = 2131230997;
+			
+			// aapt resource value: 0x7f08010b
+			public const int action_settings = 2131230987;
+			
+			// aapt resource value: 0x7f08010e
+			public const int action_speak = 2131230990;
+			
+			// aapt resource value: 0x7f08010d
+			public const int action_switch = 2131230989;
 			
 			// aapt resource value: 0x7f0800e3
 			public const int action_text = 2131230947;
@@ -3037,8 +3037,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0800b9
 			public const int followText = 2131230905;
 			
-			// aapt resource value: 0x7f080107
-			public const int follow_button = 2131230983;
+			// aapt resource value: 0x7f080108
+			public const int follow_button = 2131230984;
 			
 			// aapt resource value: 0x7f08008b
 			public const int forgot_password = 2131230859;
@@ -3079,8 +3079,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0800b1
 			public const int image_blavatar = 2131230897;
 			
-			// aapt resource value: 0x7f080102
-			public const int image_message_profile = 2131230978;
+			// aapt resource value: 0x7f080103
+			public const int image_message_profile = 2131230979;
 			
 			// aapt resource value: 0x7f08009f
 			public const int image_more = 2131230879;
@@ -3154,8 +3154,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080085
 			public const int main_content = 2131230853;
 			
-			// aapt resource value: 0x7f080109
-			public const int masked = 2131230985;
+			// aapt resource value: 0x7f08010a
+			public const int masked = 2131230986;
 			
 			// aapt resource value: 0x7f0800cc
 			public const int me_avatar = 2131230924;
@@ -3163,17 +3163,17 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0800e7
 			public const int media_actions = 2131230951;
 			
-			// aapt resource value: 0x7f080111
-			public const int menu_account = 2131230993;
-			
-			// aapt resource value: 0x7f08010e
-			public const int menu_home = 2131230990;
-			
-			// aapt resource value: 0x7f080110
-			public const int menu_notifications = 2131230992;
+			// aapt resource value: 0x7f080112
+			public const int menu_account = 2131230994;
 			
 			// aapt resource value: 0x7f08010f
-			public const int menu_users = 2131230991;
+			public const int menu_home = 2131230991;
+			
+			// aapt resource value: 0x7f080111
+			public const int menu_notifications = 2131230993;
+			
+			// aapt resource value: 0x7f080110
+			public const int menu_users = 2131230992;
 			
 			// aapt resource value: 0x7f080022
 			public const int middle = 2131230754;
@@ -3343,8 +3343,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080017
 			public const int showTitle = 2131230743;
 			
-			// aapt resource value: 0x7f080106
-			public const int sliding_tabs = 2131230982;
+			// aapt resource value: 0x7f080107
+			public const int sliding_tabs = 2131230983;
 			
 			// aapt resource value: 0x7f0800bb
 			public const int smallLabel = 2131230907;
@@ -3361,8 +3361,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f080059
 			public const int spacer = 2131230809;
 			
-			// aapt resource value: 0x7f080105
-			public const int spinnerTarget = 2131230981;
+			// aapt resource value: 0x7f080106
+			public const int spinnerTarget = 2131230982;
 			
 			// aapt resource value: 0x7f080008
 			public const int split_action_bar = 2131230728;
@@ -3442,11 +3442,14 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0800c8
 			public const int text_input_password_toggle = 2131230920;
 			
-			// aapt resource value: 0x7f080103
-			public const int text_message_body = 2131230979;
-			
 			// aapt resource value: 0x7f080104
-			public const int text_message_time = 2131230980;
+			public const int text_message_body = 2131230980;
+			
+			// aapt resource value: 0x7f080102
+			public const int text_message_date = 2131230978;
+			
+			// aapt resource value: 0x7f080105
+			public const int text_message_time = 2131230981;
 			
 			// aapt resource value: 0x7f0800b4
 			public const int text_question_body = 2131230900;
@@ -3535,8 +3538,8 @@ namespace SuperHumans.Droid
 			// aapt resource value: 0x7f0800d1
 			public const int viewpager = 2131230929;
 			
-			// aapt resource value: 0x7f080108
-			public const int visible = 2131230984;
+			// aapt resource value: 0x7f080109
+			public const int visible = 2131230985;
 			
 			// aapt resource value: 0x7f080027
 			public const int withText = 2131230759;
