@@ -4,7 +4,7 @@ using SuperHumans.Droid.Fragments.Basic;
 
 namespace SuperHumans.Droid.Activities.Basic
 {
-    [Activity(Label = "BasicMode")]
+    [Activity(Label = "BasicMode", WindowSoftInputMode = Android.Views.SoftInput.AdjustResize)]
     public class BasicMainActivity : BasicBaseActivity
     {
        

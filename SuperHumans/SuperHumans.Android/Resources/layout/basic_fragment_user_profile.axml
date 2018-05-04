@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/image_blavatar"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:scaleType="centerCrop"
+        local:srcCompat="@drawable/ic_placeholder_user_avatar"
+        android:layout_gravity="center"
+        android:gravity="center" />
+    <TextView
+        android:textAlignment="viewStart"
+        android:id="@+id/text_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryText"
+        android:textSize="@dimen/basic_text_size_large"
+        android:layout_gravity="center" />
+    <TextView
+        android:textAlignment="viewStart"
+        android:gravity="start"
+        android:id="@+id/text_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#668eaa"
+        android:textSize="@dimen/basic_text_size_medium"
+        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/btn_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send message"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primary" />
+</LinearLayout>

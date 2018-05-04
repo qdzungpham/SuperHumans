@@ -128,6 +128,8 @@ namespace SuperHumans.Droid.Fragments.Basic
             Spinner spinner = (Spinner)sender;
 
             await ViewModel.ExecuteLoadQuestionsCommandAsync(spinner.GetItemAtPosition(e.Position).ToString());
+            recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
+            adapter.ItemClick += Adapter_ItemClick;
         }
     }
 

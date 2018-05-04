@@ -12,7 +12,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 {
     public class BasicFirstViewFragment : Fragment
     {
-        Button QA, superHumans;
+        Button giveHelp, getHelp, superHumans;
 
         public SettingsViewModel ViewModel { get; set; }
 
@@ -41,18 +41,30 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             ViewModel = new SettingsViewModel();
 
-            QA = view.FindViewById<Button>(Resource.Id.qa);
+            giveHelp = view.FindViewById<Button>(Resource.Id.give_help);
+            getHelp = view.FindViewById<Button>(Resource.Id.get_help);
             superHumans = view.FindViewById<Button>(Resource.Id.superhumans);
 
-            QA.Click += (sender, e) =>
+            giveHelp.Click += (sender, e) =>
             {
-                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicQAFragment.NewInstance())
+                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicBrowseQuestionsFragment.NewInstance())
                 .AddToBackStack(null).Commit();
             };
 
-            QA.LongClick += (sender, e) =>
+            giveHelp.LongClick += (sender, e) =>
             {
-                ((BasicMainActivity)Activity).Speak("Opportunities");
+                ((BasicMainActivity)Activity).Speak("Give Help");
+            };
+
+            getHelp.Click += (sender, e) =>
+            {
+                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicAskQuestionFragment.NewInstance())
+                .AddToBackStack(null).Commit();
+            };
+
+            getHelp.LongClick += (sender, e) =>
+            {
+                ((BasicMainActivity)Activity).Speak("Get Help");
             };
 
             superHumans.Click += (sender, e) =>

@@ -17,6 +17,7 @@ namespace SuperHumans.Services
             ParseObject gameScore = new ParseObject("GameScore");
             gameScore["score"] = 1337;
             gameScore["playerName"] = "Sean Plott";
+            
             await gameScore.SaveAsync();
             return 1;
         }
@@ -204,5 +205,52 @@ namespace SuperHumans.Services
             return results;
 
         }
+
+
+        public static async Task<string> GetConversationId(string otherUserId)
+        {
+            var members = new List<string>
+            {
+                otherUserId,
+                ParseUser.CurrentUser.ObjectId
+            };
+            var query = ParseObject.GetQuery("Conversation").WhereContainsAll("members", members);
+
+            ParseObject conversation = await query.FirstOrDefaultAsync();
+
+            if (conversation != null)
+            {
+                return conversation.ObjectId;
+            }
+            else
+            {
+                ParseObject newConversation = new ParseObject("Conversation");
+                newConversation["members"] = members;
+                await newConversation.SaveAsync();
+
+                return newConversation.ObjectId;
+            }
+        }
+
+        public static async Task<int> SendMessage(string conversationId, string body)
+        {
+            ParseObject message = new ParseObject("Message");
+            message["conversationId"] = conversationId;
+            message["author"] = ParseUser.CurrentUser.ObjectId;
+            message["body"] = body;
+
+            await message.SaveAsync();
+            return 1;
+        }
+
+        public static async Task<IEnumerable<ParseObject>> LoadMessages(string conversationId)
+        {
+
+            var query = ParseObject.GetQuery("Message").OrderBy("updatedAt").WhereEqualTo("conversationId", conversationId);
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+
+        }
+
     }
 }

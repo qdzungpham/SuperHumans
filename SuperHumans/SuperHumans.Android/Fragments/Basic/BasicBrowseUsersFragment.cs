@@ -87,7 +87,10 @@ namespace SuperHumans.Droid.Fragments.Basic
 
         void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
         {
-            Toast.MakeText(Context, "Clicked.", ToastLength.Short).Show();
+            //Toast.MakeText(Context, "Clicked.", ToastLength.Short).Show();
+            var user = ViewModel.Users[e.Position];
+            FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicUserProfileFragment.NewInstance(Newtonsoft.Json.JsonConvert.SerializeObject(user)))
+                .AddToBackStack(null).Commit();
         }
 
         void Refresher_Refresh(object sender, EventArgs e)
@@ -131,6 +134,8 @@ namespace SuperHumans.Droid.Fragments.Basic
             Spinner spinner = (Spinner)sender;
 
             await ViewModel.ExecuteLoadUsersCommandAsync(spinner.GetItemAtPosition(e.Position).ToString());
+            recyclerView.SetAdapter(adapter = new BrowseUsersAdapter(Activity, ViewModel));
+            adapter.ItemClick += Adapter_ItemClick;
         }
 
 

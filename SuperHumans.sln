@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperHumans.Android", "Supe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperHumans.iOS", "SuperHumans\SuperHumans.iOS\SuperHumans.iOS.csproj", "{1E2F9841-FC77-4A82-82AF-F1B2799EB718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperHumans", "SuperHumans\SuperHumans\SuperHumans.csproj", "{D7C1040E-0F50-4920-84DD-EA806603CAC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperHumans", "SuperHumans\SuperHumans\SuperHumans.csproj", "{D7C1040E-0F50-4920-84DD-EA806603CAC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

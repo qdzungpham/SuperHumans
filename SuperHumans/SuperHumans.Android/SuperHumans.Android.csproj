@@ -55,6 +55,9 @@
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout">
+      <Version>1.1.0</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v4" Version="25.4.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="25.4.0.2" />
     <PackageReference Include="Xamarin.Android.Support.Compat" Version="25.4.0.2" />
@@ -86,8 +89,10 @@
     <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseUsersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicMessageFragment.cs" />
     <Compile Include="Fragments\Basic\BasicQAFragment.cs" />
     <Compile Include="Fragments\Advance\HomeFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicUserProfileFragment.cs" />
     <Compile Include="Fragments\IFragmentVisible.cs" />
     <Compile Include="Fragments\Advance\MyFeedFragment.cs" />
     <Compile Include="Fragments\Advance\SettingsFragment.cs" />
@@ -200,6 +205,21 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_get_stared_topics.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_user_profile.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_message_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\received_message_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\sent_message_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\layout2.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -407,6 +427,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\get_started_user_info_menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\sent_message.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\received_message.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\circle.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
