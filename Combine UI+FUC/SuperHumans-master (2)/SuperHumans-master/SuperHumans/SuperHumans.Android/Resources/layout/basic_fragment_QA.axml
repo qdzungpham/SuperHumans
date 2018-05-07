@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="50dp"
+    android:paddingTop="50dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+    <Button
+        android:id="@+id/browse"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="find OPPOrtunities"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp"
+        android:textSize="@dimen/basic_text_size_large" />
+    <Button
+        android:id="@+id/ask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Post new opportunity"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/basic_text_size_large" />
+</LinearLayout>

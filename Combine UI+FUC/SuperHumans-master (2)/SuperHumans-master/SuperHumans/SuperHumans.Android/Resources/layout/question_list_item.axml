@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:foreground="?attr/selectableItemBackground">
+    <ImageView
+        android:id="@+id/question_list_item_score"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_crop_5_4_24px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/question_list_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toRightOf="@+id/question_list_item_score"
+        android:layout_alignParentRight="true"
+        style="@style/QuestionTitleText" />
+    <TextView
+        android:id="@+id/question_list_item_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/question_list_item_time"
+        android:layout_below="@+id/question_list_item_title"
+        android:layout_alignLeft="@+id/question_list_item_title"
+        style="@style/SubtitleText" />
+    <TextView
+        android:id="@+id/question_list_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/question_list_item_detail"
+        android:layout_alignParentRight="true"
+        style="@style/SubtitleText" />
+</RelativeLayout>

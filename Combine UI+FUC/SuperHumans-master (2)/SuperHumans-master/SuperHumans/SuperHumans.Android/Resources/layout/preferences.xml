@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+		xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory
+      android:title="ACCOUNT">
+      <Preference
+          android:key="log_out"
+          android:title="Log out"/>
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:title="APPEARANCE">
+     <Preference
+        android:title="Switch to basic UI mode"
+        android:key="switch_UI"/>
+  </PreferenceCategory>
+
+  <PreferenceCategory
+    android:title="LOCATION">
+
+
+    <ListPreference
+                    
+          android:title="State"
+          android:defaultValue="0"
+          android:entries="@array/statedetails"
+          android:entryValues="@array/statevalues"
+          android:dialogTitle="Select Your State" />   
+    
+    <EditTextPreference
+                
+          android:title="Suburb"
+          android:defaultValue="EX)Brisbane City"
+          android:summary="Write Your State" />
+  </PreferenceCategory>
+
+  <PreferenceCategory
+    android:title="SKILL CATEGOIES">
+    <Preference
+       android:title="Change Your Skill Categories"
+       />
+  </PreferenceCategory>
+  
+</PreferenceScreen>

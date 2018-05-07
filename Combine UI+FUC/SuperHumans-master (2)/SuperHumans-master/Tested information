@@ -1,0 +1,5 @@
+Tests performed from Android emulator version 7.0 nougat 
+Created user profile, checked that impoper email addresses would be refected, tested log out/ log in function, rebooted emulator and repeated tests.
+Posted question, refreshed system to check question was posted.  logged into parse server to check question was in database.
+Placed more question into the Parse server manually, then checked they appeared on emulator.  
+Currently unable to answer questions.  

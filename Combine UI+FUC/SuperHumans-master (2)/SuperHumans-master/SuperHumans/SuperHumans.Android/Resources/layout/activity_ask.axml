@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar_layout">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            local:layout_scrollFlags="scroll|enterAlways" />
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_layout"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:focusableInTouchMode="true">
+            <EditText
+                android:id="@+id/ask_edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:inputType="" />
+            <EditText
+                android:id="@+id/ask_edit_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Body"
+                android:layout_below="@id/ask_edit_title"
+                android:inputType=""
+                android:gravity="top" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

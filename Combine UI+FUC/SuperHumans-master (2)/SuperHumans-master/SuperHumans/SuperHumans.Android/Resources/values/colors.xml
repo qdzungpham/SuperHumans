@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Get colors from: http://www.materialpalette.com/-->
+  <color name="primary">#0087be</color>
+  <color name="primaryDark">#006b98</color>
+  <color name="primaryLight">#CFD8DC</color>
+  <color name="accent">#f0821e</color>
+  <color name="primaryText">#212121</color>
+  <color name="secondaryText">#757575</color>
+  <color name="icons">#FFFFFF</color>
+  <color name="divider">#BDBDBD</color>
+  <color name="window_background">#ffffff</color>
+  <color name="mint">#0dd3bb</color>
+  <color name="question_title_text">#326eb6</color>
+  <color name="text_light">#aeaeae</color>
+  <color name="question_view_header_separator">#f6f6f6</color>
+  <color name="grey_background">#eeeeee</color>
+  <color name="orange_sentmessage">#FC5F08</color>
+  <color name="primaryTextWhite">#FFFFFF</color>
+  <color name="maincolor">#185a9d</color>
+
+  <!-- Alerts -->
+  <color name="alert_yellow">#f0b849</color>
+  <color name="alert_red">#d94f4f</color>
+  <color name="alert_green">#FC5F08</color>
+  
+</resources>

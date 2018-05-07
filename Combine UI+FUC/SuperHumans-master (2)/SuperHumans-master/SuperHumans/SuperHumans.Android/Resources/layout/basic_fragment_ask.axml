@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:focusableInTouchMode="true">
+            <EditText
+                android:id="@+id/ask_edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:hint="Body"
+                android:inputType=""
+                android:gravity="top"
+                android:focusableInTouchMode="false" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ask_edit_title">
+                <Button
+                    android:id="@+id/btn_use_keyboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Keyboard"
+                    android:textColor="#ffffff"
+                    android:backgroundTint="#185a9d"
+                    android:drawableTop="@drawable/ic_keyboard"
+                    android:layout_weight="1" />
+                <Button
+                    android:id="@+id/btn_use_speech_to_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Speak"
+                    android:textColor="#ffffff"
+                    android:backgroundTint="#185a9d"
+                    android:drawableTop="@drawable/ic_speaker"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/btn_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="POST"
+        android:backgroundTint="#f98008"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:drawableTop="@drawable/ic_upload"
+        android:textColor="@android:color/white"/>
+         
+</RelativeLayout>

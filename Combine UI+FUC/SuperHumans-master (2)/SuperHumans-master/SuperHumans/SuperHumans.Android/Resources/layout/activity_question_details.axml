@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar_layout">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            local:layout_scrollFlags="scroll|enterAlways" />
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        android:id="@+id/content_frame"
+        android:layout_below="@id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_background">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/refresher">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@android:color/white">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+                            <TextView
+                                android:text="tags"
+                                android:id="@+id/question_view_item_tags"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/SubtitleText" />
+                            <TextView
+                                android:text="Title"
+                                android:id="@+id/question_view_item_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/question_view_item_tags"
+                                style="@style/QuestionTitleText"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/black" />
+                        </RelativeLayout>
+                        <View
+                            android:background="@color/question_view_header_separator"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            style="">
+                        <!--- Custom Button -->
+                            <RelativeLayout
+                                android:id="@+id/favorateBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:clickable="true"
+                                android:background="@drawable/custom_button_selector"
+                                android:layout_weight="1">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center_vertical">
+                                    <ImageView
+                                        android:layout_width="24dp"
+                                        android:layout_height="24dp"
+                                        android:src="@drawable/ic_grade_24px"
+                                        android:tint="@color/secondaryText" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="8dp"
+                                        android:textSize="16dp"
+                                        android:text="FAVORATE"
+                                        android:textColor="@color/secondaryText" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:id="@+id/editBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:clickable="true"
+                                android:background="@drawable/custom_button_selector"
+                                android:layout_weight="1">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center_vertical">
+                                    <ImageView
+                                        android:layout_width="24dp"
+                                        android:layout_height="24dp"
+                                        android:src="@drawable/ic_create_24px"
+                                        android:tint="@color/secondaryText" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="8dp"
+                                        android:textSize="16sp"
+                                        android:text="EDIT"
+                                        android:textColor="@color/secondaryText" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:id="@+id/shareBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:clickable="true"
+                                android:background="@drawable/custom_button_selector"
+                                android:layout_weight="1">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_centerInParent="true"
+                                    android:gravity="center_vertical">
+                                    <ImageView
+                                        android:layout_width="24dp"
+                                        android:layout_height="24dp"
+                                        android:src="@drawable/ic_share_24px"
+                                        android:tint="@color/secondaryText" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="8dp"
+                                        android:textSize="16dp"
+                                        android:text="SHARE"
+                                        android:textColor="@color/secondaryText" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@color/divider" />
+                        <TextView
+                            android:id="@+id/textAnswerCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:textColor="@color/primaryText"
+                            android:textSize="12sp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@color/divider" />
+                    </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:scrollbars="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        local:layoutManager="GridLayoutManager"
+                        android:background="@android:color/white" />
+                    <Button
+                        android:id="@+id/btnAnswer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ANSWER"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primary" />
+                </LinearLayout>
+            </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+</RelativeLayout>
