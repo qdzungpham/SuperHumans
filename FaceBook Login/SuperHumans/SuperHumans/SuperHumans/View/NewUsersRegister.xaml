@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuperHumans.View.NewUsersRegister">
+
+    <StackLayout Orientation="Vertical">
+        <Entry Text="{Binding User.Email, Mode=TwoWay}" Placeholder="Email"/>
+        <Entry Text="{Binding User.UserName, Mode=TwoWay}" Placeholder="UserName"/>
+        <Entry Text="{Binding User.Password, Mode=TwoWay}" Placeholder="Password" IsPassword="true"/>
+        <Entry Text="{Binding User.ConfirmPassword, Mode=TwoWay}" Placeholder="ConfirmPassword" IsPassword="True"/>
+
+        <Button Command="{Binding RegisterCommand}" FontAttributes="Bold" Text="Register"/>
+        <Label Text="{Binding Message}"/>
+    </StackLayout>    
+    
+</ContentPage>
