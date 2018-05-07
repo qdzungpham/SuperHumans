@@ -39,7 +39,6 @@
                             android:layout_height="wrap_content"
                             android:padding="16dp">
                             <TextView
-                                android:text="tags"
                                 android:id="@+id/question_view_item_tags"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

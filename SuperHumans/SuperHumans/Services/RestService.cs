@@ -9,10 +9,12 @@ namespace SuperHumans.Services
     public class RestService : IRestService
     {
         private RestClient client;
-
+        public TimeSpan TimeDiff { get; private set; }
         public RestService()
         {
             client = new RestClient("http://ec2-52-63-31-67.ap-southeast-2.compute.amazonaws.com:1337/api/");
+            DateTime serverNow = GetServerTime();
+            TimeDiff = DateTime.Now - serverNow;
         }
 
         public DateTime GetServerTime()

@@ -8,5 +8,6 @@ namespace SuperHumans.Services
     public interface IRestService
     {
         DateTime GetServerTime();
+        TimeSpan TimeDiff { get; }
     }
 }

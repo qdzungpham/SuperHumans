@@ -131,7 +131,7 @@ namespace SuperHumans.Droid.Activities.Advance
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
-            myHolder.UserNameView.Text = answer.CreatedBy;
+            myHolder.UserNameView.Text = answer.CreatedBy.Username;
             myHolder.TimeAgoView.Text = answer.TimeAgo;
             myHolder.BodyView.Text = answer.Body;
         }

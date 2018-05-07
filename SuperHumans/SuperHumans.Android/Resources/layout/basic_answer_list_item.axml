@@ -1,32 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:foreground="?attr/selectableItemBackground">
-    <LinearLayout
-        android:id="@+id/layout_answer_body"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+    <RelativeLayout
+        android:id="@+id/layout_post_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/text_answer_body"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp">
+        <ImageView
+            android:id="@+id/image_avatar_or_blavatar"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="12dp"
+            app:srcCompat="@drawable/ic_placeholder_user_avatar"
+            android:layout_marginEnd="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:foreground="?attr/selectableItemBackground" />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/basic_text_size_large"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:gravity="center" />
-    </LinearLayout>
-    <View
-        android:background="@color/grey_background"
+            android:layout_marginRight="12dp"
+            android:layout_toRightOf="@+id/image_avatar_or_blavatar"
+            android:layout_toEndOf="@+id/image_avatar_or_blavatar"
+            android:layout_marginEnd="12dp">
+            <TextView
+                android:textAlignment="viewStart"
+                android:gravity="start"
+                android:id="@+id/text_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/basic_text_size_medium_small"
+                android:background="?android:attr/selectableItemBackground"
+                android:foreground="?attr/selectableItemBackground" />
+            <TextView
+                android:id="@+id/text_timeago"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/basic_text_size_extra_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text_full_name"
+                android:gravity="center_vertical" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/text_body"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@+id/layout_answer_body" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_post_header"
+        android:textSize="@dimen/basic_text_size_small"
+        android:textColor="@color/primaryText"
+        android:lineSpacingMultiplier="1.1"
+        android:fontFamily="serif" />
+    <RelativeLayout
+        android:id="@+id/layout_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/image_more"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?android:selectableItemBackground"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            app:srcCompat="@drawable/ic_ellipsis_24dp"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>

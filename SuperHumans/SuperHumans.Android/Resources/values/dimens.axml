@@ -20,6 +20,7 @@
   <dimen name="authentication_action_text_size">14sp</dimen>
 
   <dimen name="basic_text_size_extra_small">14sp</dimen>
+  <dimen name="basic_text_size_medium_small">16sp</dimen>
   <dimen name="basic_text_size_small">18sp</dimen>
   <dimen name="basic_text_size_medium">24sp</dimen>
   <dimen name="basic_text_size_large">30sp</dimen>

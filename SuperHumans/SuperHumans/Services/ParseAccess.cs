@@ -93,7 +93,7 @@ namespace SuperHumans.Services
 
         public static async Task<ParseObject> GetQuestion(string objectId)
         {
-            ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions");
+            ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions").Include("topics").Include("createdBy");
             ParseObject question = await query.GetAsync(objectId);
             return question;
         }

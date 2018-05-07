@@ -14,7 +14,6 @@ namespace SuperHumans.ViewModels
 {
     public class MessageViewModel : BaseViewModel
     {
-        private TimeSpan timeDiff;
         private string otherUserId;
         private static string conversationId;
         public ObservableCollection<UserMessage> Messages { get; set; }
@@ -30,8 +29,7 @@ namespace SuperHumans.ViewModels
 
             LoadMessagesCommand = new Command(async () => await LoadMessagesAsync());
 
-            DateTime serverNow = RestService.GetServerTime();
-            timeDiff = DateTime.Now - serverNow;
+           
 
         }
 
@@ -114,7 +112,7 @@ namespace SuperHumans.ViewModels
                         ObjectId = message.ObjectId,
                         Body = message.Get<string>("body"),
                         IsMe = isMe,
-                        CreatedAt = message.CreatedAt.Value + timeDiff
+                        CreatedAt = message.CreatedAt.Value + RestService.TimeDiff
                     };
 
                     if (!Messages.Contains(newMessage))
