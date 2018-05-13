@@ -42,7 +42,7 @@
                             android:textColor="#668eaa" />
                     </LinearLayout>
                     <View
-                        android:background="@color/question_view_header_separator"
+                        android:background="@color/light_grey_divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp" />
                     <LinearLayout
@@ -51,8 +51,7 @@
                         android:orientation="vertical"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp">
+                        android:paddingTop="5dp">
                         <TextView
                             android:id="@+id/text_question_body"
                             android:layout_width="wrap_content"
@@ -103,6 +102,106 @@
                                 android:layout_toRightOf="@+id/image_blavatar" />
                         </RelativeLayout>
                     </LinearLayout>
+                    <View
+                        android:background="@color/grey_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        style="">
+                    <!--- Custom Button -->
+                        <RelativeLayout
+                            android:id="@+id/followBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:clickable="true"
+                            android:background="@drawable/custom_button_selector"
+                            android:layout_weight="1">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerInParent="true"
+                                android:gravity="center_vertical">
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_rss_feed_24px"
+                                    android:tint="@color/secondaryText" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:textSize="16dp"
+                                    android:text="FOLLOW"
+                                    android:textColor="@color/secondaryText" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                       
+                        <RelativeLayout
+                            android:id="@+id/shareBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:clickable="true"
+                            android:background="@drawable/custom_button_selector"
+                            android:layout_weight="1">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerInParent="true"
+                                android:gravity="center_vertical">
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_share_24px"
+                                    android:tint="@color/secondaryText" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:textSize="16dp"
+                                    android:text="SHARE"
+                                    android:textColor="@color/secondaryText" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:background="@color/grey_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+                <LinearLayout
+                    android:id="@+id/help_request_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:text="Can you help this person?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/basic_text_size_medium_small"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:text="Send him a request to let him know..."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/basic_text_size_extra_small" />
+                    <Button
+                        android:id="@+id/btnHelper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I Can HElp!"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primary"
+                        android:layout_gravity="center" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -73,8 +73,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnStart();
 
             refresher.Refresh += Refresher_Refresh;
-            adapter.ItemClick += Adapter_ItemClick;
-
+            adapter.ItemLongClick += Adapter_ItemLongClick;
             
         }
 
@@ -82,10 +81,10 @@ namespace SuperHumans.Droid.Fragments.Basic
         {
             base.OnStop();
             refresher.Refresh -= Refresher_Refresh;
-            adapter.ItemClick -= Adapter_ItemClick;
+            adapter.ItemLongClick -= Adapter_ItemLongClick;
         }
 
-        void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
+        void Adapter_ItemLongClick(object sender, RecyclerClickEventArgs e)
         {
             var question = ViewModel.Questions[e.Position];
             ((BasicMainActivity)Activity).Speak(question.Title);
@@ -97,7 +96,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             ViewModel.LoadQuestionsCommand.Execute(filterSpinner.SelectedItem.ToString());
             recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
             refresher.Refreshing = false;
-            adapter.ItemClick += Adapter_ItemClick;
+            adapter.ItemLongClick += Adapter_ItemLongClick;
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -129,7 +128,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             await ViewModel.ExecuteLoadQuestionsCommandAsync(spinner.GetItemAtPosition(e.Position).ToString());
             recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
-            adapter.ItemClick += Adapter_ItemClick;
+            adapter.ItemLongClick += Adapter_ItemLongClick;
         }
     }
 

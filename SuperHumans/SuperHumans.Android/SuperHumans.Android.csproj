@@ -89,7 +89,9 @@
     <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseUsersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicGetHelpFragment.cs" />
     <Compile Include="Fragments\Basic\BasicMessageFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicMyRequestDetailFragment.cs" />
     <Compile Include="Fragments\Basic\BasicQAFragment.cs" />
     <Compile Include="Fragments\Advance\HomeFragment.cs" />
     <Compile Include="Fragments\Basic\BasicUserProfileFragment.cs" />
@@ -220,6 +222,18 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\layout2.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_get_help.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_current_request_list_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_my_request_detail.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_helper_list_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

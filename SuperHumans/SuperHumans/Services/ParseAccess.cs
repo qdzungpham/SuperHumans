@@ -84,7 +84,7 @@ namespace SuperHumans.Services
 
         public static async Task<IEnumerable<ParseObject>> LoadQuestions()
         {
-            var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt");
+            var query = ParseObject.GetQuery("Questions").OrderByDescending("createdAt");
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
             
@@ -94,6 +94,13 @@ namespace SuperHumans.Services
         public static async Task<ParseObject> GetQuestion(string objectId)
         {
             ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions").Include("topics").Include("createdBy");
+            ParseObject question = await query.GetAsync(objectId);
+            return question;
+        }
+
+        public static async Task<ParseObject> GetMyRequest(string objectId)
+        {
+            ParseQuery<ParseObject> query = ParseObject.GetQuery("Questions").Include("topics").Include("acceptedHelpers").Include("requestedHelpers");
             ParseObject question = await query.GetAsync(objectId);
             return question;
         }
@@ -163,7 +170,7 @@ namespace SuperHumans.Services
 
         public static async Task<IEnumerable<ParseObject>> LoadFollowedOppors(IList<string> ids)
         {
-            var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt").WhereContainedIn("objectId", ids);
+            var query = ParseObject.GetQuery("Questions").OrderByDescending("createdAt").WhereContainedIn("objectId", ids);
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
 
@@ -200,7 +207,7 @@ namespace SuperHumans.Services
         public static async Task<IEnumerable<ParseObject>> LoadOpporsBasedOnTopics()
         {
             var followedTopics = ParseUser.CurrentUser.Get<IList<ParseObject>>("followedTopics");
-            var query = ParseObject.GetQuery("Questions").OrderByDescending("updatedAt").WhereContainedIn("topics", followedTopics);
+            var query = ParseObject.GetQuery("Questions").OrderByDescending("createdAt").WhereContainedIn("topics", followedTopics);
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
 
@@ -246,11 +253,27 @@ namespace SuperHumans.Services
         public static async Task<IEnumerable<ParseObject>> LoadMessages(string conversationId)
         {
 
-            var query = ParseObject.GetQuery("Message").OrderBy("updatedAt").WhereEqualTo("conversationId", conversationId);
+            var query = ParseObject.GetQuery("Message").OrderBy("createdAt").WhereEqualTo("conversationId", conversationId);
             IEnumerable<ParseObject> results = await query.FindAsync();
             return results;
 
         }
+
+        public static async Task<int> AddRequestedHelper(string questionId)
+        {
+            var question = await GetQuestion(questionId);
+            question.AddUniqueToList("requestedHelpers", ParseUser.CurrentUser );
+            await question.SaveAsync();
+            return 1;
+        }
+
+        public static async Task<IEnumerable<ParseObject>> LoadMyRequests()
+        {
+            var query = ParseObject.GetQuery("Questions").WhereEqualTo("createdBy", ParseUser.CurrentUser).OrderByDescending("createdAt");
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            return results;
+        }
+
 
     }
 }

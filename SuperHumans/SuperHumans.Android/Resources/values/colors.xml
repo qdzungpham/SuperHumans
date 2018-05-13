@@ -13,7 +13,8 @@
   <color name="mint">#0dd3bb</color>
   <color name="question_title_text">#326eb6</color>
   <color name="text_light">#aeaeae</color>
-  <color name="question_view_header_separator">#f6f6f6</color>
+  <color name="light_grey_divider">#f6f6f6</color>
+  <color name="grey_divider">#d6d6d6</color>
   <color name="grey_background">#eeeeee</color>
 
   <!-- Alerts -->

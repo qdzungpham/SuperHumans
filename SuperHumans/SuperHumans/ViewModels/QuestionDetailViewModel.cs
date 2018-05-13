@@ -1,4 +1,5 @@
-﻿using Parse;
+﻿using Acr.UserDialogs;
+using Parse;
 using SuperHumans.Helpers;
 using SuperHumans.Models;
 using SuperHumans.Services;
@@ -97,6 +98,21 @@ namespace SuperHumans.ViewModels
             {
                 IsBusy = false;
                 ProgressDialogManager.DisposeProgressDialog();
+            }
+        }
+
+        public async Task SendHelperRequest()
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                await ParseAccess.AddRequestedHelper(questionId);
+                
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
             }
         }
 

@@ -14,6 +14,8 @@ namespace SuperHumans.Droid.Fragments.Basic
         QuestionDetailViewModel ViewModel { get; set; }
 
         TextView questionTitle, questionBody, tags, postedDate, ownerFullName, ownerUsername, answerCount;
+        Button helperBtn;
+        LinearLayout helpRequestHolder;
         RelativeLayout ownerHolder;
         BrowseAnswerAdapter adapter;
         SwipeRefreshLayout refresher;
@@ -51,6 +53,8 @@ namespace SuperHumans.Droid.Fragments.Basic
             ownerUsername = view.FindViewById<TextView>(Resource.Id.text_username);
             postedDate = view.FindViewById<TextView>(Resource.Id.text_posted_date);
             ownerHolder = view.FindViewById<RelativeLayout>(Resource.Id.owner_holder);
+            helperBtn = view.FindViewById<Button>(Resource.Id.btnHelper);
+            helpRequestHolder = view.FindViewById<LinearLayout>(Resource.Id.help_request_holder);
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
@@ -63,6 +67,12 @@ namespace SuperHumans.Droid.Fragments.Basic
             refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
             refresher.SetColorSchemeColors(Resource.Color.accent);
 
+            helperBtn.Click += async (sender, e) =>
+            {
+                await ViewModel.SendHelperRequest();
+                Toast.MakeText(Context, "Your request was sent.", ToastLength.Short).Show();
+                helpRequestHolder.Visibility = ViewStates.Gone;
+            };
             return view;
         }
 

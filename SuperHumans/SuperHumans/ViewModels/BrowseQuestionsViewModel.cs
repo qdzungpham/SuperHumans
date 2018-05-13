@@ -12,6 +12,7 @@ namespace SuperHumans.ViewModels
 {
     public class BrowseQuestionsViewModel : BaseViewModel
     {
+
         public ObservableCollection<Question> Questions { get; set; }
         public Command LoadQuestionsCommand { get; set; }
         private List<string> followedOppors;
@@ -59,6 +60,10 @@ namespace SuperHumans.ViewModels
                 {
                     questions = await ParseAccess.LoadOpporsBasedOnTopics();
                 }
+                else if (filter == "My Requests")
+                {
+                    questions = await ParseAccess.LoadMyRequests();
+                }
                 else 
                 {
                     questions = await ParseAccess.LoadQuestions();
@@ -67,6 +72,16 @@ namespace SuperHumans.ViewModels
                 foreach (var question in questions)
                 {
                     var isFollowed = false;
+                    var state = "Closed";
+                    var stateFlag = question.Get<int>("stateFlag");
+
+                    if (stateFlag == (int)RequestState.Active)
+                    {
+                        state = "Active";
+                    } else if (stateFlag == (int)RequestState.InProgress)
+                    {
+                        state = "In Progress";
+                    }
 
                     if (followedOppors.Contains(question.ObjectId))
                     {
@@ -78,7 +93,8 @@ namespace SuperHumans.ViewModels
                         Title = question.Get<string>("title"),
                         Body = question.Get<string>("body"),
                         TimeAgo = HelperFunctions.TimeAgo(question.UpdatedAt.Value, now),
-                        IsFollowed = isFollowed
+                        IsFollowed = isFollowed,
+                        State = state
                     };
                     Questions.Add(q);
                 }

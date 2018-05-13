@@ -15,5 +15,6 @@ namespace SuperHumans.Models
         public string TimeAgo { get; set; }
         public List<string> Topics { get; set; }
         public bool IsFollowed { get; set; }
+        public string State { get; set; }
     }
 }

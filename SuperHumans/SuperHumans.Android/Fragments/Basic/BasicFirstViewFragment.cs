@@ -58,7 +58,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             getHelp.Click += (sender, e) =>
             {
-                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicAskQuestionFragment.NewInstance())
+                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicGetHelpFragment.NewInstance())
                 .AddToBackStack(null).Commit();
             };
 
