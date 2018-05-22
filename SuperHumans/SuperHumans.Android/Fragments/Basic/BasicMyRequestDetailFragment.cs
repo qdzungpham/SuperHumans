@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.Widget;
@@ -20,6 +21,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         HelpersAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
+        Spinner statusSpinner;
 
         MyRequestDetailViewModel ViewModel { get; set; }
         public override void OnCreate(Bundle savedInstanceState)
@@ -45,6 +47,8 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_my_request_detail, null);
 
+            Activity.Title = "My Request Detail";
+
             ViewModel = new MyRequestDetailViewModel(Arguments.GetString("questionId"));
 
             questionTitle = view.FindViewById<TextView>(Resource.Id.text_question_title);
@@ -60,6 +64,14 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             refresher = view.FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
             refresher.SetColorSchemeColors(Resource.Color.accent);
+
+            statusSpinner = view.FindViewById<Spinner>(Resource.Id.status_spinner);
+            statusSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
+            var spinnerAdapter = ArrayAdapter.CreateFromResource(
+            Activity, Resource.Array.request_status_array, Resource.Layout.statusSpinnerLayout);
+            spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+
+            statusSpinner.Adapter = spinnerAdapter;
 
             return view;
         }
@@ -109,6 +121,25 @@ namespace SuperHumans.Droid.Fragments.Basic
         //    refresher.Refreshing = false;
         //    adapter.ItemLongClick += Adapter_ItemLongClick;
         //}
+
+        private void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+
+            Spinner spinner = (Spinner)sender;
+
+            if (e.Position == 0)
+            {
+                ((TextView)spinner.GetChildAt(0)).SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_green)));
+            } else if (e.Position == 1)
+            {
+                ((TextView)spinner.GetChildAt(0)).SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_yellow)));
+            } else if (e.Position == 2)
+            {
+                ((TextView)spinner.GetChildAt(0)).SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_red)));
+            }
+            
+            
+        }
     }
 
     class HelpersAdapter : BaseRecycleViewAdapter

@@ -158,6 +158,18 @@ namespace SuperHumans.Droid.Fragments.Basic
             var myHolder = holder as MyCurrentRequestViewHolder;
             myHolder.TitleText.Text = question.Title;
             myHolder.StateText.Text = question.State;
+            
+            if (question.State == "Active")
+            {
+                myHolder.StateText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
+            } else if (question.State == "In Progress")
+            {
+                myHolder.StateText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_yellow)));
+            } else if (question.State == "Closed")
+            {
+                myHolder.StateText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_red)));
+            }
+
 
             
         }

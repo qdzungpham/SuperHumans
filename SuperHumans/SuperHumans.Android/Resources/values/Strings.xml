@@ -30,4 +30,10 @@
     <item>Discover</item>
     <item>Followed Users</item>
   </string-array>
+
+  <string-array name="request_status_array">
+    <item>Active</item>
+    <item>In Progress</item>
+    <item>Closed</item>
+  </string-array>
 </resources>
