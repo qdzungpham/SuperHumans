@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using SuperHumans.Droid.Activities;
 using SuperHumans.Droid.Activities.Advance;
 using SuperHumans.Droid.Activities.Basic;
 using SuperHumans.ViewModels;
@@ -39,6 +38,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_first_view, null);
 
+            Activity.Title = "Home";
             ViewModel = new SettingsViewModel();
 
             giveHelp = view.FindViewById<Button>(Resource.Id.give_help);

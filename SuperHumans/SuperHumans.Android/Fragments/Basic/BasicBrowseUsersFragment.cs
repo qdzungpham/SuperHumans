@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Graphics;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -19,6 +20,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         RecyclerView recyclerView;
         Spinner filterSpinner;
         ProgressBar progress;
+        FloatingActionButton fab;
 
         public static UsersViewModel ViewModel { get; set; }
 
@@ -46,6 +48,8 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             ViewModel = new UsersViewModel();
 
+            fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab);
+
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
             recyclerView.HasFixedSize = true;
@@ -65,6 +69,12 @@ namespace SuperHumans.Droid.Fragments.Basic
             spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 
             filterSpinner.Adapter = spinnerAdapter;
+
+            fab.Click += (sender, e) =>
+            {
+                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicMyConversationsFragment.NewInstance())
+                .AddToBackStack(null).Commit();
+            };
 
             return view;
         }
@@ -179,6 +189,14 @@ namespace SuperHumans.Droid.Fragments.Basic
             myHolder.FullNameView.Text = user.FirstName + " " + user.LastName;
             myHolder.UsernameTextView.Text = "@" + user.Username;
 
+            string topics = "";
+
+            foreach (var topic in user.FollowedTopics)
+            {
+                topics += topic + " ";
+            }
+
+            myHolder.FollowedTopicsTextView.Text = topics;
             if (user.IsFollowed)
             {
                 myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
@@ -221,6 +239,7 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView FullNameView { get; set; }
         public TextView UsernameTextView { get; set; }
+        public TextView FollowedTopicsTextView { get; set; }
         public RelativeLayout FollowButton { get; set; }
         public ImageView FollowIcon { get; set; }
         public TextView FollowText { get; set; }
@@ -230,6 +249,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         {
             FullNameView = itemView.FindViewById<TextView>(Resource.Id.text_full_name);
             UsernameTextView = itemView.FindViewById<TextView>(Resource.Id.text_username);
+            FollowedTopicsTextView = itemView.FindViewById<TextView>(Resource.Id.text_followed_topics);
             FollowButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
             FollowIcon = itemView.FindViewById<ImageView>(Resource.Id.followIcon);
             FollowText = itemView.FindViewById<TextView>(Resource.Id.followText);

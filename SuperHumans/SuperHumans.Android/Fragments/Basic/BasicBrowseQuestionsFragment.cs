@@ -41,7 +41,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_questions, null);
 
-            Activity.Title = "Find Opportunities";
+            Activity.Title = "Find Tasks";
 
             ViewModel = new BrowseQuestionsViewModel();
 
@@ -73,6 +73,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnStart();
 
             refresher.Refresh += Refresher_Refresh;
+            adapter.ItemClick += Adapter_ItemClick;
             adapter.ItemLongClick += Adapter_ItemLongClick;
             
         }
@@ -81,7 +82,20 @@ namespace SuperHumans.Droid.Fragments.Basic
         {
             base.OnStop();
             refresher.Refresh -= Refresher_Refresh;
+            adapter.ItemClick -= Adapter_ItemClick;
             adapter.ItemLongClick -= Adapter_ItemLongClick;
+        }
+
+        void Adapter_ItemClick(object sender, RecyclerClickEventArgs e)
+        {
+            var question = ViewModel.Questions[e.Position];
+            var newFragment = BasicBrowseAnswersFragment.NewInstance();
+            var bundle = new Bundle();
+            bundle.PutString("questionId", question.ObjectId);
+            newFragment.Arguments = bundle;
+            FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, newFragment)
+            .AddToBackStack(null).Commit();
+
         }
 
         void Adapter_ItemLongClick(object sender, RecyclerClickEventArgs e)
@@ -96,6 +110,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             ViewModel.LoadQuestionsCommand.Execute(filterSpinner.SelectedItem.ToString());
             recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
             refresher.Refreshing = false;
+            adapter.ItemClick += Adapter_ItemClick;
             adapter.ItemLongClick += Adapter_ItemLongClick;
         }
 
@@ -128,6 +143,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             await ViewModel.ExecuteLoadQuestionsCommandAsync(spinner.GetItemAtPosition(e.Position).ToString());
             recyclerView.SetAdapter(adapter = new BrowseQuestionsAdapter(Activity, this, ViewModel));
+            adapter.ItemClick += Adapter_ItemClick;
             adapter.ItemLongClick += Adapter_ItemLongClick;
         }
     }
@@ -170,23 +186,20 @@ namespace SuperHumans.Droid.Fragments.Basic
             // Replace the contents of the view with that element
             var myHolder = holder as QuestionViewHolder;
             myHolder.BodyView.Text = question.Title;
+            string topics = "";
 
+            foreach (var topic in question.Topics)
+            {
+                topics += topic + " ";
+            }
+
+            myHolder.TopicsView.Text = topics;
             if (question.IsFollowed)
             {
                 myHolder.FollowIcon.SetColorFilter(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
                 myHolder.FollowText.Text = "FOLLOWING";
                 myHolder.FollowText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(activity, Resource.Color.alert_green)));
             }
-
-            myHolder.AnswersButton.Click += (sender, e) =>
-            {
-                var newFragment = BasicBrowseAnswersFragment.NewInstance();
-                var bundle = new Bundle();
-                bundle.PutString("questionId", question.ObjectId);
-                newFragment.Arguments = bundle;
-                fragment.FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, newFragment)
-                .AddToBackStack(null).Commit();
-            };
 
             myHolder.FollowButton.Click += async (sender, e) =>
             {
@@ -221,6 +234,7 @@ namespace SuperHumans.Droid.Fragments.Basic
     class QuestionViewHolder : RecyclerView.ViewHolder
     {
         public TextView BodyView { get; set; }
+        public TextView TopicsView { get; set; }
         public RelativeLayout AnswersButton { get; set;}
         public RelativeLayout FollowButton { get; set; }
         public ImageView FollowIcon { get; set; }
@@ -230,7 +244,8 @@ namespace SuperHumans.Droid.Fragments.Basic
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             BodyView = itemView.FindViewById<TextView>(Resource.Id.text_question_body);
-            AnswersButton = itemView.FindViewById<RelativeLayout>(Resource.Id.answerBtn);
+            TopicsView = itemView.FindViewById<TextView>(Resource.Id.text_topics);
+            AnswersButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
             FollowButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
             FollowIcon = itemView.FindViewById<ImageView>(Resource.Id.followIcon);
             FollowText = itemView.FindViewById<TextView>(Resource.Id.followText);

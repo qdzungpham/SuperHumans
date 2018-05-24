@@ -141,7 +141,6 @@
                                     android:textColor="@color/secondaryText" />
                             </LinearLayout>
                         </RelativeLayout>
-                       
                         <RelativeLayout
                             android:id="@+id/shareBtn"
                             android:layout_width="match_parent"
@@ -202,6 +201,28 @@
                         android:textColor="@android:color/white"
                         android:backgroundTint="@color/primary"
                         android:layout_gravity="center" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/request_sent_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:visibility="gone">
+                    <TextView
+                        android:text="You have sent a request.."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/basic_text_size_medium_small"
+                        android:textStyle="bold"
+                  android:textColor="@color/alert_green"/>
+                    <TextView
+                        android:text="Just wait..."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/basic_text_size_extra_small" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -91,6 +91,7 @@
     <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
     <Compile Include="Fragments\Basic\BasicGetHelpFragment.cs" />
     <Compile Include="Fragments\Basic\BasicMessageFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicMyConversationsFragment.cs" />
     <Compile Include="Fragments\Basic\BasicMyRequestDetailFragment.cs" />
     <Compile Include="Fragments\Basic\BasicQAFragment.cs" />
     <Compile Include="Fragments\Advance\HomeFragment.cs" />
@@ -237,6 +238,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\statusSpinnerLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_my_coversations.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_conversation_list_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -467,6 +474,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\gradientbackground.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_mic_24px.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

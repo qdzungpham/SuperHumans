@@ -15,7 +15,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
         TextView questionTitle, questionBody, tags, postedDate, ownerFullName, ownerUsername, answerCount;
         Button helperBtn;
-        LinearLayout helpRequestHolder;
+        LinearLayout helpRequestHolder, requestSentHolder;
         RelativeLayout ownerHolder;
         BrowseAnswerAdapter adapter;
         SwipeRefreshLayout refresher;
@@ -41,7 +41,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreateView(inflater, container, savedInstanceState);
             View view = inflater.Inflate(Resource.Layout.basic_fragment_browse_answers, null);
 
-            Activity.Title = "Browse Responses";
+            Activity.Title = "Task Detail";
 
             ViewModel = new QuestionDetailViewModel(Arguments.GetString("questionId"));
 
@@ -55,6 +55,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             ownerHolder = view.FindViewById<RelativeLayout>(Resource.Id.owner_holder);
             helperBtn = view.FindViewById<Button>(Resource.Id.btnHelper);
             helpRequestHolder = view.FindViewById<LinearLayout>(Resource.Id.help_request_holder);
+            requestSentHolder = view.FindViewById<LinearLayout>(Resource.Id.request_sent_holder);
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
@@ -72,6 +73,7 @@ namespace SuperHumans.Droid.Fragments.Basic
                 await ViewModel.SendHelperRequest();
                 Toast.MakeText(Context, "Your request was sent.", ToastLength.Short).Show();
                 helpRequestHolder.Visibility = ViewStates.Gone;
+                requestSentHolder.Visibility = ViewStates.Visible;
             };
             return view;
         }

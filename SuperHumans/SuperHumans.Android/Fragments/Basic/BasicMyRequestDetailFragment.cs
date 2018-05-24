@@ -17,7 +17,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 {
     public class BasicMyRequestDetailFragment : Android.Support.V4.App.Fragment
     {
-        TextView questionTitle, questionBody, tags, postedDate;
+        TextView questionTitle, questionBody, tags, postedDate, spinnerText;
         HelpersAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
@@ -55,6 +55,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             questionBody = view.FindViewById<TextView>(Resource.Id.text_question_body);
             tags = view.FindViewById<TextView>(Resource.Id.text_question_tags);
             postedDate = view.FindViewById<TextView>(Resource.Id.text_posted_date);
+            
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
@@ -73,6 +74,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             statusSpinner.Adapter = spinnerAdapter;
 
+            //spinnerText = (TextView) statusSpinner.GetChildAt(0);
             return view;
         }
 
@@ -127,18 +129,21 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             Spinner spinner = (Spinner)sender;
 
-            if (e.Position == 0)
-            {
-                ((TextView)spinner.GetChildAt(0)).SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_green)));
-            } else if (e.Position == 1)
-            {
-                ((TextView)spinner.GetChildAt(0)).SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_yellow)));
-            } else if (e.Position == 2)
-            {
-                ((TextView)spinner.GetChildAt(0)).SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_red)));
-            }
-            
-            
+
+            //if (e.Position == 0)
+            //{
+            //    spinnerText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_green)));
+            //}
+            //else if (e.Position == 1)
+            //{
+            //    spinnerText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_yellow)));
+            //}
+            //else if (e.Position == 2)
+            //{
+            //    spinnerText.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_red)));
+            //}
+
+
         }
     }
 

@@ -7,46 +7,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
+            android:orientation="vertical"
             android:focusableInTouchMode="true">
-            <EditText
+
+
+          <EditText
                 android:id="@+id/ask_edit_title"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:hint="Body"
-                android:inputType=""
-                android:gravity="top"
-                android:focusableInTouchMode="false" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ask_edit_title">
-                <Button
-                    android:id="@+id/btn_use_keyboard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Keyboard"
-                    android:layout_weight="1" />
-                <Button
-                    android:id="@+id/btn_use_speech_to_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Speak"
-                    android:layout_weight="1" />
-            </LinearLayout>
-        </RelativeLayout>
+                android:hint="Title"
+                android:inputType="" />
+            <EditText
+                android:id="@+id/ask_edit_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Body"
+                android:layout_below="@id/ask_edit_title"
+                android:inputType=""
+                android:gravity="top" />
+        </LinearLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/btn_post"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="POST"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/primary" />
 </RelativeLayout>

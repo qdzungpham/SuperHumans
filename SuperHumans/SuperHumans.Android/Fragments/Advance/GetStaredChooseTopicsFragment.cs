@@ -9,6 +9,7 @@ using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using SuperHumans.Droid.Activities.Advance;
+using SuperHumans.Droid.Activities.Basic;
 using SuperHumans.ViewModels;
 
 namespace SuperHumans.Droid.Fragments.Advance
@@ -98,7 +99,7 @@ namespace SuperHumans.Droid.Fragments.Advance
                     {
                         ViewModel.SaveFollowedTopicsCommand.Execute(selectedTopicIndices);
 
-                        var intent = new Intent(Activity, typeof(MainActivity));
+                        var intent = new Intent(Activity, typeof(BasicMainActivity));
                         intent.AddFlags(ActivityFlags.ClearTop);
                         intent.AddFlags(ActivityFlags.ClearTask);
                         StartActivity(intent);

@@ -1,4 +1,5 @@
-﻿using SuperHumans.Helpers;
+﻿using Parse;
+using SuperHumans.Helpers;
 using SuperHumans.Models;
 using SuperHumans.Services;
 using System;
@@ -62,6 +63,12 @@ namespace SuperHumans.ViewModels
                 {
                     var isFollowed = false;
 
+                    var topicObjects = user.Get<IList<ParseObject>>("followedTopics");
+                    var topics = new List<string>();
+                    foreach (var topic in topicObjects)
+                    {
+                        topics.Add(topic.Get<string>("topicText"));
+                    }
                     if (followedUsers.Contains(user.ObjectId))
                     {
                         isFollowed = true;
@@ -72,7 +79,8 @@ namespace SuperHumans.ViewModels
                         FirstName = user.Get<string>("firstName"),
                         LastName = user.Get<string>("lastName"),
                         ObjectId = user.ObjectId,
-                        IsFollowed = isFollowed
+                        IsFollowed = isFollowed,
+                        FollowedTopics = topics
                     };
                     Users.Add(u);
                 }

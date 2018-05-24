@@ -1,4 +1,5 @@
-﻿using SuperHumans.Helpers;
+﻿using Parse;
+using SuperHumans.Helpers;
 using SuperHumans.Models;
 using SuperHumans.Services;
 using System;
@@ -52,7 +53,7 @@ namespace SuperHumans.ViewModels
                 }
 
                 IEnumerable<Parse.ParseObject> questions;
-                if (filter == "Followed Opportunities")
+                if (filter == "Followed Tasks")
                 {
                     questions = await ParseAccess.LoadFollowedOppors(followedOppors);
                 }
@@ -75,6 +76,13 @@ namespace SuperHumans.ViewModels
                     var state = "Closed";
                     var stateFlag = question.Get<int>("stateFlag");
 
+                    var topicObjects = question.Get<IList<ParseObject>>("topics");
+                    var topics = new List<string>();
+                    foreach (var topic in topicObjects)
+                    {
+                        topics.Add(topic.Get<string>("topicText"));
+                    }
+
                     if (stateFlag == (int)RequestState.Active)
                     {
                         state = "Active";
@@ -94,7 +102,8 @@ namespace SuperHumans.ViewModels
                         Body = question.Get<string>("body"),
                         TimeAgo = HelperFunctions.TimeAgo(question.UpdatedAt.Value, now),
                         IsFollowed = isFollowed,
-                        State = state
+                        State = state,
+                        Topics = topics
                     };
                     Questions.Add(q);
                 }

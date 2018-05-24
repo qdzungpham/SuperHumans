@@ -23,11 +23,11 @@
   <string-array name="opportunity_spinner_array">
     <item>All Topics</item>
     <item>Followed Topics</item>
-    <item>Followed Opportunities</item>
+    <item>Followed Tasks</item>
   </string-array>
 
   <string-array name="users_spinner_array">
-    <item>Discover</item>
+    <item>All Users</item>
     <item>Followed Users</item>
   </string-array>
 

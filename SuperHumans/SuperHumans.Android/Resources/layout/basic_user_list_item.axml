@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="12dp"
+        android:paddingBottom="0dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="12dp"
@@ -24,8 +24,8 @@
             android:layout_marginRight="12dp">
             <ImageView
                 android:id="@+id/image_blavatar"
-                android:layout_width="66dp"
-                android:layout_height="66dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="centerCrop"
                 local:srcCompat="@drawable/ic_placeholder_user_avatar"
                 android:layout_gravity="center"
@@ -47,8 +47,8 @@
                     android:gravity="center_vertical">
                     <ImageView
                         android:id="@+id/followIcon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@drawable/ic_person_add_24px"
                         android:tint="@color/secondaryText" />
                     <TextView
@@ -56,7 +56,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:textSize="@dimen/basic_text_size_small"
+                        android:textSize="@dimen/basic_text_size_medium_small"
                         android:text="Follow"
                         android:textColor="@color/secondaryText" />
                 </LinearLayout>
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/left_layout"
             android:textColor="@color/primaryText"
-            android:textSize="@dimen/basic_text_size_large"
+            android:textSize="@dimen/basic_text_size_medium"
             android:layout_toEndOf="@+id/left_layout" />
         <TextView
             android:textAlignment="viewStart"
@@ -81,8 +81,19 @@
             android:layout_below="@+id/text_full_name"
             android:layout_toRightOf="@+id/left_layout"
             android:textColor="#668eaa"
-            android:textSize="@dimen/basic_text_size_medium"
+            android:textSize="@dimen/basic_text_size_small"
             android:layout_toEndOf="@+id/left_layout" />
+        <TextView
+            android:textAlignment="viewStart"
+            android:gravity="start"
+            android:id="@+id/text_followed_topics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/left_layout"
+            android:textSize="@dimen/basic_text_size_extra_small"
+            android:layout_below="@+id/text_username"
+            android:layout_toEndOf="@+id/left_layout"
+            android:textColor="@color/secondaryText" />
     </RelativeLayout>
     <View
         android:background="@color/grey_background"
