@@ -77,5 +77,13 @@ namespace SuperHumans.ViewModels
                 ProgressDialogManager.DisposeProgressDialog();
             }
         }
+
+        public void ChooseTopics(List<int> topicIndices)
+        {
+            foreach (var i in topicIndices)
+            {
+                AskViewModel.Topics.Add(Topics[i]);
+            }
+        }
     }
 }

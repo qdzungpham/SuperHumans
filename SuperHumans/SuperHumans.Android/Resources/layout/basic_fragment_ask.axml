@@ -7,20 +7,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
             android:orientation="vertical"
             android:focusableInTouchMode="true">
-
-
-          <EditText
+          <TextView
+                android:text="Topics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/topics"
+                android:layout_alignParentBottom="true"
+                android:textSize="@dimen/basic_text_size_medium" />
+            <EditText
                 android:id="@+id/ask_edit_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
-                android:inputType="" />
+                android:inputType=""
+                android:textSize="@dimen/basic_text_size_medium" />
             <EditText
                 android:id="@+id/ask_edit_body"
                 android:layout_width="match_parent"
@@ -28,7 +34,10 @@
                 android:hint="Body"
                 android:layout_below="@id/ask_edit_title"
                 android:inputType=""
-                android:gravity="top" />
-        </LinearLayout>
+                android:gravity="top"
+                android:layout_above="@id/topics"
+                android:textSize="@dimen/basic_text_size_medium" />
+           
+        </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

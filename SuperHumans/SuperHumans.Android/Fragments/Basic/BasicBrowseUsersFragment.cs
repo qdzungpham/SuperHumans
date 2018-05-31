@@ -114,7 +114,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             base.OnCreateOptionsMenu(menu, inflater);
-            inflater.Inflate(Resource.Menu.basic_UI_menu, menu);
+            inflater.Inflate(Resource.Menu.speak_menu, menu);
 
         }
 

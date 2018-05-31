@@ -3,6 +3,7 @@
       xmlns:local="http://schemas.android.com/apk/res-auto">
   <item
       android:id="@+id/action_switch"
+      android:icon="@drawable/ic_swap_horiz_24px"
       android:title="SWITCH UI"
       local:showAsAction="always"/>
   <item

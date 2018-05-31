@@ -19,7 +19,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -39,8 +39,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/basic_text_size_extra_small"
-                            android:textColor="#668eaa" />
-                    </LinearLayout>
+                            android:textColor="#668eaa"
+                            android:layout_toLeftOf="@+id/text_status"
+                            android:layout_below="@+id/text_question_title"
+                            android:layout_alignLeft="@+id/text_question_title" />
+                        <TextView
+                            android:id="@+id/text_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/text_question_tags"
+                            android:layout_alignParentRight="true"
+                            android:textSize="@dimen/basic_text_size_extra_small" />
+                    </RelativeLayout>
                     <View
                         android:background="@color/light_grey_divider"
                         android:layout_width="match_parent"
@@ -216,7 +226,7 @@
                         android:layout_gravity="center"
                         android:textSize="@dimen/basic_text_size_medium_small"
                         android:textStyle="bold"
-                  android:textColor="@color/alert_green"/>
+                        android:textColor="@color/alert_green" />
                     <TextView
                         android:text="Just wait..."
                         android:layout_width="wrap_content"

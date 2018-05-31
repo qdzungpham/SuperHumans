@@ -72,13 +72,13 @@ namespace SuperHumans.Services
             return 1;
         }
 
-        public static async Task<int> AddQuestion(Question _question)
+        public static async Task<int> AddQuestion(Question _question, List<ParseObject> topics)
         {
             ParseObject question = new ParseObject("Questions");
             question["title"] = _question.Title;
             question["body"] = _question.Body;
             question["createdBy"] = ParseUser.CurrentUser;
-            question["topics"] = new List<ParseObject>();
+            question["topics"] = topics;
             question["acceptedHelpers"] = null;
             question["requestedHelpers"] = new List<ParseObject>();
             question["stateFlag"] = 2;

@@ -14,6 +14,7 @@ namespace SuperHumans.Droid.Fragments.Basic
     public class BasicAskQuestionFragment : Fragment
     {
         private readonly int VOICE = 10;
+        TextView topics;
         //Button btnRec;
         //Button btnUseKeyboard;
         EditText titleText, bodyText;
@@ -25,6 +26,8 @@ namespace SuperHumans.Droid.Fragments.Basic
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
+            ViewModel = new AskViewModel();
+
             HasOptionsMenu = true;
         }
 
@@ -42,12 +45,18 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             Activity.Title = "Post New Task";
 
-            ViewModel = new AskViewModel();
+            
             titleText = view.FindViewById<EditText>(Resource.Id.ask_edit_title);
             bodyText = view.FindViewById<EditText>(Resource.Id.ask_edit_body);
+            topics = view.FindViewById<TextView>(Resource.Id.topics);
 
+            topics.Click += (sender, e) =>
+            {
+                FragmentManager.BeginTransaction().Replace(Resource.Id.content_frame, BasicChooseTopicsFragment.NewInstance())
+                .AddToBackStack(null).Commit();
+            };
 
-
+            topics.Text = ViewModel.GetChoosedTopicsString();
 
             //// get the resources from the layout
             //btnRec = view.FindViewById<Button>(Resource.Id.btn_use_speech_to_text);
@@ -69,41 +78,41 @@ namespace SuperHumans.Droid.Fragments.Basic
             //    alert.Show();
             //}
             //else
-            //titleText.FocusChange += delegate
-            //    {
+            titleText.LongClick += delegate
+                {
 
-            //        if (titleText.IsFocused == false) return;
-            //        // create the intent and start the activity
-            //        var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
+                    if (titleText.IsFocused == false) return;
+                    // create the intent and start the activity
+                    var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
 
-            //        // put a message on the modal dialog
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, "Speak now");
+                    // put a message on the modal dialog
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, "Speak now");
 
-            //        // if there is more then 1.5s of silence, consider the speech over
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
+                    // if there is more then 1.5s of silence, consider the speech over
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
 
-            //        // you can specify other languages recognised here, for example
-            //        // voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.German);
-            //        // if you wish it to recognise the default Locale language and German
-            //        // if you do use another locale, regional dialects may not be recognised very well
+                    // you can specify other languages recognised here, for example
+                    // voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.German);
+                    // if you wish it to recognise the default Locale language and German
+                    // if you do use another locale, regional dialects may not be recognised very well
 
-            //        voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-            //        try
-            //        {
-            //            StartActivityForResult(voiceIntent, VOICE);
-            //        }
-            //        catch (ActivityNotFoundException)
-            //        {
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
+                    try
+                    {
+                        StartActivityForResult(voiceIntent, VOICE);
+                    }
+                    catch (ActivityNotFoundException)
+                    {
 
-            //            Toast.MakeText(Context, "Sorry! Your device doesn\'t support speech input", ToastLength.Short).Show();
+                        Toast.MakeText(Context, "Sorry! Your device doesn\'t support speech input", ToastLength.Short).Show();
 
-            //        }
+                    }
 
-            //    };
+                };
 
             return view;
         }

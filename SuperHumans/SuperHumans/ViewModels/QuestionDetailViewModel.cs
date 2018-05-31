@@ -39,6 +39,17 @@ namespace SuperHumans.ViewModels
             {
                 IsBusy = true;
                 var question = await ParseAccess.GetQuestion(questionId);
+                var state = "Closed";
+                var stateFlag = question.Get<int>("stateFlag");
+
+                if (stateFlag == (int)RequestState.Active)
+                {
+                    state = "Active";
+                }
+                else if (stateFlag == (int)RequestState.InProgress)
+                {
+                    state = "In Progress";
+                }
 
                 var topicObjects = question.Get<IList<ParseObject>>("topics");
                 var topics = new List<string>();
@@ -63,7 +74,8 @@ namespace SuperHumans.ViewModels
                     ObjectId = question.ObjectId,
                     Topics = topics,
                     CreatedAt = question.CreatedAt.Value + RestService.TimeDiff,
-                    Owner = owner
+                    Owner = owner,
+                    State = state
                 };
 
                 Answers.Clear();

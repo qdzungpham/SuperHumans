@@ -22,7 +22,6 @@ namespace SuperHumans.Droid.Fragments.Basic
             // Create your fragment here
             HasOptionsMenu = true;
 
-          
 
         }
 

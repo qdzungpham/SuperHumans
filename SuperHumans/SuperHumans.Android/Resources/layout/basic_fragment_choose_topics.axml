@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-  <TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Follow at least 3 topics to personalise your feed."
+        android:text="Select one or more topics for your request."
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:textSize="@dimen/basic_text_size_small" />
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

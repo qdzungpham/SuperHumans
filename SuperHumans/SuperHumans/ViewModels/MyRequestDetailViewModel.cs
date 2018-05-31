@@ -41,6 +41,18 @@ namespace SuperHumans.ViewModels
             {
                 IsBusy = true;
                 var request = await ParseAccess.GetMyRequest(requestId);
+                var state = "Closed";
+                var stateFlag = request.Get<int>("stateFlag");
+
+                if (stateFlag == (int)RequestState.Active)
+                {
+                    state = "Active";
+                }
+                else if (stateFlag == (int)RequestState.InProgress)
+                {
+                    state = "In Progress";
+                }
+
 
                 var topicObjects = request.Get<IList<ParseObject>>("topics");
                 var topics = new List<string>();
@@ -69,6 +81,7 @@ namespace SuperHumans.ViewModels
                     ObjectId = request.ObjectId,
                     Topics = topics,
                     CreatedAt = request.CreatedAt.Value + RestService.TimeDiff,
+                    State = state
                 };
 
                 

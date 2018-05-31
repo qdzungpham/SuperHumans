@@ -17,7 +17,8 @@ namespace SuperHumans.Droid.Fragments.Basic
 {
     public class BasicMyRequestDetailFragment : Android.Support.V4.App.Fragment
     {
-        TextView questionTitle, questionBody, tags, postedDate, spinnerText;
+        TextView questionTitle, questionBody, tags, postedDate;
+        ArrayAdapter spinnerAdapter;
         HelpersAdapter adapter;
         SwipeRefreshLayout refresher;
         RecyclerView recyclerView;
@@ -68,7 +69,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             statusSpinner = view.FindViewById<Spinner>(Resource.Id.status_spinner);
             statusSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
-            var spinnerAdapter = ArrayAdapter.CreateFromResource(
+            spinnerAdapter = ArrayAdapter.CreateFromResource(
             Activity, Resource.Array.request_status_array, Resource.Layout.statusSpinnerLayout);
             spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 
@@ -90,6 +91,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             questionTitle.Text = ViewModel.Request.Title;
             questionBody.Text = ViewModel.Request.Body;
+            statusSpinner.SetSelection(spinnerAdapter.GetPosition(ViewModel.Request.State));
 
             foreach (var topic in ViewModel.Request.Topics)
             {
@@ -188,7 +190,12 @@ namespace SuperHumans.Droid.Fragments.Basic
             myHolder.FullNameText.Text = helper.FirstName + " " + helper.LastName;
             myHolder.UsernameText.Text = "@" + helper.Username;
 
-            
+            myHolder.AcceptButton.Click += (sender, e) =>
+            {
+                myHolder.AcceptButton.Text = "Accepted";
+                myHolder.AcceptButton.Enabled = false;
+            };
+
         }
 
         public override int ItemCount => viewModel.Helpers.Count;
@@ -198,12 +205,14 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView FullNameText { get; set; }
         public TextView UsernameText { get; set; }
+        public Button AcceptButton { get; set; }
 
         public HelperViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
             FullNameText = itemView.FindViewById<TextView>(Resource.Id.text_full_name);
             UsernameText = itemView.FindViewById<TextView>(Resource.Id.text_username);
+            AcceptButton = itemView.FindViewById<Button>(Resource.Id.accept_button);
             itemView.Click += (sender, e) => clickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
             itemView.LongClick += (sender, e) => longClickListener(new RecyclerClickEventArgs { View = itemView, Position = AdapterPosition });
         }

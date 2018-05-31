@@ -88,6 +88,7 @@
     <Compile Include="Fragments\Basic\BasicBrowseAnswersFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseQuestionsFragment.cs" />
     <Compile Include="Fragments\Basic\BasicBrowseUsersFragment.cs" />
+    <Compile Include="Fragments\Basic\BasicChooseTopicsFragment.cs" />
     <Compile Include="Fragments\Basic\BasicFirstViewFragment.cs" />
     <Compile Include="Fragments\Basic\BasicGetHelpFragment.cs" />
     <Compile Include="Fragments\Basic\BasicMessageFragment.cs" />
@@ -244,6 +245,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\basic_conversation_list_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\basic_fragment_choose_topics.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -424,7 +428,7 @@
     <AndroidResource Include="Resources\drawable\ic_volume_up_white_24px.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\menu\basic_UI_menu.xml" />
+    <AndroidResource Include="Resources\menu\speak_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_rss_feed_24px.xml" />
@@ -477,6 +481,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_mic_24px.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\first_view_button.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_swap_horiz_24px.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

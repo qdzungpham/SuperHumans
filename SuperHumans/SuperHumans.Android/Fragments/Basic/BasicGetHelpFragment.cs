@@ -48,7 +48,7 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             addRequest = view.FindViewById<Button>(Resource.Id.btnAdd);
 
-            Activity.Title = "Find Opportunities";
+            Activity.Title = "Get Help";
 
             ViewModel = new BrowseQuestionsViewModel();
 
@@ -116,6 +116,28 @@ namespace SuperHumans.Droid.Fragments.Basic
             adapter.ItemClick += Adapter_ItemClick;
             refresher.Refreshing = false;
             
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.speak_menu, menu);
+
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.action_speak:
+
+                    ((BasicMainActivity)Activity).Speak("Hello, this is a test.");
+
+                    break;
+
+
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 

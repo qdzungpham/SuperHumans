@@ -117,7 +117,7 @@ namespace SuperHumans.Droid.Fragments.Basic
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             base.OnCreateOptionsMenu(menu, inflater);
-            inflater.Inflate(Resource.Menu.basic_UI_menu, menu);
+            inflater.Inflate(Resource.Menu.speak_menu, menu);
 
         }
 
@@ -186,6 +186,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             // Replace the contents of the view with that element
             var myHolder = holder as QuestionViewHolder;
             myHolder.BodyView.Text = question.Title;
+            myHolder.TimeAgoView.Text = question.TimeAgo;
             string topics = "";
 
             foreach (var topic in question.Topics)
@@ -235,6 +236,7 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         public TextView BodyView { get; set; }
         public TextView TopicsView { get; set; }
+        public TextView TimeAgoView { get; set; }
         public RelativeLayout AnswersButton { get; set;}
         public RelativeLayout FollowButton { get; set; }
         public ImageView FollowIcon { get; set; }
@@ -243,8 +245,9 @@ namespace SuperHumans.Droid.Fragments.Basic
         public QuestionViewHolder(View itemView, Action<RecyclerClickEventArgs> clickListener,
                             Action<RecyclerClickEventArgs> longClickListener) : base(itemView)
         {
-            BodyView = itemView.FindViewById<TextView>(Resource.Id.text_question_body);
+            BodyView = itemView.FindViewById<TextView>(Resource.Id.text_question_title);
             TopicsView = itemView.FindViewById<TextView>(Resource.Id.text_topics);
+            TimeAgoView = itemView.FindViewById<TextView>(Resource.Id.text_time);
             AnswersButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
             FollowButton = itemView.FindViewById<RelativeLayout>(Resource.Id.followBtn);
             FollowIcon = itemView.FindViewById<ImageView>(Resource.Id.followIcon);

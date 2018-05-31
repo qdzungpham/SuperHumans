@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -13,7 +14,7 @@ namespace SuperHumans.Droid.Fragments.Basic
     {
         QuestionDetailViewModel ViewModel { get; set; }
 
-        TextView questionTitle, questionBody, tags, postedDate, ownerFullName, ownerUsername, answerCount;
+        TextView questionTitle, questionBody, tags, status, postedDate, ownerFullName, ownerUsername, answerCount;
         Button helperBtn;
         LinearLayout helpRequestHolder, requestSentHolder;
         RelativeLayout ownerHolder;
@@ -48,6 +49,7 @@ namespace SuperHumans.Droid.Fragments.Basic
             questionTitle = view.FindViewById<TextView>(Resource.Id.text_question_title);
             questionBody = view.FindViewById<TextView>(Resource.Id.text_question_body);
             tags = view.FindViewById<TextView>(Resource.Id.text_question_tags);
+            status = view.FindViewById<TextView>(Resource.Id.text_status);
             answerCount = view.FindViewById<TextView>(Resource.Id.textAnswerCount);
             ownerFullName = view.FindViewById<TextView>(Resource.Id.text_full_name);
             ownerUsername = view.FindViewById<TextView>(Resource.Id.text_username);
@@ -89,6 +91,19 @@ namespace SuperHumans.Droid.Fragments.Basic
 
             questionTitle.Text = ViewModel.Question.Title;
             questionBody.Text = ViewModel.Question.Body;
+
+            status.Text = ViewModel.Question.State;
+
+            if (ViewModel.Question.State == "Closed")
+            {
+                status.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_red)));
+            } else if (ViewModel.Question.State == "Active")
+            {
+                status.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_green)));
+            } else if (ViewModel.Question.State == "In Progress")
+            {
+                status.SetTextColor(new Color(Android.Support.V4.Content.ContextCompat.GetColor(Activity, Resource.Color.alert_yellow)));
+            }
 
             foreach (var topic in ViewModel.Question.Topics)
             {
@@ -146,6 +161,28 @@ namespace SuperHumans.Droid.Fragments.Basic
             {
                 answerCount.Text = count + " RESPONSES";
             }
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.speak_menu, menu);
+
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.action_speak:
+
+                    ((Activities.Basic.BasicMainActivity)Activity).Speak("Hello, this is a test.");
+
+                    break;
+
+
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 
